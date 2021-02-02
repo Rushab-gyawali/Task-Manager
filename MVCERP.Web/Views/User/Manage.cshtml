@@ -1,0 +1,157 @@
+﻿@model MVCERP.Web.Models.UserModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function(){
+        BlockSpecialChar("FullName");
+    });
+</script>
+
+<div class="container manage-container">
+
+    @using (Html.BeginForm("Manage", "User", new { ReturnUrl = "Index" }, FormMethod.Post, new { @class = "form-horizontal", @role = "form", @id = "Manage" }))
+    {
+        if (!Html.ViewData.ModelState.IsValid)
+        {
+            var resp = MVCERP.Web.Library.StaticData.GetSessionMessage();
+            if (null != resp)
+            {
+                @section Message{
+                    <script type="text/javascript">
+                        ManageMessage(@resp.ErrorCode, "@resp.Message");
+                    </script>
+                }
+            }
+        }
+        @Html.AntiForgeryToken()
+       @Html.HiddenFor(m => m.UniqueId)
+        @Html.Raw(Model.BreadCum)
+        <div class="form-horizontal manage-body">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.UserId)<small class="text-danger">*</small></label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.UserId, Model.UserId, new { @class = "form-control", @required = "required", @placeholder = "Enter User Id" })
+                                    </div>
+                                </div>
+                            </div>
+                            @if (Model.UniqueId == 0)
+                            {
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.UserPwd)<small class="text-danger">*</small></label>
+                                    <div class="col-sm-8">
+                                        @Html.PasswordFor(model => model.UserPwd, new { @class = "form-control", @required = "required", @placeholder = "Enter User Password" })
+                                        @Html.ValidationMessageFor(model => model.UserPwd)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.CPassword)<small class="text-danger">*</small></label>
+                                    <div class="col-sm-8">
+                                        @Html.PasswordFor(model => model.CPassword, new { @class = "form-control", @required = "required", @placeholder = "Enter Confirm Password" })
+                                        @Html.ValidationMessageFor(model => model.CPassword)
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.FullName)<small class="text-danger">*</small></label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @required = "required", @placeholder = "Enter Full Name" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.Email)<small class="text-danger">*</small></label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @required = "required", @placeholder = "Enter Email Id",@onblur="validateEmail(this);" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.PhoneNo)<small class="text-danger">*</small></label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.PhoneNo, new { @class = "form-control", @required = "required", @placeholder = "Enter Phone No", @onblur = "MakeNumberOnly(this);" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.Branch)<small class="text-danger">*</small></label>
+                                    <div class="col-sm-8">
+                                        @Html.DropDownListFor(model => model.Branch, Model.BranchList, new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.DepartmentId)<small class="text-danger">*</small></label>
+                                    <div class="col-sm-8">
+                                        @Html.DropDownListFor(model => model.DepartmentId, Model.DepartmentList, new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.DesignationId)<small class="text-danger">*</small></label>
+                                    <div class="col-sm-8">
+                                        @Html.DropDownListFor(model => model.DesignationId, Model.DesignationList, new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> Allow Approve Transaction </label>
+                                    <div class="col-sm-8">
+                                        @Html.CheckBoxFor(model => model.AllowApproveDate)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> Allow Back Date </label>
+                                    <div class="col-sm-8">
+                                        @Html.CheckBoxFor(model => model.AllowBackDate)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.IsActive)</label>
+                                    <div class="col-sm-8">
+                                        <div class="text-left">
+                                            @Html.DropDownListFor(m => m.IsActive, ViewData["Status"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"> @Html.LabelFor(m => m.IsAdminUser)</label>
+                                    <div class="col-sm-8">
+                                        <div class="text-left">
+                                            @Html.DropDownListFor(m => m.IsAdminUser, ViewData["Status"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    }
+</div>
+

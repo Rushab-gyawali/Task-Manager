@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCERP.Web", "MVCERP.Web\MVCERP.Web.csproj", "{52E3D619-6545-49A9-B959-F23A1D4160DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCERP.Business", "MVCERP.Business\MVCERP.Business.csproj", "{87331FDF-3FFE-487D-9626-75BB4644C829}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCERP.Repository", "MVCERP.Repository\MVCERP.Repository.csproj", "{87AC844A-35F3-4EB1-920B-1A15D8E72D51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCERP.Shared", "MVCERP.Shared\MVCERP.Shared.csproj", "{4DD6E61C-AF36-4122-822A-D1AB1E6A1A22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCERP.MailNotification", "MVCERP.MailNotification\MVCERP.MailNotification.csproj", "{8D1A80AC-902F-40B6-B05E-D495BDB87995}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52E3D619-6545-49A9-B959-F23A1D4160DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E3D619-6545-49A9-B959-F23A1D4160DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E3D619-6545-49A9-B959-F23A1D4160DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E3D619-6545-49A9-B959-F23A1D4160DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87331FDF-3FFE-487D-9626-75BB4644C829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87331FDF-3FFE-487D-9626-75BB4644C829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87331FDF-3FFE-487D-9626-75BB4644C829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87331FDF-3FFE-487D-9626-75BB4644C829}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87AC844A-35F3-4EB1-920B-1A15D8E72D51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87AC844A-35F3-4EB1-920B-1A15D8E72D51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87AC844A-35F3-4EB1-920B-1A15D8E72D51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87AC844A-35F3-4EB1-920B-1A15D8E72D51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DD6E61C-AF36-4122-822A-D1AB1E6A1A22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DD6E61C-AF36-4122-822A-D1AB1E6A1A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DD6E61C-AF36-4122-822A-D1AB1E6A1A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DD6E61C-AF36-4122-822A-D1AB1E6A1A22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D1A80AC-902F-40B6-B05E-D495BDB87995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D1A80AC-902F-40B6-B05E-D495BDB87995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D1A80AC-902F-40B6-B05E-D495BDB87995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D1A80AC-902F-40B6-B05E-D495BDB87995}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
+		SolutionGuid = {78E30866-BD64-4CE0-B032-37510C0D675B}
+	EndGlobalSection
+EndGlobal

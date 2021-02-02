@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+<style type="text/css" media="screen">
+    html, body {
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+        overflow: hidden;
+    }
+</style>
+<link href="../ui/js/sarvanamscheduler.css" rel="stylesheet" />
+<script src="../ui/js/sarvanamscheduler.js"></script>
+<div class="container listing-container">
+    <div id="scheduler_here" class="sar_cal_container" style='width:90%; height:500px;'>
+        <div class="sar_cal_navline">
+            <div class="sar_cal_prev_button">&nbsp;</div>
+            <div class="sar_cal_next_button">&nbsp;</div>
+            <div class="sar_cal_today_button"></div>
+            <div class="sar_cal_date"></div>
+        </div>
+        <div class="sar_cal_header">
+        </div>
+        <div class="sar_cal_data">
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+        scheduler.init('scheduler_here', new Date(), "month");
+
+
+
+
+        function loadevents() {
+
+            var dataToSend = { MethodName: "getEventsList" };
+            $.ajax({
+                url: '<%=ResolveUrl("AjaxSubmit") %>',
+                data: dataToSend,
+                dataType: 'JSON',
+                type: 'POST',
+
+                success: function (response) {
+                    debugger;
+                    var events;
+                    events = [];
+                    var data = response;
+
+                    $.each(data, function (key, value) {
+
+                        events.push({
+                            id: value.Id,
+                            text: value.Text,
+                            start_date: value.StartDate,
+                            end_date: value.EndDate
+
+                        });
+
+                    });
+
+                    scheduler.parse(events, "json")
+                }
+            });
+
+        };
+
+        loadevents();
+
+    </script>

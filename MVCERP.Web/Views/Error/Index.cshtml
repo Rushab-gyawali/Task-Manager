@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+<div class="container report-container">
+    <div class="panel panel-default report-panel">
+        <div class="panel-body">
+            <div class="col-xs-12">
+                <div class="alert alert-danger">
+                    <img src="~/Images/unAuthorized.png" alt="Un Authorized" />
+                    <span style="font-size:20px;color:red;font-weight:bold">
+                        ERROR OCCUR IN APPLICATION, ERROR LOG ID :
+                        <a href="/Error/Detail/@ViewData["id"]" title="Error Detail">@ViewData["id"]</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

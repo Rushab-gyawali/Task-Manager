@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+
+    var resp = MVCERP.Web.Library.StaticData.GetSessionMessage();
+    if (null != resp)
+    {
+        @section scripts{
+            <script type="text/javascript">
+                ManageMessage(@resp.ErrorCode, "@resp.Message");
+            </script>
+        }
+    }
+}
+
+<div class="container listing-container">
+    @Html.Raw(ViewData["grid"].ToString())
+</div>
