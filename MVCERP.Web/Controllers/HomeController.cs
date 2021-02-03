@@ -139,16 +139,7 @@ namespace MVCERP.Web.Controllers
         {
             string ip = Request.ServerVariables["REMOTE_ADDR"]
                     , browser = Request.Browser.Browser + " Version :" + Request.Browser.Version;
-
-            //var logBuss = new LogsBusiness();
-            //var log = new MVCERP.Shared.Common.ErrorLogsCommon()
-            //{
-            //    Action = "Success",
-            //    ErrorPage = "Login",
-            //    ErrorMsg = ip,
-            //    ErrorDetail = browser,
-            //    User = model.UserName
-            //};
+        
             var login = new LoginCommon
             {
                 UserName = model.UserName,
@@ -157,58 +148,15 @@ namespace MVCERP.Web.Controllers
                 BrowserInfo = browser
             };
             var resp = buss.UserLogin(login);
-            //if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
-            if (resp.Code == "1")
+            if (resp.Code == "0")
             {
 
                 Session["ForcePwdChange"] = resp.ForcePwdChange;
-
-                //WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe);
-                Session["UserName"] = model.UserName;
-                //Session["Branch"] = resp.Branch;
-                //Session["IsAdminUser"] = resp.IsAdminUser;
-                //Session["AllowApproveDate"] = resp.AllowApproveDate;
-                //Session["AllowBackDate"] = resp.AllowBackDate;
-                //Session["CompanyName"] = resp.CompanyName;
-                //Session["CompanyNameNep"] = resp.CompanyNameNep;
-                //Session["CompanyAddress"] = resp.CompanyAddress;
-                //Session["CompanyAddressNep"] = resp.CompanyAddressNep;
+                Session["UserName"] = model.UserName;              
                 Session["sysDate"] = StaticData.DBToFrontDate(System.DateTime.Now.ToShortDateString());
-                //Session["NepsysDate"] = StaticData.ConvertEng_NepDate(resp.sysDate, 2);
-                var list = buss.GetMenuByUser(model.UserName);
-                if (list.menu.Count > 0)
-                {
-                    var pool = new LoggedInUser
-                    {
-                        UserId = 1,
-                        UserName = model.UserName,
-                        // UserFullName = model.UserName,
-                        Browser = browser,
-                        IPAddress = ip,
-                        LastLoginTime = DateTime.Now,
-                        LoginTime = DateTime.Now,
-                        // Menu = list,
-                        SessionID = Session.SessionID,
-                        UserAccessLevel = "M"
-                    };
-
-                    UserMonitor.GetInstance().AddUser(pool);
-                }
-                //Session["Menus"] = list;
-
-                //logBuss.UnAuthorizedLog(log);
-
-                // return Redirect("/Account/Master");
-
-
-                //var insuranceDetails = buss.GetInsuranceDetails(StaticData.GetUser());
-                return View("DashBoard", "Home");
-
+                return RedirectToAction("Index", "TaskReporting");
             }
             ViewData["msg"] = "The user name or password provided is incorrect.";
-            //ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            // If we got this far, something failed, redisplay form
-
             return View(model);
         }
         // [Authorize]

@@ -10,7 +10,7 @@ namespace MVCERP.Shared.Common
         public string ErrorPage { get; set; }
         public string ErrorMsg { get; set; }
         public string ErrorDetail { get; set; }
-        public string CreatedBy { get; set; }
-        public string CreatedDate { get; set; }
+        //public string CreatedBy { get; set; }
+        //public string CreatedDate { get; set; }
     }
 }

@@ -163,6 +163,7 @@
     <Compile Include="Controllers\MISReport\MISController.cs" />
     <Compile Include="Controllers\MISReport\MISGenerateReportController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\TaskReportingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\SessionExpiryFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -184,6 +185,7 @@
     <Compile Include="Library\StaticData.cs" />
     <Compile Include="Library\UserMonitor.cs" />
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\TaskReportingModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\User\IUserService.cs" />
@@ -434,6 +436,7 @@
     <Content Include="Views\Home\DashBoard.cshtml" />
     <Content Include="Views\Home\CreateUser.cshtml" />
     <Content Include="Views\Home\TestPage.cshtml" />
+    <Content Include="Views\TaskReporting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -451,6 +454,10 @@
     <ProjectReference Include="..\MVCERP.MailNotification\MVCERP.MailNotification.csproj">
       <Project>{8d1a80ac-902f-40b6-b05e-d495bdb87995}</Project>
       <Name>MVCERP.MailNotification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCERP.Repository\MVCERP.Repository.csproj">
+      <Project>{87ac844a-35f3-4eb1-920b-1a15d8e72d51}</Project>
+      <Name>MVCERP.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\MVCERP.Shared\MVCERP.Shared.csproj">
       <Project>{4dd6e61c-af36-4122-822a-d1ab1e6a1a22}</Project>

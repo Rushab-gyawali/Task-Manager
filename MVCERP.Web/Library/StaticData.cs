@@ -380,151 +380,15 @@ namespace MVCERP.Web.Library
             var link = "";
             if (HasRight(Control, AddEdit))
             {
-                var enc = Base64Encode_URL(Id.ToString());
-                if (Control.ToLower() == "branch" && HasRight(Control, "a"))
+                var enc = Base64Encode_URL(ExtraId.ToString());
+                if (Control.ToLower() == "taskmanger")
                 {
 
-                    link += "<a href='/" + Control + "/Manage?id=" + Id + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
+                    link += "<a href='/" + Control + "/Add?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
                 }
 
-                else if (Control.ToLower() == "claimapproval" && HasRight(Control, ExtraId))
-                {
-                    enc = Base64Encode_URL(Id.ToString());
-                    link += "<a href='/" + Control + "/Manage?" + enc + "' target='_blank' class='btn-action' title='Claim Approval'><i class='mdi  mdi-check-circle'></i></a>";
-                }
-                else if (Control.ToLower() == "account")
-                {
-                    enc = Base64Encode_URL(ExtraId);
-                    link += "<a href='/" + Control + "/ManageApprove?" + enc + "' class='btn-action' title='Approve'><i class='mdi mdi-check-circle'></i></a>";
-                }
-                else if (Control.ToLower() == "groupinformation")
-                {
-                    enc = Base64Encode_URL(Id.ToString());
-                    link += "<a href='/GroupPolicy/GroupInformation?" + enc + "' class='btn-action' title='Approve'><i class='mdi mdi-pencil'></i></a>";
-                }
-
-
-                else if (Control.ToLower() == "groupbranch")
-                {
-                    enc = Base64Encode_URL(Id.ToString());
-                    link += "<a href='/" + Control + "/Manage?" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
-                }
-
-
-                else if (Control.ToLower() == "disburselist")
-                {
-                    enc = Base64Encode_URL(Id.ToString());
-                    link += "<a href='/AgentLoan/LoanDisbursment?" + enc + "' class='btn-action' title='LoanPaymentDetail'><i class='mdi mdi-pencil'></i></a>";
-                }
-                else if (Control.ToLower() == "loanemi")
-                {
-                    enc = Base64Encode_URL(Id.ToString());
-                    link += "<a href='/AgentLoan/EMI?" + enc + "' class='btn-action' title='EMI'><i class='mdi mdi-check-circle'></i></a>";
-                }
-                else if (Control.ToLower() == "insured")
-                {
-                    enc = Base64Encode_URL(ExtraId);
-                    link += "<a href='/" + Control + "/PersonalUnderWritingDetails?" + enc + "' class='btn-action' title='Approve'><i class='mdi mdi-pencil'></i></a>";
-                }
-                else if (Control.ToLower() == "onlinepolicy")
-                {
-                    enc = Base64Encode_URL(Id.ToString());
-                    link += "<a href='/Insured/ApproveOnlinePolicyDetails?" + enc + "' class='btn-action' title='View'><i class='mdi mdi-pencil'></i></a>";
-                }
-                else if (Control.ToLower() == "staticdata")
-                {
-                    enc = Base64Encode_URL(Id.ToString());
-                    link += "<a href='/" + Control + "/Manage?" + enc + "' class='btn-action' title='View'><i class='mdi mdi-pencil'></i></a>";
-                }
-                else if (Control.ToLower() == "underwritelist")
-                {
-                    enc = Base64Encode_URL(Id.ToString());
-                    link += "<a href='/Insured/ApproveDetails?" + enc + "' class='btn-action' title='View'><i class='mdi mdi-pencil'></i></a>";
-                }
-                else if (Control.ToLower() == "fpreceiptreprint")
-                {
-                    enc = Base64Encode_URL(ExtraId);
-                    link += "<a href='/ForeignPolicy/FPReceipt?" + enc + "' class='btn-action' title='Re-Print'><i class='mdi mdi-printer'></i></a>";
-                }
-
-                else if (Control.ToLower() == "agentsuperior")
-                {
-                    enc = Base64Encode_URL(Id.ToString());
-                    link += "<a href='/" + Control + "/EditAgentSuperior?" + enc + "' target='_blank' class='btn-action' title='Manage Agent Superior'><i class='mdi mdi-pencil'></i></a>";
-                }
-                else if (Control.ToLower() == "agent")
-                {
-                    enc = Base64Encode_URL(Id.ToString());
-                    link += "<a href='/" + Control + "/Manage?" + enc + "' target='_blank' class='btn-action' title='Manage Medical Requirements'><i class='mdi mdi-pencil'></i></a>";
-                    link += "<a href='/" + "CheckList" + "/ViewCheckList?" + enc + "&doctype=agent' target='_blank' class='btn-action' title='CheckList Questionnaire'><i class='mdi mdi-check-circle'></i></a>";
-                }
-                else if (Control.ToLower() == "backyearaccount")
-                {
-                    enc = Base64Encode_URL(ExtraId);
-                    link += "<a href='/" + Control + "/ManageApprove?" + enc + "' class='btn-action' title='Approve'><i class='mdi mdi-check-circle'></i></a>";
-                }
-                else
-                {
-                    link += "<a href='/" + Control + "/Manage?" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
-                }
             }
 
-            if (HasRight(Control, "d"))
-            {
-                //link += " | <a href='/" + Control + "/Delete/" + Id + "' onclick=' return ConfirmDelete();'><i class='mdi mdi-remove'></i></a>";
-                //link += "<a onclick='ConfirmDelete(" + Id + ");'  class='btn-action'><i class='mdi mdi-delete-empty'></i></a>";
-            }
-
-            if (ExtraId == "docs")
-            {
-                var enc = Base64Encode_URL(Id.ToString());
-                link += "<a href='/" + Control + "/Doc?" + enc + "' class='btn-action' title='Doc'><i class='mdi mdi-settings'></i></a>";
-            }
-
-            if (Control.ToLower() == "user" && HasRight(Control, "v"))
-            {
-                link += "<a href='#' data-toggle='modal' data-target='#AddModal' title='Assign Role' class='btn-action' onclick='GetDetailById(" + Id + ")'><i class='mdi mdi-settings'></i></a>";
-                link += "<a href='#' data-toggle='modal' data-target='#ChangePassword' title='Change Password' class='btn-action' onclick='changeuserpassword(" + Id + ")'><i class='mdi mdi-key'></i></a>";
-            }
-            else if (Control.ToLower() == "training" && HasRight(Control, ExtraId))
-            {
-                if (ReadSession("IsAdminUser", "0").ToLower() == "true")
-                {
-                    //var enc = Base64Encode_URL(Id.ToString());
-                    //link += "<a href='/" + Control + "/Schedule?" + enc + "'  class='btn-action' title='Schedule'>Schedule</a>";
-                    link += "<a href='#' data-toggle='modal' data-target='#FinalForward' title='Forward' class='btn-action' onclick='FinalForwardTraining(" + Id + ")'><i class='mdi mdi-reload'></i></a>";
-                }
-                else
-                {
-                    link += "<a href='#' data-toggle='modal' data-target='#AddModal' title='Forward' class='btn-action' onclick='ForwardTraining(" + Id + ")'><i class='mdi mdi-settings'></i></a>";
-                }
-            }
-            else if (Control.ToLower() == "role" && HasRight(Control, ExtraId))
-            {
-                var enc = Base64Encode_URL(Id.ToString());
-                //link += "<a href='/" + Control + "/Permission?id=" + Id + "'  class='btn-action' title='Role'><i class='mdi mdi-settings'></i></a>";
-                link += "<a href='/" + Control + "/role?" + enc + "'  class='btn-action' title='Role'><i class='mdi mdi-settings'></i></a>";
-            }
-            else if (Control.ToLower() == "insured" && HasRight(Control, ExtraId))
-            {
-                string enc = Base64Encode_URL(ExtraId);
-                //link += "<a href='/" + Control + "/ViewChanges?id=" + Id + "' class='btn-action' title='View Change'><i class='mdi mdi-settings'></i></a>";
-                link += "<a href='/" + Control + "/PersonalUnderWritingDetails?id=" + enc + "' class='btn-action' title='Underwriting'><i class='mdi mdi-pencil'></i></a>";
-            }
-            else if (Control.ToLower() == "branch" && HasRight(Control, ExtraId))
-            {
-                link += "<a href='/" + Control + "/SubList?id=" + Id + "' class='btn-action' title='Sub List'><i class='mdi mdi-settings'></i></a>";
-            }
-            else if (Control.ToLower() == "staticdata" && HasRight(Control, ExtraId))
-            {
-                var enc = Base64Encode_URL(ExtraId);
-                link += "<a href='/" + Control + "/SubManage?" + enc + "' class='btn btn-success' title='Sub List'><i class='mdi mdi-plus'></i>Add New</a>";
-            }
-            else if (Control.ToLower() == "fppolicydetail" && HasRight(Control, ExtraId))
-            {
-                var enc = Base64Encode_URL(Id.ToString());
-                link += "<a href='/" + Control + "/EmpReceipt?" + enc + "' target='_blank' class='btn-action' title='Fpreign Employment'><i class='mdi mdi-settings'></i></a>";
-            }
             return link;
         }
         public static string GetSubActions(string Control, int Id, string ParentId = "")

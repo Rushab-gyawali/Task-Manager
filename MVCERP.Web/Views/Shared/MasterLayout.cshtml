@@ -12,9 +12,9 @@
     <link href="../../UI/css/portal.css" rel="stylesheet" />
     <link href="../../UI/css/iziToast.min.css" rel="stylesheet" />
     <link href="../../ui/js/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <link href="../../UI/ReportComponent/css/buttons.dataTables.min.css" rel="stylesheet" />
+    @*<link href="../../UI/ReportComponent/css/buttons.dataTables.min.css" rel="stylesheet" />*@
     <link href="../../UI/ReportComponent/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="../../UI/ReportComponent/css/responsive.dataTables.min.css" rel="stylesheet" />
+    <link href="~/UI/css/font-awesome.min.css" rel="stylesheet" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -104,15 +104,12 @@
                     <div class="navbar-header">
                         <a class="navbar-brand" href="/"></a>
                     </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        @Html.Partial("Notification")
-
-
+                    <ul class="nav navbar-nav navbar-right">  
                         <li class="dropdown user-dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="user-avatar">@MVCERP.Web.Library.StaticData.GetUser().Substring(0, 1).ToUpper()</span>
+                                <span class="user-avatar"></span>
                                 <div class="user-info">
-                                    <span class="user-name">@MVCERP.Web.Library.StaticData.GetUser()</span>
+                                    <span class="user-name"></span>
                                     <span class="user-role">Administrator</span>
                                 </div>
                                 <b class="caret"></b>
@@ -126,20 +123,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="menu-date">
                             <i class="mdi mdi-calendar"></i>
-                            Application Date :
-                            @*<span class="app-date">
-                                    @MVCERP.Web.Library.StaticData.ReadSession("NepsysDate", "")
-                                    - @MVCERP.Web.Library.StaticData.ReadSession("sysDate", "")
-                                </span>*@
-                            <span class="app-date">
-                                @MVCERP.Web.Library.StaticData.ReadSession("NepsysDate", "") - @MVCERP.Web.Library.StaticData.ReadSession("sysDate", "")<br />
-                                @{
-                                    if (@MVCERP.Web.Library.StaticData.ReadSession("sysDate", "") != @MVCERP.Web.Library.StaticData.ReadSession("FPIBackDate", ""))
-                                    {
-                                        <label>FPIBackDate:</label> @MVCERP.Web.Library.StaticData.ReadSession("FPIDate", "");
-                                    }
-                                }
-                            </span>
+                            Application Date : 
                         </li>
                         <li>
                             <a href="#" class="btn-sms" id="btnSms">
@@ -166,70 +150,14 @@
                     </div>
                     <div class="collapse navbar-collapse" id="mainMenu">
                         <ul class="nav navbar-nav navbar-menu">
-                            @Html.Partial("Menu")
+                            @*@Html.Partial("Menu")*@
                         </ul>
                     </div>
                 </div>
             </nav>
         </header>
         <div class="content">
-            @RenderBody()
-            <div class="push-panel" id="pushSMS">
-                <div class="push-header">
-                    <div class="push-title">
-                        Quick Messaging
-                        <button type="button" class="close" id="btnCloseSMS"><span>&times;</span></button>
-                    </div>
-                </div>
-                <div class="push-body">
-                    <div class="form-group">
-                        <label>Notification Type</label>
-                        <select id="ddlNotificationType" class="form-control" required="required"><option value="">-- Select Notification Type --</option></select>
-                    </div>
-                    <div class="form-group" id="divGroup">
-                        <label>Notification Group</label>
-                        <select id="ddlNotificationGroup" class="form-control"><option value="">-- Select Notification Group --</option></select>
-                    </div>
-                    <div class="form-group" id="divPhone">
-                        <label>Enter Phone Number</label>
-                        <input type="text" name="txtPhoneNo" class="form-control" id="txtPhoneNo" onblur="MakeNumberOnly(this);" />
-                    </div>
-                    <div class="form-group">
-                        <label>Enter Your Text</label>
-                        <textarea class="form-control" id="smsContent" required="required"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="button" value="Send" class="btn btn-primary" onclick="SendSms();" />
-                        <input type="reset" value="Cancel" class="btn btn-default" id="btnCancelSMS" />
-                    </div>
-                </div>
-            </div>
-            @*
-                <div class="push-panel" id="pushEmail">
-                    <div class="push-header">
-                        <div class="push-title">
-                            Send Notification
-                            <button type="button" class="close" id="btnCloseEmail"><span>&times;</span></button>
-                        </div>
-                    </div>
-                    <div class="push-body">
-                        <div class="form-group">
-                            <label>Enter Notification Message</label>
-                            <textarea class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Send to Corporate
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="button" value="Send" class="btn btn-primary" />
-                            <input type="reset" value="Cancel" class="btn btn-default" id="btnCancelEmail" />
-                        </div>
-                    </div>
-                </div>*@
+            @RenderBody()           
         </div>
         <footer class="footer">
             <div class="container text-center">
@@ -252,10 +180,10 @@
     <script src="../../UI/ReportComponent/js/buttons.colVis.min.js"></script>
     <script src="../../UI/ReportComponent/js/buttons.flash.min.js"></script>
     <script src="../../UI/ReportComponent/js/buttons.html5.min.js"></script>
-    <script src="../../UI/ReportComponent/js/buttons.print.min.js"></script>
-    <script src="../../UI/ReportComponent/js/pdfmake.min.js"></script>
-    <script src="../../UI/ReportComponent/js/vfs_fonts.js"></script>
-    <script src="../../UI/ReportComponent/js/responsive.bootstrap.min.js"></script>
+    @*<script src="../../UI/ReportComponent/js/buttons.print.min.js"></script>
+    <script src="../../UI/ReportComponent/js/pdfmake.min.js"></script>*@
+    @*<script src="../../UI/ReportComponent/js/vfs_fonts.js"></script>
+    <script src="../../UI/ReportComponent/js/responsive.bootstrap.min.js"></script>*@
     @RenderSection("Message", required: false)
     @RenderSection("scripts", required: false)
     <script>
@@ -270,102 +198,11 @@
                 push: false,
                 position: "right",
                 width: "350px",
-            });
-            $("#btnCloseSMS, #btnCancelSMS").click(function () {
-                sliderSMS.slideReveal("hide");
-            })
-            var sliderEmail = $('#pushEmail').slideReveal({
-                trigger: $("#btnEmail"),
-                push: false,
-                position: "right",
-                width: "350px",
-            });
-            $("#btnCloseEmail, #btnCancelEmail").click(function () {
-                sliderEmail.slideReveal("hide");
-            })
-
-            PopulateNotificationTypeDropdown();
-            PopulateNotificationGroupDropdown();
-
-            $("#ddlNotificationType").trigger('change');
+            });            
         });
         $("#ddlNotificationType").change(function () {
             ShowHide();
-        });
-        function PopulateNotificationTypeDropdown() {
-            $.ajax({
-                type: "GET",
-                url: "/NotificationSetup/PopulateNoticationTypeDropdown",
-                dataType: "json",
-                success: function (data) {
-                    $.each(data, function (i, obj) {
-                        var div_data = "<option value=" + obj.Value + ">" + obj.Code + "</option>";
-                        $(div_data).appendTo('#ddlNotificationType');
-                    });
-                }
-            });
-        }
-        function PopulateNotificationGroupDropdown() {
-            $.ajax({
-                type: "GET",
-                url: "/NotificationSetup/PopulateNoticationGroupDropdown",
-                dataType: "json",
-                success: function (data) {
-                    $.each(data, function (i, obj) {
-                        var div_data = "<option value=" + obj.GroupName + ">" + obj.GroupName + "</option>";
-                        $(div_data).appendTo('#ddlNotificationGroup');
-                    });
-                }
-            });
-        }
-        function ShowHide() {
-            $("#divGroup").hide();
-            $("#divPhone").hide();
-            var ddlOpt = $("#ddlNotificationType").val();
-
-            if (ddlOpt == "QuickSMS") {
-                $("#divGroup").hide();
-                $("#divPhone").show();
-            }
-            else if (ddlOpt == "Email") {
-                $("#divPhone").hide();
-                $("#divGroup").show();
-            }
-            else if (ddlOpt == "BulkSMS") {
-                $("#divPhone").hide();
-                $("#divGroup").show();
-            }
-            else if (ddlOpt == "InternalNotice") {
-                $("#divPhone").hide();
-                $("#divGroup").show();
-            }
-            else {
-                $("#divGroup").hide();
-                $("#divPhone").hide();
-            }
-        }
-        function SendSms() {
-            var notificationType = $("#ddlNotificationType").val();
-            var phoneNumber = $("#txtPhoneNo").val();
-            var groupName = $("#ddlNotificationGroup").val();
-            var content = $("#smsContent").val();
-
-            $.ajax({
-                url: '/NotificationSetup/SendMessage',
-                type: 'POST',
-                data: {
-                    NotificationType: notificationType
-                    , PhoneNo: phoneNumber
-                    , GroupName: groupName
-                    , Content: content
-                },
-                success: function (data) {
-                    var ErrorCode = 0;
-                    var Message = "Sent Successfully.";
-                    ManageMessage(ErrorCode, Message);
-                }
-            });
-        }
+        });      
     </script>
 
 </body>

@@ -58,6 +58,8 @@
     <Compile Include="Business\Role\RoleBusiness.cs" />
     <Compile Include="Business\StaticData\IStaticDataBusiness.cs" />
     <Compile Include="Business\StaticData\StaticDataBusiness.cs" />
+    <Compile Include="Business\TaskReporting\ITaskReportingBusiness.cs" />
+    <Compile Include="Business\TaskReporting\TaskReportingBusiness.cs" />
     <Compile Include="Business\User\IUserBusiness.cs" />
     <Compile Include="Business\User\UserBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

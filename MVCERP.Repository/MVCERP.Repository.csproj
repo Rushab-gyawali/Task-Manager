@@ -67,6 +67,8 @@
     <Compile Include="Repository\StaticData\StaticDataRepository.cs" />
     <Compile Include="Repository\User\IUserRepository.cs" />
     <Compile Include="Repository\User\UserRepository.cs" />
+    <Compile Include="Repository\TaskReporting\ITaskReportingRepository.cs" />
+    <Compile Include="Repository\TaskReporting\TaskReportingRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MVCERP.Shared\MVCERP.Shared.csproj">

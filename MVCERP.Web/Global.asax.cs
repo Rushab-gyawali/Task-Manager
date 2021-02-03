@@ -28,10 +28,11 @@ namespace MVCERP.Web
         protected void Application_Error()
         {
             HttpException err = Server.GetLastError() as HttpException;
+            var excep = Server.GetLastError().ToString();
             if (err != null)
             {
                 var page = HttpContext.Current.Request.Url.ToString();
-                StaticData.LogError(err, page);
+                //StaticData.LogError(err, page);
             }
 
             Server.ClearError();

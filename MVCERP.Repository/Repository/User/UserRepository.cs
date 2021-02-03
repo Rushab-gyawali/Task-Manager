@@ -163,10 +163,8 @@ namespace MVCERP.Repository.Repository.User
                 if (model.Code == "0")
                 {
                     return model;
-                }                
-               // model.FullName = dr["FullName"].ToString();
-                //model.ForcePwdChange = dr["ForcePwdChange"].ToString();
-
+                }               
+              
             }
             return model;
         }

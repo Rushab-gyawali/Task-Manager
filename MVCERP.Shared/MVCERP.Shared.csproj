@@ -59,6 +59,7 @@
     <Compile Include="Common\ReportComponent.cs" />
     <Compile Include="Common\RoleCommon.cs" />
     <Compile Include="Common\StaticDataCommon.cs" />
+    <Compile Include="Common\TaskReportingCommon.cs" />
     <Compile Include="Library\ExcelDownload.cs" />
     <Compile Include="Properties\AgentEndorsementCommon.cs" />
     <Compile Include="Common\ChartDataCommon.cs" />

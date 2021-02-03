@@ -7,6 +7,8 @@ using Unity.Mvc3;
 using MVCERP.Web.Services.UserService;
 using MVCERP.Business.Business.Reports;
 using MVCERP.Business.Business.Error;
+using MVCERP.Business.Business.TaskReporting;
+using MVCERP.Repository.Repository.TaskReporting;
 
 namespace MVCERP.Web
 {
@@ -34,6 +36,8 @@ namespace MVCERP.Web
             container.RegisterType<IReportBusiness, ReportBusiness>();
             container.RegisterType<IErrorBusiness, ErrorBusiness>();
             container.RegisterType<IMISReportComponentBusiness, MISReportComponentBusiness>();
+            container.RegisterType<ITaskReportingBusiness, TaskReportingBusiness>();
+            container.RegisterType<ITaskReportingRepository, TaskReportingRepository>();
             return container;
         }
     }
