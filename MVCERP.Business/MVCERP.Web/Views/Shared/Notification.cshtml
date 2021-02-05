@@ -1,0 +1,85 @@
+﻿
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadNotification();
+    });
+
+    function getQuerystring(key, default_) {
+        if (default_ == null) default_ = "";
+        key = key.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regex = new RegExp("[\\?&]" + key + "=([^&#]*)");
+        var qs = regex.exec(window.location.href);
+        if (qs == null)
+            return default_;
+        else
+            return qs[1];
+    }
+
+    function LoadNotification() {
+        //$('#Notifications_liNotification').load('/StaticData/GetAllNotification');
+        $.get("/StaticData/GetAllNotification", function (data, status) {
+            $('#Notifications_liNotification').html(data);
+        });
+        //$('#Notifications_liNotification').html('<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="mdi mdi-bell-outline"></i><span class="badge">42</span></a>');
+    }
+
+    timerId = setInterval(function () {
+        //$("#liNotification").load("#notid");
+        //alert('yes');
+        // LoadNotification();
+    }, 5000);
+
+    function NotificationMarkRead() {
+        $.get("/StaticData/NotificationMarkRead", function (data, status) {
+            LoadNotification();
+        });
+    }
+</script>
+
+    <li class="dropdown notification-dropdown" id="Notifications_liNotification">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="mdi mdi-bell-outline"></i>
+            <span class="badge">0</span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#" class="notification-list">
+                    <span class="notification-icon">
+                        <i class="mdi mdi-email"></i>
+                    </span>
+                    <div class="notification-content">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <span class="notification-date">Feb 21, 2017</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="notification-list">
+                    <span class="notification-icon">
+                        <i class="mdi mdi-email"></i>
+                    </span>
+                    <div class="notification-content">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <span class="notification-date">Feb 21, 2017</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="notification-list">
+                    <span class="notification-icon">
+                        <i class="mdi mdi-email"></i>
+                    </span>
+                    <div class="notification-content">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <span class="notification-date">Feb 21, 2017</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </li>

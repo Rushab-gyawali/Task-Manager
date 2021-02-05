@@ -1,0 +1,8 @@
+@media print
+{
+/*table {page-break-after:always}*/
+
+}
+@page {
+margin: 240px 0px 0px 0px;
+}
