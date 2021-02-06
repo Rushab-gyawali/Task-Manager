@@ -17,5 +17,6 @@ namespace MVCERP.Web.Models
         public string TaskEndDate { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
+        
     }
 }

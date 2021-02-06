@@ -10,8 +10,6 @@ namespace MVCERP.Repository.Repository.TaskReporting
    public interface ITaskReportingRepository
     {
         List<TaskReportingCommon> GetAllTask();
-        List<TaskReportingCommon> GetCompletedTask();
-        List<TaskReportingCommon> GetPendingTask();
-        List<TaskReportingCommon> GetAssignedTask();
+        IEnumerable<TaskReportingCommon> GetStatus();
     }
 }

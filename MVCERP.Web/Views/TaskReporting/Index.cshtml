@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/MasterLayout.cshtml";
 }
 
-<h2>List of All Task</h2>
+<h2>List of All Task</h2> @*<h2><a href="@Url.Action("GetTaskStatus","TaskReporting")"> Get Task Details</a></h2>*@
 
 <script type="text/javascript">
         $(document).ready(function () {
@@ -54,7 +54,6 @@
         });
 
 </script>
-
 
 <div class="container listing-container">
     <div class="panel panel-default">

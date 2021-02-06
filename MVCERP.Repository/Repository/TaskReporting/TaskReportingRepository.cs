@@ -23,7 +23,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
                 var sql = "EXEC proc_tblTaskManagers ";
                 sql += "@FLAG = 'A'";
                 var dt = dao.ExecuteDataTable(sql);
-                
+
                 if (null != dt)
                 {
                     int sn = 1;
@@ -55,19 +55,40 @@ namespace MVCERP.Repository.Repository.TaskReporting
             }
         }
 
-        public List<TaskReportingCommon> GetAssignedTask()
+        IEnumerable<TaskReportingCommon> ITaskReportingRepository.GetStatus()
         {
-            throw new NotImplementedException();
-        }
+            var list = new List<TaskReportingCommon>();
+            try
+            {
+                var sql = "EXEC proc_tblTaskManagers ";
+                sql += "@FLAG = 'S'";
+                var dt = dao.ExecuteDataTable(sql);
 
-        public List<TaskReportingCommon> GetCompletedTask()
-        {
-            throw new NotImplementedException();
-        }
+                if (null != dt)
+                {
+                    int sn = 1;
+                    foreach (System.Data.DataRow item in dt.Rows)
+                    {
+                        var common = new TaskReportingCommon()
+                        {
+                            RowId = Convert.ToInt32(item["RowId"]),
+                            TaskId = item["TaskId"].ToString(),
+                            TaskName = item["TaskName"].ToString(),
+                            TaskDescription = item["TaskDescription"].ToString(),
+                            Status = item["Status"]?.ToString(),
+                        };
 
-        public List<TaskReportingCommon> GetPendingTask()
-        {
-            throw new NotImplementedException();
+                        sn++;
+                        list.Add(common);
+                    }
+                }
+                return list;
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

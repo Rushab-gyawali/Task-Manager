@@ -32,10 +32,15 @@ namespace MVCERP.Web.Controllers
         { 
            var data = _business.GetAllTask();
             for(int i=0; i<data.Count; i++) {
-                data[i].Action = StaticData.GetActions("TaskManger", data[i].RowId, data[i].TaskId,"");
+                data[i].Action = StaticData.GetActions("TaskManger", data[i].RowId, data[i].TaskId,"Task");
             }
             return Json(new { data = data },JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetTaskStatus()
+        {
+            var data = _business.GetAllTask();
+            return View(data);
+        }
     }
 }

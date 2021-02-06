@@ -1,0 +1,29 @@
+﻿@*@model IEnumerable<MVCERP.Web.Models.TaskReportingModel>
+{
+<style  td, th, thead {
+    border: 1 px solid# ccc;
+    padding: 5px;
+    margin: 4px;
+    width: auto;
+    width: 20 %;
+       }
+caption {background : color: #a9a9a9}>
+</style>
+
+<table>
+    <caption>TaskDetails</caption>
+    <tr>
+        <th> NotAssigned </th>
+        <th>InProgress</th>
+        <th>Completed</th>
+        <th>Testing</th>
+    </tr>
+   
+
+        @foreach (var item in Model)
+        {
+
+            <tr><td>@item.TaskName.Contains(item.Status.CompareTo("NotAssigned").ToString())</td> <td> @item.TaskName.Where(item.Status.StartsWith("I")) </td> <td> @item.TaskName.Where(item.Status.StartsWith("C")) </td> <td> @item.TaskName.Where(item.Status.StartsWith("T")) </td> </tr>
+
+        }
+    </table>*@

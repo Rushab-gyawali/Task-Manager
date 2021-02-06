@@ -15,7 +15,6 @@ namespace MVCERP.Shared.Common
         public string  Status { get; set; } 
         public string TaskStartDate { get; set; }
         public string TaskEndDate { get; set; }
-
-
+        
     }
 }

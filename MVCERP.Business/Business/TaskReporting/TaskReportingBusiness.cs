@@ -16,24 +16,14 @@ namespace MVCERP.Business.Business.TaskReporting
             repo = _repo;
         }
 
-        public List<TaskReportingCommon> GetAllAssignedTask()
-        {
-           return repo.GetAssignedTask();
-        }
-
-        public List<TaskReportingCommon> GetAllCompletedTask()
-        {
-            return repo.GetCompletedTask();
-        }
-
-        public List<TaskReportingCommon> GetAllPendingTask()
-        {
-            return repo.GetPendingTask();
-        }
-
         public List<TaskReportingCommon> GetAllTask()
         {
             return repo.GetAllTask();
+        }
+
+        public IEnumerable<TaskReportingCommon> GetStatus()
+        {
+            return repo.GetStatus();
         }
     }
 }
