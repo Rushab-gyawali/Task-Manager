@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4DD6E61C-AF36-4122-822A-D1AB1E6A1A22}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MVCERP.Shared</RootNamespace>
+    <AssemblyName>MVCERP.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.8.1\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\EmailSMSCommon.cs" />
+    <Compile Include="Common\ErrorLogsCommon.cs" />
+    <Compile Include="Common\GridDetails.cs" />
+    <Compile Include="Common\Helper.cs" />
+    <Compile Include="Common\LogsCommon.cs" />
+    <Compile Include="Common\MemberCommon.cs" />
+    <Compile Include="Common\MenuList.cs" />
+    <Compile Include="Common\PwbCommon.cs" />
+    <Compile Include="Common\ReportComponent.cs" />
+    <Compile Include="Common\RoleCommon.cs" />
+    <Compile Include="Common\StaticDataCommon.cs" />
+    <Compile Include="Common\TaskReportingCommon.cs" />
+    <Compile Include="Library\ExcelDownload.cs" />
+    <Compile Include="Properties\AgentEndorsementCommon.cs" />
+    <Compile Include="Common\ChartDataCommon.cs" />
+    <Compile Include="Common\ChecklistCommon.cs" />
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\DbResponse.cs" />
+    <Compile Include="Common\LoginCommon.cs" />
+    <Compile Include="Common\MenuCommon.cs" />
+    <Compile Include="Common\MessageTemplateCommon.cs" />
+    <Compile Include="Common\Notification.cs" />
+    <Compile Include="Common\NotificationSetupCommon.cs" />
+    <Compile Include="Common\ReportResultCommon.cs" />
+    <Compile Include="Common\UserCommon.cs" />
+    <Compile Include="DynamicReportCommon.cs" />
+    <Compile Include="Library\EmailSMSHelper\EmailSMSDao.cs" />
+    <Compile Include="Library\EmailSMSHelper\EmailSMSHelper.cs" />
+    <Compile Include="Library\Mapper.cs" />
+    <Compile Include="Library\NepaliCalender\ConvertToNepali.cs" />
+    <Compile Include="Library\NepaliCalender\IConvertToNepali.cs" />
+    <Compile Include="Library\NepaliCalender\NepaliDate.cs" />
+    <Compile Include="Library\NepaliCalender\NepaliDateDataArray.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

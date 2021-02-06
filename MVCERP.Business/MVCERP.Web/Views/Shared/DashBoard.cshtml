@@ -1,0 +1,363 @@
+﻿@{
+    ViewBag.Title = "DashBoard";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+<div class="container dashboard-container">
+    <a href="/Home/Dashboard2">Dashboard 2</a>
+    <div class="dashboard-block">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="dashboard-count count-info">
+                    <div class="block-icon">
+                        <i class="mdi mdi-file-document"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">Policy Count</span>
+                        <span class="block-count">@Model.policyCountInterval</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.policyCountTotal</strong>  Policy Added In This Month
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="dashboard-count count-info">
+                    <div class="block-icon">
+                        <i class="mdi mdi-file-document"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">Premium Amount Total</span>
+                        <span class="block-count">@Model.premiumCountTotal</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.premiumCountInterval</strong>  Premium Amount Total
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="dashboard-count count-info">
+                    <div class="block-icon">
+                        <i class="mdi mdi-file-document"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">FE Policy Detail  Count</span>
+                        <span class="block-count">@Model.FEPolicyCount</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.FEPolicyCountInterval</strong>  FE Policy Detail Count
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="dashboard-count count-info">
+                    <div class="block-icon">
+                        <i class="mdi mdi-file-document"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">FE.Premium Count</span>
+                        <span class="block-count">@Model.FEPremiumCount</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.FEPremiumCountInterval</strong>  FE.Premium Count
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="dashboard-count count-info">
+                    <div class="block-icon">
+                        <i class="mdi mdi-file-document"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">Group Policy Count</span>
+                        <span class="block-count">@Model.GroupPolicyCount</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.GroupPolicyCountInterval</strong>  Group Policy Count
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="dashboard-count count-info">
+                    <div class="block-icon">
+                        <i class="mdi mdi-file-document"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">Group Policy Pre. Amt. Total </span>
+                        <span class="block-count">@Model.GroupPolicyPremiumAmountTotal</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.GroupPolicyPremiumAmountInterval</strong>  Group Policy Count
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="dashboard-count count-success">
+                    <div class="block-icon">
+                        <i class="mdi mdi-nature-people"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">Agent Count</span>
+                        <span class="block-count">@Model.agentCount</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.agentCountInterval</strong>  Agent Added In This Month
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="dashboard-count count-danger">
+                    <div class="block-icon">
+                        <i class="mdi mdi-account-off"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">Death Claim</span>
+                        <span class="block-count">@Model.deathCountTotal</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.deathCountInterval</strong> Death Claim In This Month
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="dashboard-count count-primary">
+                    <div class="block-icon">
+                        <i class="mdi mdi-chart-bar"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">Maturity</span>
+                        <span class="block-count">@Model.maturityCountTotal</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.maturityCountInterval</strong> Maturity In This Month
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="dashboard-count count-warning">
+                    <div class="block-icon">
+                        <i class="mdi mdi-message-settings-variant"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">Lapse</span>
+                        <span class="block-count">@Model.lapseCountTotal</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.lapseCountInterval</strong> Lapse Details Added In This Month
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="dashboard-count count-default">
+                    <div class="block-icon">
+                        <i class="mdi mdi-transit-transfer"></i>
+                    </div>
+                    @*<div class="block-content">
+                        <span class="block-title">Surrender</span>
+                        <span class="block-count">@Model.surrenderCountTotal</span>
+                        <span class="block-stats block-stats-increased">
+                            <strong>@Model.surrenderCountInterval</strong> Surrender Details Added In This Month
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Investment Analysis</h1>
+                </div>
+                <div class="panel-body">
+                    <canvas id="barChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Business Analysis</h1>
+                </div>
+                <div class="panel-body">
+                    <canvas id="pieChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">Target & Achievement</h1>
+        </div>
+        <div class="panel-body">
+            <canvas id="lineChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Progress Bar</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="dasbhoard-progress" id="progressbarcontent">
+                        <p><strong class="text-success">10%</strong> New Agent added</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" style="width: 10%">
+                            </div>
+                        </div>
+                        <p><strong class="text-info">15%</strong> New Branch Expansion</strong></p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" style="width: 15%">
+                            </div>
+                        </div>
+                        <p><strong class="text-warning">5%</strong> Loan Recovered <strong>30 Days</strong></p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" style="width: 5%">
+                            </div>
+                        </div>
+                        <p><strong class="text-danger">20%</strong> Surrender Decreased</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" style="width: 20%">
+                            </div>
+                        </div>
+                        <p><strong class="text-primary">40%</strong> Market Area Covered in <strong>70 Days</strong></p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary" style="width: 40%">
+                            </div>
+                        </div>
+                        <p><strong class="text-default">10%</strong> Lapse Decreased</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-default" style="width: 10%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Schedule Task</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="dashboard-schedule" id="scheduletaskcontent">
+                        <div class="schedule-list schedule-list-info">
+                            <div class="schedule-date">
+                                <i class="mdi mdi-calendar"></i> 22 April, 2017
+                            </div>
+                            <div class="schedule-content">
+                                <h2 class="schedule-title">Meeting with reinsurer</h2>
+                                <p class="schedule-text">Meeting Detail </p>
+                            </div>
+                        </div>
+                        <div class="schedule-list schedule-list-danger">
+                            <div class="schedule-date">
+                                <i class="mdi mdi-calendar"></i> 27 April, 2017
+                            </div>
+                            <div class="schedule-content">
+                                <h2 class="schedule-title">Branch Opening</h2>
+                                <p class="schedule-text">New Branch Opening on 27 April, 2017 </p>
+                            </div>
+                        </div>
+                        <div class="schedule-list schedule-list-warning">
+                            <div class="schedule-date">
+                                <i class="mdi mdi-calendar"></i> 29 April, 2017
+                            </div>
+                            <div class="schedule-content">
+                                <h2 class="schedule-title">Branch Visit</h2>
+                                <p class="schedule-text">Branches visited for business promotion. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Agents Activities</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="dashboard-activity" id="activitylist">
+                        <div class="activity-list">
+                            <div class="activity-date">
+                                <span class="date-month">APR</span>
+                                <span class="date-date">21</span>
+                                <span class="date-day">Monday</span>
+                            </div>
+                            <h2 class="agent-name">Dinesh Chandra<small class="value-code"> OR9842</small></h2>
+                            <p class="activity-text">Published Training Campaign</p>
+                            <p class="activity-stats"><i class="mdi mdi-account-multiple"></i> <strong>45</strong> Attendance</p>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-date">
+                                <span class="date-month">APR</span>
+                                <span class="date-date">27</span>
+                                <span class="date-day">Monday</span>
+                            </div>
+                            <h2 class="agent-name">Regional Training<small class="value-code"> TR00127</small></h2>
+                            <p class="activity-text">Meeting Conducted</p>
+                            <p class="activity-stats"><i class="mdi mdi-account-multiple"></i> <strong>100</strong> Participant</p>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-date">
+                                <span class="date-month">MAY</span>
+                                <span class="date-date">5</span>
+                                <span class="date-day">Sunday</span>
+                            </div>
+                            <h2 class="agent-name">Agent Delegation<small class="value-code"> OR6835</small></h2>
+                            <p class="activity-text">Dialogue Started</p>
+                            <p class="activity-stats"><i class="mdi mdi-account-multiple"></i> <strong>15</strong> Attendance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Plan History</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="dashboard-plan" id="planhistory">
+                        <div class="plan-list">
+                            <i class="mdi mdi-calendar"></i>
+                            <span class="plan-date">April 24th, 2017</span>
+                            <h2 class="plan-title">बाल बालिक</h2>
+                            <p class="plan-text">Child endosement</p>
+                            <p class="plan-range">NRs. 1,000 - NRs. 10,000</p>
+                        </div>
+                        <div class="plan-list">
+                            <i class="mdi mdi-calendar"></i>
+                            <span class="plan-date">April 24th, 2017</span>
+                            <h2 class="plan-title">बाल बालिक</h2>
+                            <p class="plan-text">Child endosement</p>
+                            <p class="plan-range">NRs. 1,000 - NRs. 10,000</p>
+                        </div>
+                        <div class="plan-list">
+                            <i class="mdi mdi-calendar"></i>
+                            <span class="plan-date">April 24th, 2017</span>
+                            <h2 class="plan-title">बाल बालिक</h2>
+                            <p class="plan-text">Child endosement</p>
+                            <p class="plan-range">NRs. 1,000 - NRs. 10,000</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

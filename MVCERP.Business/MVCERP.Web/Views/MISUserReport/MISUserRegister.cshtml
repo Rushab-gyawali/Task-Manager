@@ -1,0 +1,124 @@
+﻿<div class="form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h3>Agent Register Report </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"> Fiscal Year</label>
+                    <div class="col-sm-8">
+
+                        @Html.DropDownList("FiscalYear", ViewData["FiscalYear"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label"> From Date <small class="text-danger">*</small></label>
+                <div class="col-sm-4">
+                    @Html.TextBox("NepFromDate", "", new { @class = "form-control", @required = "required", @placeholder = "yyyy-mm-dd", @readonly = "readonly" })
+                </div>
+                <div class="col-sm-4">
+                    @Html.TextBox("FromDate", "", new { @class = "form-control", @required = "required", @placeholder = "From Date", @readonly = "readonly" })
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label"> To Date <small class="text-danger">*</small></label>
+                <div class="col-sm-4">
+                    @Html.TextBox("NepToDate", "", new { @class = "form-control", @required = "required", @placeholder = "yyyy-mm-dd", @readonly = "readonly" })
+                </div>
+                <div class="col-sm-4">
+                    @Html.TextBox("ToDate", "", new { @class = "form-control", @required = "required", @placeholder = "To Date", @readonly = "readonly" })
+                </div>
+            </div>
+        </div> 
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Report Type<small class="text-danger">*</small></label>
+                <div class="col-sm-8">
+                    @Html.DropDownList("ReportType", new List<SelectListItem>{
+                        new SelectListItem { Text = "Summary", Value = "summary" },
+                        new SelectListItem { Text = "Detail", Value = "detail" }
+                    }, "Select Report Type", new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group text-right">
+                <button type="button" id="btnReport" class="btn btn-success">Generate Report</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        ShowCalDefault("#FromDate");
+        ShowCalDefault("#ToDate");
+        ShowNepEngCalendar('#NepFromDate', '#FromDate');
+        ShowNepEngCalendar("#NepToDate", "#ToDate");
+        MakeAutocomplete("#AgentCode","AgentCode");
+
+    });
+    num = 0;
+    function CallBack() {
+        if ($("#NepFromDate").val() != "" && $("#NepToDate").val() != "") {
+            if ($("#NepFromDate").val() > $("#NepToDate").val()) {
+                $("#NepToDate").val("");
+                $("#ToDate").val("");
+
+            }
+        }
+    }
+    $("#btnReport").click(function () {
+        debugger;
+        var reportName = "MISUserRegisterReport";
+        var fromDate = $("#FromDate").val();
+        var toDate = $("#ToDate").val();
+        var ReportType = $("#ReportType").val();
+        var win = window.open('@MVCERP.Web.Library.StaticData.GetUrlRoot()/MISGenerateReport/GenerateReport?reportName=' + reportName +
+            '&FromDate=' + fromDate +
+            '&ToDate=' + toDate +
+            '&ReportType=' + ReportType
+             , '_blank');
+        if (win) {
+            win.focus();
+        } else {
+            alert('Please allow popups for this website');
+        }
+    });
+
+    function regionfunction() {
+        debugger;
+        $("#Branch").empty();
+        $("#Branch").append($("<option value=''>Select Branch</option>"));
+        var param = $('#Region :selected').val();
+        if (param == "") {
+            return false;
+        }
+        $("#Branch").empty();
+        $.get("/StaticData/GetDropdownForJQuery?flag=GetBranchByRegion&&param=" + param,
+            function (data, status) {
+                $("#Branch").append($("<option value=''>Select Branch</option>"));
+                $.each(data, function (key, value) {
+                    $("#Branch").append($("<option></option>").val(value.id).html(value.text));
+                });
+
+            });
+    }
+
+</script>
+

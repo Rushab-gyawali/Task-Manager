@@ -1,0 +1,75 @@
+﻿@model MVCERP.Shared.Common.MemberCommon
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MasterLayout.cshtml"; }
+
+<h2>List of All Task</h2>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#AllTaskList').DataTable({
+            "responsive": true,
+            "processing": false,
+            "serverSide": false,
+            "searchDelay": 1500,
+            "ajax": {
+                "type": 'z',
+                "dataType": 'json',
+                "url": "/Member/ListUsers",
+                "contentType": 'application/json; charset=utf-8',
+                'data': function (data) {
+                    return data = JSON.stringify(data);
+                }
+            },
+            lengthMenu:
+                [
+                    [25, 50, 100],
+                    ['25', '50', '100']
+                ],
+            "language": {
+                "search": "",
+                "searchPlaceholder": "Search..."
+            },
+            columns: [
+                { 'data': 'ID', "orderable": true, "searchable": true },
+                { 'data': 'FullName', "orderable": true },
+                { 'data': 'UserName', "orderable": true, "searchable": true },
+                { 'data': 'Email', "orderable": true },
+                { 'data': 'PhoneNo', "orderable": true },
+
+
+            ],
+            "columnDefs":
+                [
+                    { "className": "dt-center", "targets": "4" },
+                    //  { "targets": 1, "className": "text-right" }
+                ]
+        });
+    });
+
+</script>
+
+@Html.ActionLink("Add User", "New", "Member", null, new { @class = "nav-link" })
+<div class="container listing-container">
+    <div class="panel panel-default">
+        <div class="panel-heading list-heading">
+            <div class="panel-body list-body">
+                <div class="table-responsive">
+
+                    <table id="AllTaskList" class="table table-hover" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+
+                                <th>ID</th>
+                                <th>FullName</th>
+                                <th>UserName</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

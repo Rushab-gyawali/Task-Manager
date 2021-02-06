@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+
+    var resp = MVCERP.Web.Library.StaticData.GetSessionMessage();
+    if (null != resp)
+    {
+        @section Message{
+            <script type="text/javascript">
+                ManageMessage(@resp.ErrorCode, "@resp.Message");
+            </script>
+        }
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        jQuery.noConflict();
+        $('#example').DataTable({
+            "ajax": {
+                "url": "NotificationSetup/GetJqueryDatatable",
+                "dataSrc": ""
+            },
+            "columns": [
+                { "data": "GroupName" },
+                { "data": "Branch" },
+                { "data": "Department" },
+                { "data": "User" },
+                { "data": "Action" }
+            ]
+        });
+    });
+
+</script>
+
+<style>
+    label {
+        font-weight: bold !important;
+    }
+
+    input[type=search] {
+        background: transparent url(/images/input-text-8.jpg) repeat-x;
+        border: 1px solid #999;
+        outline: 0;
+        height: 25px;
+        width: 150px;
+    }
+</style>
+<link href="~/UI/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/UI/DataTable/jquery-1.12.4.js"></script>
+<script src="~/UI/DataTable/jquery.dataTables.min.js"></script>
+<script src="~/UI/js/jquery.slidereveal.min.js"></script>
+<div class="container listing-container">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li><a href="#">Setup</a></li>
+                    <li><a href="#">System Setup</a></li>
+                    <li class="active">Notification Setup</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group form-action">
+                    <button class="btn btn-default" onclick="GoBack();"><i class="mdi mdi-arrow-left"></i> Back</button>
+                    <a href="/NotificationSetup/Manage" class="btn btn-success"><i class="mdi mdi-plus"></i> Add New</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading list-heading">
+            <div class="panel-body list-body">
+                <div class="table-responsive">
+                    <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Group Name</th>
+                                <th>Branch</th>
+                                <th>Department</th>
+                                <th>Created By</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
