@@ -1,4 +1,5 @@
-﻿@*@model IEnumerable<MVCERP.Web.Models.TaskReportingModel>
+﻿@*
+    @model IEnumerable<MVCERP.Web.Models.TaskReportingModel>
 {
 <style  td, th, thead {
     border: 1 px solid# ccc;
@@ -26,4 +27,5 @@ caption {background : color: #a9a9a9}>
             <tr><td>@item.TaskName.Contains(item.Status.CompareTo("NotAssigned").ToString())</td> <td> @item.TaskName.Where(item.Status.StartsWith("I")) </td> <td> @item.TaskName.Where(item.Status.StartsWith("C")) </td> <td> @item.TaskName.Where(item.Status.StartsWith("T")) </td> </tr>
 
         }
-    </table>*@
+    </table>
+    *@
