@@ -7,7 +7,8 @@ namespace MVCERP.Web.Models
 {
     public class TaskReportingModel
     {
-        public int RowId { get; set; }
+
+        public int? RowId { get; set; }
         public string TaskId { get; set; }
         public string TaskName { get; set; }
         public string TaskDescription { get; set; }
@@ -17,5 +18,6 @@ namespace MVCERP.Web.Models
         public string TaskEndDate { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
+        public string AssignTo { get; set; }
     }
 }

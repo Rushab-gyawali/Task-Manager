@@ -1,36 +1,38 @@
 ﻿using MVCERP.Shared.Common;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace MVCERP.Repository.Repository.TaskReporting
+namespace MVCERP.Repository.Repository.TaskManager
 {
-    public class TaskReportingRepository : ITaskReportingRepository
+    public class TaskManagerRepository : ITaskManagerRepository
     {
         RepositoryDao dao;
-        public TaskReportingRepository()
+
+        public TaskManagerRepository()
         {
             dao = new RepositoryDao();
         }
 
-        public List<TaskReportingCommon> GetAllTask()
+        public List<TaskReportingCommon> GetById(string TaskId)
         {
             var list = new List<TaskReportingCommon>();
-            try
-            {
+            try {
                 var sql = "EXEC PROC_TASKMANAGER ";
-                sql += "@Flag = 'List'";
+                sql += "@Flag = 'ListUpdate'";
+                sql += ",@TaskId = " + dao.FilterString(TaskId);
+
                 var dt = dao.ExecuteDataTable(sql);
-                
                 if (null != dt)
                 {
                     int sn = 1;
-                    foreach (System.Data.DataRow item in dt.Rows)
+                    foreach (DataRow item in dt.Rows)
                     {
-                        var common = new TaskReportingCommon()
+                        var common = new TaskReportingCommon
                         {
+
                             RowId = Convert.ToInt32(item["RowId"]),
                             TaskId = item["TaskId"].ToString(),
                             TaskName = item["TaskName"].ToString(),
@@ -46,6 +48,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
                         list.Add(common);
                     }
                 }
+
                 return list;
             }
 
@@ -55,19 +58,19 @@ namespace MVCERP.Repository.Repository.TaskReporting
             }
         }
 
-        public List<TaskReportingCommon> GetAssignedTask()
+        public DbResponse TaskManager(TaskReportingCommon common)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<TaskReportingCommon> GetCompletedTask()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<TaskReportingCommon> GetPendingTask()
-        {
-            throw new NotImplementedException();
+            var sql = "exec PROC_TASKMANAGER ";
+            sql += "@Flag = " + dao.FilterString((common.RowId > 0 ? "Update" : "Insert"));
+            sql += ",@TaskName = " + dao.FilterString(common.TaskName.ToString());
+            sql += ",@TaskStartDate = " + dao.FilterString(common.TaskStartDate);
+            sql += ",@TaskEndDate = " + dao.FilterString(common.TaskEndDate);
+            sql += ",@TaskDescription = " + dao.FilterString(common.TaskDescription.ToString());
+            sql += ",@Status = " + dao.FilterString(common.Status.ToString());
+            sql += ",@CreatedBy = " + dao.FilterString(common.CreatedBy.ToString());
+            sql += ",@AssignTo = " + dao.FilterString(common.AssignTo.ToString());
+            sql += ",@TaskId = " + dao.FilterString(common.TaskId.ToString());
+            return dao.ParseDbResponse(sql);
         }
     }
 }

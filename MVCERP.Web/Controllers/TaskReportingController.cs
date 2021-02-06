@@ -15,26 +15,27 @@ namespace MVCERP.Web.Controllers
         //
         // GET: /TaskReporting/
 
-       ITaskReportingBusiness _business;
+        ITaskReportingBusiness _business;
 
         public TaskReportingController(ITaskReportingBusiness business)
         {
             _business = business;
         }
-        
+
         public ActionResult Index()
         {
             return View();
         }
 
-        
+
         public JsonResult GetAllTask()
-        { 
-           var data = _business.GetAllTask();
-            for(int i=0; i<data.Count; i++) {
-                data[i].Action = StaticData.GetActions("TaskManger", data[i].RowId, data[i].TaskId,"");
+        {
+            var data = _business.GetAllTask();
+            for (int i = 0; i < data.Count; i++)
+            {
+                data[i].Action = StaticData.GetActions("TaskManager", data[i].RowId, data[i].TaskId,"Task");
             }
-            return Json(new { data = data },JsonRequestBehavior.AllowGet);
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
 
     }
