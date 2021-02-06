@@ -1,0 +1,183 @@
+﻿@model MVCERP.Shared.Common.NotificationSetupCommon
+
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+<div class="container manage-container">
+    @using (Html.BeginForm("Manage", "NotificationSetup", new { ReturnUrl = "Index" }, FormMethod.Post, new { @role = "form", @id = "NotificationSetup" }))
+    {
+        if (!Html.ViewData.ModelState.IsValid)
+        {
+            var resp = MVCERP.Web.Library.StaticData.GetSessionMessage();
+            if (null != resp)
+            {
+                @section Message
+            {
+                    <script type="text/javascript">
+                        ManageMessage(@resp.ErrorCode, "@resp.Message");
+                    </script>
+                }
+            }
+        }
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.UniqueId)
+        @Html.Raw(Model.BreadCum)
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Setup</a></li>
+                        <li><a href="#">System Setup</a></li>
+                        <li class="active">Notification Setup</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-action">
+                        <button class="btn btn-default" onclick="GoBack();"><i class="mdi mdi-arrow-left"></i> BACK</button>
+                        <button class="btn btn-success" onclick="AjaxSubmit();"><i class="mdi mdi-check-circle-outline"></i> SUBMIT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-horizontal manage-body">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label"> Branch </label>
+                                    @Html.DropDownListFor(m => m.BranchId, ViewData["BranchList"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label"> Department </label>
+                                    @Html.DropDownListFor(m => m.DepartmentId, ViewData["DepartmentList"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <input type="button" name="btnSearch" class="btn btn-success" value="Search" id="btnSearch" onclick="LoadRecord()" style="margin-top:24px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divViewRecord" style="margin-top:8px;">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-hover" cellspacing="0" width="100%" id="tblStaffRecord">
+                                    <caption>@Html.TextBoxFor(m => m.GroupName, Model.GroupName, new { @class = "form-control", @required = "required", @placeholder = "Enter Group Name" })</caption>
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox" name="selectAll" id="selectAll" value="selectAll" class="chkMe" />All</th>
+                                            <th>User ID</th>
+                                            <th>Full Name</th>
+                                            <th>Branch</th>
+                                            <th>Department</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function() {
+                var id = $("#UniqueId").val();
+                var groupName = $("#GroupName").val();
+                if(id > 0){
+                    LoadRecord();
+                    $(".divViewRecord").show();
+
+                    //if(groupName == "Underwriting" || groupName == "Death Claim" || groupName == "Account")
+                    //{
+                    //    $('#GroupName').attr('readonly', true);
+                    //}
+                    //else{
+                    //    $('#GroupName').removeAttr('readonly', false);
+                    //}
+                }
+                else{
+                    $(".divViewRecord").hide();
+                }
+
+                $("#selectAll").click(function (e){
+                    if($(this).prop("checked")) {
+                        $(".chkMe").prop('checked', true);
+                    }else{
+                        $(".chkMe").prop('checked', false);
+                    }
+                })
+            });
+
+            function LoadRecord(){
+                var a=$("#BranchId").val();
+                var b=$("#DepartmentId").val();
+                var c = $("#UniqueId").val();
+                $.ajax({
+                    url: '/NotificationSetup/GetStaffRecord',
+                    data: {
+                        'bId': a,
+                        'dId': b,
+                        'id' : c
+                    },
+                    success: function(data) {
+                        $.each(data, function (key, value) {
+                            $("#tblStaffRecord").append(
+
+                            (value["AlreadyExist"]!="")?"<tr><td>"+"<input type='checkbox' id='chkUser' name='chkUser' class='chkMe' checked value='"+value["UserID"]+"' />" +
+                             "</td><td>"+value["UserID"]+
+                             "</td><td>"+value["FullName"]+
+                             "</td><td>"+value["Branch"]+
+                             "</td><td>"+value["Department"]+
+                             "</td></tr>"
+                             : "<tr><td>"+"<input type='checkbox' id='chkUser' name='chkUser' class='chkMe' value='"+value["UserID"]+"' />"+
+                             "</td><td>"+value["UserID"]+
+                             "</td><td>"+value["FullName"]+
+                             "</td><td>"+value["Branch"]+
+                             "</td><td>"+value["Department"]+
+                             "</td></tr>"
+
+                             );
+                        });
+                        $(".divViewRecord").show();
+                    }
+                });
+            }
+
+            function AjaxSubmit(){
+                var len = $('input[name="chkUser"]:checked').length;
+                if(len > 0){
+                    $.ajax({
+                        url: '/NotificationSetup/Manage',
+                        type: 'POST',
+                        data: {
+                            Branch: $('#BranchId').val(),
+                            Department: $('#DepartmentId').val(),
+                            GroupName:$('#GroupName').val()
+                        }
+                    });
+                }
+                else{
+                    $("#NotificationSetup").submit(function(e){
+                        e.preventDefault();
+
+                        var ErrorCode = 1;
+                        var Message = "Please select at least one user to create group"; 
+                        ManageMessage(ErrorCode, Message); 
+                    });
+                }
+            }
+        </script>
+    }
+</div>

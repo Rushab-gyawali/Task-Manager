@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{52E3D619-6545-49A9-B959-F23A1D4160DA}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MVCERP.Web</RootNamespace>
+    <AssemblyName>MVCERP.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.95.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.95.4\lib\net40\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DipeshNepaliDateConversion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DipeshNepaliDateConversion.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.8.1\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="HardwareMotherboardID">
+      <HintPath>..\Docs\HardwareMotherboardID.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc3">
+      <HintPath>..\packages\Unity.Mvc3.1.2\lib\net40\Unity.Mvc3.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.30506.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.30506.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\DynamicReportController.cs" />
+    <Compile Include="Controllers\ErrorController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\HelperController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\MISReport\MISUserReportController.cs" />
+    <Compile Include="Controllers\MISReport\MISController.cs" />
+    <Compile Include="Controllers\MISReport\MISGenerateReportController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\TaskReportingController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\SessionExpiryFilterAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\ExcelHandler.ashx.cs">
+      <DependentUpon>ExcelHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="img.ashx.cs">
+      <DependentUpon>img.ashx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Library\CsvReader.cs" />
+    <Compile Include="Library\CSV_XML.cs" />
+    <Compile Include="Library\Export.cs" />
+    <Compile Include="Library\ProjectGrid.cs" />
+    <Compile Include="Library\License\Encryption.cs" />
+    <Compile Include="Library\Reports.cs" />
+    <Compile Include="Library\StaticData.cs" />
+    <Compile Include="Library\UserMonitor.cs" />
+    <Compile Include="Models\MemberModel.cs" />
+    <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\TaskReportingModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\User\IUserService.cs" />
+    <Compile Include="Services\User\UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\warning.png" />
+    <Content Include="img.ashx" />
+    <Content Include="Template\CSS\material-design-iconic-font.min.css" />
+    <Content Include="Template\CSS\style.css" />
+    <Content Include="Template\JS\jquery-ui.min.js" />
+    <Content Include="Template\JS\main.js" />
+    <Content Include="UI\css\iziToast.min.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.html" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Images\unAuthorized.png" />
+    <Content Include="Images\user.png" />
+    <Content Include="Handler\ExcelHandler.ashx" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\iSolutionLife_Reliable_UAT.pubxml" />
+    <None Include="Properties\PublishProfiles\Reliable.pubxml" />
+    <None Include="Properties\PublishProfiles\Reliable_UAT.pubxml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <None Include="Scripts\jquery-1.8.2-vsdoc.js" />
+    <Content Include="UI\css\nepali.datepicker.v2.2.min.css" />
+    <Content Include="UI\css\printinletterhead.css" />
+    <Content Include="UI\DataTable\jquery-1.12.4.js" />
+    <Content Include="UI\DataTable\jquery.dataTables.min.css" />
+    <Content Include="UI\DataTable\jquery.dataTables.min.js" />
+    <Content Include="UI\images\clock-loading.gif" />
+    <Content Include="UI\images\logo-sm.png" />
+    <Content Include="UI\images\noimage.jpg" />
+    <Content Include="UI\images\qrcode.png" />
+    <Content Include="UI\jstree\jstree.min.js" />
+    <Content Include="UI\jstree\style.min.css" />
+    <Content Include="UI\js\Chart.bundle.js" />
+    <Content Include="UI\js\Chart.bundle.min.js" />
+    <Content Include="UI\js\Chart.js" />
+    <Content Include="UI\js\Chart.min.js" />
+    <Content Include="UI\js\circle-progress.js" />
+    <Content Include="UI\js\circle-progress.min.js" />
+    <Content Include="UI\js\Custom-Helper.js" />
+    <Content Include="UI\js\FileSaver.js" />
+    <Content Include="UI\js\FileSaver.min.js" />
+    <Content Include="UI\js\iziToast.min.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\master\app.js" />
+    <Content Include="Scripts\master\jquery-1.10.2.js" />
+    <Content Include="Scripts\master\js\app.js" />
+    <Content Include="Scripts\master\js\bootstrap.min.js" />
+    <Content Include="Scripts\master\js\Chart.min.js" />
+    <Content Include="Scripts\master\js\core.js" />
+    <Content Include="Scripts\master\js\custom-forms-wizard.js" />
+    <Content Include="Scripts\master\js\dataTables.min.js" />
+    <Content Include="Scripts\master\js\equalize.js" />
+    <Content Include="Scripts\master\js\jquery.bootstrap.wizard.js" />
+    <Content Include="Scripts\master\js\jquery.min.js" />
+    <Content Include="Scripts\master\js\jquery.slimscroll.js" />
+    <Content Include="Scripts\master\js\jquery.sparkline.min.js" />
+    <Content Include="Scripts\master\js\jquery.validate.js" />
+    <Content Include="Scripts\master\js\mediaquery.js" />
+    <Content Include="Scripts\master\js\metisMenu.js" />
+    <Content Include="Scripts\master\js\modernizr.js" />
+    <Content Include="Scripts\master\js\moment.js" />
+    <Content Include="Scripts\master\js\morris.js" />
+    <Content Include="Scripts\master\js\raphael-2.1.0.min.js" />
+    <Content Include="Scripts\master\select2.full.min.js" />
+    <Content Include="Scripts\master\theme-github.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="UI\css\bootstrap.css" />
+    <Content Include="UI\css\bootstrap.min.css" />
+    <Content Include="UI\css\font-awesome.css" />
+    <Content Include="UI\css\font-awesome.min.css" />
+    <Content Include="UI\css\materialdesignicons.css" />
+    <Content Include="UI\css\materialdesignicons.min.css" />
+    <Content Include="UI\css\portal.css" />
+    <Content Include="UI\css\portal.min.css" />
+    <Content Include="UI\fonts\fontawesome-webfont.svg" />
+    <Content Include="UI\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="UI\fonts\materialdesignicons-webfont.svg" />
+    <Content Include="UI\images\clear.png" />
+    <Content Include="UI\images\close.png" />
+    <Content Include="UI\images\loading.gif" />
+    <Content Include="UI\images\user.jpg" />
+    <Content Include="UI\js\bootstrap.js" />
+    <Content Include="UI\js\bootstrap.min.js" />
+    <Content Include="UI\js\functions.js" />
+    <Content Include="UI\js\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="UI\js\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="UI\js\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="UI\js\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="UI\js\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="UI\js\images\ui-icons_222222_256x240.png" />
+    <Content Include="UI\js\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="UI\js\images\ui-icons_444444_256x240.png" />
+    <Content Include="UI\js\images\ui-icons_454545_256x240.png" />
+    <Content Include="UI\js\images\ui-icons_555555_256x240.png" />
+    <Content Include="UI\js\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="UI\js\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="UI\js\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="UI\js\imgs_sar_terrace\arrow_left.png" />
+    <Content Include="UI\js\imgs_sar_terrace\arrow_right.png" />
+    <Content Include="UI\js\imgs_sar_terrace\but_repeat.gif" />
+    <Content Include="UI\js\imgs_sar_terrace\calendar.gif" />
+    <Content Include="UI\js\imgs_sar_terrace\clock_big.gif" />
+    <Content Include="UI\js\imgs_sar_terrace\clock_small.gif" />
+    <Content Include="UI\js\imgs_sar_terrace\close_icon.png" />
+    <Content Include="UI\js\imgs_sar_terrace\collapse_expand_icon.gif" />
+    <Content Include="UI\js\imgs_sar_terrace\controls.png" />
+    <Content Include="UI\js\imgs_sar_terrace\databg.png" />
+    <Content Include="UI\js\imgs_sar_terrace\databg_now.png" />
+    <Content Include="UI\js\imgs_sar_terrace\export_ical.png" />
+    <Content Include="UI\js\imgs_sar_terrace\export_pdf.png" />
+    <Content Include="UI\js\imgs_sar_terrace\resize_dots.png" />
+    <Content Include="UI\js\imgs_sar_terrace\resizing.png" />
+    <Content Include="UI\js\iSolution_calendar.js" />
+    <Content Include="UI\js\jquery-1.4.1.min.js" />
+    <Content Include="UI\js\jquery-ui.css" />
+    <Content Include="UI\js\jquery-ui.min.js" />
+    <Content Include="UI\js\jquery.mask.min.js" />
+    <Content Include="UI\js\jquery.min.js" />
+    <Content Include="UI\js\jquery.slidereveal.js" />
+    <Content Include="UI\js\jquery.validate.js" />
+    <Content Include="UI\js\nepali.datepicker.v2.2.min -copy.js" />
+    <Content Include="UI\js\nepali.datepicker.v2.2.min.js" />
+    <Content Include="UI\js\NepaliUnicodeTranslator.js" />
+    <Content Include="UI\js\sarvanamscheduler.css" />
+    <Content Include="UI\js\sarvanamscheduler.js" />
+    <Content Include="UI\js\sweet-alert\sweetalert-dev.js" />
+    <Content Include="UI\js\sweet-alert\sweetalert.min.js" />
+    <Content Include="UI\js\tableexport.js" />
+    <Content Include="UI\js\tableexport.min.js" />
+    <Content Include="UI\js\Template-Helper.js" />
+    <Content Include="UI\js\xlsx.core.min.js" />
+    <Content Include="UI\ReportComponent\css\bootstrap.min.css" />
+    <Content Include="UI\ReportComponent\css\buttons.dataTables.min.css" />
+    <Content Include="UI\ReportComponent\css\dataTables.bootstrap.min.css" />
+    <Content Include="UI\ReportComponent\css\jquery.dataTables.min.css" />
+    <Content Include="UI\ReportComponent\images\sort_asc.png" />
+    <Content Include="UI\ReportComponent\images\sort_asc_disabled.png" />
+    <Content Include="UI\ReportComponent\images\sort_both.png" />
+    <Content Include="UI\ReportComponent\images\sort_desc.png" />
+    <Content Include="UI\ReportComponent\images\sort_desc_disabled.png" />
+    <Content Include="UI\ReportComponent\js\buttons.colVis.min.js" />
+    <Content Include="UI\ReportComponent\js\buttons.flash.min.js" />
+    <Content Include="UI\ReportComponent\js\buttons.html5.min.js" />
+    <Content Include="UI\ReportComponent\js\buttons.print.min.js" />
+    <Content Include="UI\ReportComponent\js\dataTables.bootstrap.min.js" />
+    <Content Include="UI\ReportComponent\js\dataTables.buttons.min.js" />
+    <Content Include="UI\ReportComponent\js\dataTables.fixedHeader.min.js" />
+    <Content Include="UI\ReportComponent\js\dataTables.responsive.min.js" />
+    <Content Include="UI\ReportComponent\js\jquery-3.3.1.js" />
+    <Content Include="UI\ReportComponent\js\jquery.dataTables.min.js" />
+    <Content Include="UI\ReportComponent\js\jquery.min.js" />
+    <Content Include="UI\ReportComponent\js\jquery.sumtabletotal.min.js" />
+    <Content Include="UI\ReportComponent\js\jszip.min.js" />
+    <Content Include="UI\ReportComponent\js\pdfmake.min.js" />
+    <Content Include="UI\ReportComponent\js\responsive.bootstrap.min.js" />
+    <Content Include="UI\ReportComponent\js\vfs_fonts.js" />
+    <Content Include="Unity.Mvc3.README.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\LoginMaster.cshtml" />
+    <Content Include="Views\Shared\MasterLayout.cshtml" />
+    <Content Include="Views\Shared\DashBoard.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Monitoring.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Manage.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Permission.cshtml" />
+    <Content Include="Views\Role\Manage.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Delete.cshtml" />
+    <Content Include="Views\UnAuthorized\404.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Calendar.cshtml" />
+    <Content Include="UI\fonts\fontawesome-webfont.eot" />
+    <Content Include="UI\fonts\fontawesome-webfont.ttf" />
+    <Content Include="UI\fonts\fontawesome-webfont.woff" />
+    <Content Include="UI\fonts\fontawesome-webfont.woff2" />
+    <Content Include="UI\fonts\FontAwesome.otf" />
+    <Content Include="UI\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="UI\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="UI\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="UI\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="UI\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="UI\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="UI\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="UI\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="UI\css\portal.css.map" />
+    <Content Include="UI\css\portal.css.min.map" />
+    <Content Include="UI\css\portal.min.css.map" />
+    <Content Include="Views\Shared\Dashboard2.cshtml" />
+    <Content Include="Views\Error\Detail.cshtml" />
+    <Content Include="Views\MessageTemplate\Index.cshtml" />
+    <Content Include="Views\Role\Role.cshtml" />
+    <Content Include="Views\Shared\Notification.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\ChangeUserPassword\ChangeUserPassword.cshtml" />
+    <Content Include="Views\NotificationSetup\Index.cshtml" />
+    <Content Include="Views\NotificationSetup\Manage.cshtml" />
+    <Content Include="Views\NotificationSetup\ViewMessages.cshtml" />
+    <Content Include="Views\MIS\Index.cshtml" />
+    <Content Include="Views\MISUserReport\MISUserRegister.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Home\DashBoard.cshtml" />
+    <Content Include="Views\Home\CreateUser.cshtml" />
+    <Content Include="Views\Home\TestPage.cshtml" />
+    <Content Include="Views\TaskReporting\Index.cshtml" />
+    <Content Include="Views\Member.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="SampleFile\" />
+    <Folder Include="UI\js\images\red_button\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVCERP.Business\MVCERP.Business.csproj">
+      <Project>{87331fdf-3ffe-487d-9626-75bb4644c829}</Project>
+      <Name>MVCERP.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCERP.MailNotification\MVCERP.MailNotification.csproj">
+      <Project>{8d1a80ac-902f-40b6-b05e-d495bdb87995}</Project>
+      <Name>MVCERP.MailNotification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCERP.Repository\MVCERP.Repository.csproj">
+      <Project>{87ac844a-35f3-4eb1-920b-1a15d8e72d51}</Project>
+      <Name>MVCERP.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCERP.Shared\MVCERP.Shared.csproj">
+      <Project>{4dd6e61c-af36-4122-822a-d1ab1e6a1a22}</Project>
+      <Name>MVCERP.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>26516</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:26561/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

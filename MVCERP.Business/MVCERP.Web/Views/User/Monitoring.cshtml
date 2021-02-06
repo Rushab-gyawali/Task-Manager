@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "User Monitoring";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+
+    var loggedInUsers = MVCERP.Web.Library.UserMonitor.GetInstance().GetLoggedInUsers();
+    
+    int SN = 1;
+}
+
+<h2>Details</h2>
+
+<div class="col-xs-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading"><h4>User List</h4> </div>
+                <div class="table-responsive">
+                    <!-- Table -->
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th>S.N</th>
+                            <th>User Name</th>
+                            <th>Full Name</th>
+                            <th>Login Time</th>
+                            <th>User Access Level</th>
+                            <th>Browser</th>
+                            <th>Last Login Time</th>
+                            <th>IPAddress</th>
+                            <th>Action</th>
+                        </tr>
+
+                        @foreach (KeyValuePair<string, MVCERP.Web.Library.LoggedInUser> item in loggedInUsers.ToList())
+                        {
+                            <tr>
+                                <td> @SN</td>
+                                <td> @item.Value.UserName</td>
+                                <td>
+                                    @item.Value.UserFullName
+                                </td>
+                                <td>
+                                    @item.Value.LoginTime
+                                </td>
+                                <td>
+                                    @item.Value.UserAccessLevel
+                                </td>
+                                <td>
+                                    @item.Value.Browser
+                                </td>
+                                <td>
+                                    @item.Value.LastLoginTime
+                                </td>
+                                <td>
+                                    @item.Value.IPAddress
+                                </td>
+                                <td><a href="/User/Monitoring?user=@item.Value.UserName"><i class="fa fa-power-off"></i></a></td>
+                            </tr>
+                            SN++;
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

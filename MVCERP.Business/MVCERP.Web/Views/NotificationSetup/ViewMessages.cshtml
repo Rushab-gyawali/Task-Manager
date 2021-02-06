@@ -1,0 +1,81 @@
+﻿@model MVCERP.Shared.Common.NotificationSetupCommon
+
+@{
+    ViewBag.Title = "ViewMessages";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+<div class="container manage-container">
+    @using (Html.BeginForm("Manage", "ViewMessages", new { }, FormMethod.Post, new { @role = "form", @id = "ViewMessages" }))
+    {
+        @Html.AntiForgeryToken()
+        if (!Html.ViewData.ModelState.IsValid)
+        {
+            var resp = MVCERP.Web.Library.StaticData.GetSessionMessage();
+            if (null != resp)
+            {
+                @section Message
+                {
+                    <script type="text/javascript">
+                        ManageMessage(@resp.ErrorCode, "@resp.Message");
+                    </script>
+                }
+            }
+        }
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="active">View Notification</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="form-horizontal manage-body">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-hover" cellspacing="0" width="100%" id="tblMessages">
+                                    <thead>
+                                        <tr>
+                                            <th>Posted Date</th>
+                                            <th>Messages</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<script>
+
+    $(document).ready(function (){
+        GetMessages();
+    });
+
+    function GetMessages(){
+        $.ajax({
+            type: 'GET',
+            url: "/NotificationSetup/ViewMessagesMethod",
+            success:function(data){
+                $.each(data, function (key, value) {
+                    $("#tblMessages").append(
+                        "<tr><td>" + value["CreatedDate"] +
+                        "</td><td>" + value["Content"] +
+                        "</td></tr>"
+                    )
+                });
+            }
+
+        });
+    }
+
+</script>
