@@ -159,6 +159,7 @@
     </Compile>
     <Compile Include="Controllers\HelperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MISReport\MISUserReportController.cs" />
     <Compile Include="Controllers\MISReport\MISController.cs" />
     <Compile Include="Controllers\MISReport\MISGenerateReportController.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Library\Reports.cs" />
     <Compile Include="Library\StaticData.cs" />
     <Compile Include="Library\UserMonitor.cs" />
+    <Compile Include="Models\MemberModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\TaskReportingModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -437,6 +439,8 @@
     <Content Include="Views\Home\CreateUser.cshtml" />
     <Content Include="Views\Home\TestPage.cshtml" />
     <Content Include="Views\TaskReporting\Index.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

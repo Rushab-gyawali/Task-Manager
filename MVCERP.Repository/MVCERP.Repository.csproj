@@ -52,6 +52,8 @@
     <Compile Include="Repository\Error\IErrorRepo.cs" />
     <Compile Include="Repository\Logs\ILogsRepository.cs" />
     <Compile Include="Repository\Logs\LogsRepository.cs" />
+    <Compile Include="Repository\Member\IMemberRepository.cs" />
+    <Compile Include="Repository\Member\MemberRepository.cs" />
     <Compile Include="Repository\Notification\INotificationRepository.cs" />
     <Compile Include="Repository\Notification\NotificationRepository.cs" />
     <Compile Include="Repository\Report\DynamicReportRepo.cs" />

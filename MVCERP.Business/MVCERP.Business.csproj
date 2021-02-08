@@ -48,6 +48,8 @@
     <Compile Include="Business\Error\IErrorBusiness.cs" />
     <Compile Include="Business\Logs\ILogsBusiness.cs" />
     <Compile Include="Business\Logs\LogsBusiness.cs" />
+    <Compile Include="Business\Member\IMemberBusiness.cs" />
+    <Compile Include="Business\Member\MemberBusiness.cs" />
     <Compile Include="Business\Reports\DynamicReportBusiness.cs" />
     <Compile Include="Business\Reports\IDynamicReportBusiness.cs" />
     <Compile Include="Business\Reports\IMISReportComponentBusiness.cs" />
