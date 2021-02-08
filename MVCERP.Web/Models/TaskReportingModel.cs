@@ -20,11 +20,8 @@ namespace MVCERP.Web.Models
         public string TaskEndDate { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
-<<<<<<< HEAD
-        
-=======
         public string AssignTo { get; set; }
->>>>>>> 011b1b73ea1fc4b9ebbbe8c6c13a7a035989b58a
+
     }
 
 }

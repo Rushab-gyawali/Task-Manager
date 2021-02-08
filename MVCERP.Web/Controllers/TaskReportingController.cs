@@ -47,18 +47,12 @@ namespace MVCERP.Web.Controllers
 
 
         public JsonResult GetAllTask()
-<<<<<<< HEAD
-        { 
-           var data = _business.GetAllTask();
-            for(int i=0; i<data.Count; i++) {
-                data[i].Action = StaticData.GetActions("TaskManger", data[i].RowId, data[i].TaskId,"Task");
-=======
         {
             var data = _business.GetAllTask();
-            for (int i = 0; i < data.Count; i++)
-            {
-                data[i].Action = StaticData.GetActions("TaskManager", data[i].RowId, data[i].TaskId,"Task");
->>>>>>> 011b1b73ea1fc4b9ebbbe8c6c13a7a035989b58a
+            for (int i = 0; i < data.Count; i++){ 
+            
+                data[i].Action = StaticData.GetActions("TaskManger", data[i].RowId, data[i].TaskId, "Task");
+                 
             }
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }

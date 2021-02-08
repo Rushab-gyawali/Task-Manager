@@ -439,12 +439,12 @@
     <Content Include="Views\Home\CreateUser.cshtml" />
     <Content Include="Views\Home\TestPage.cshtml" />
     <Content Include="Views\TaskReporting\Index.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\TaskReporting\GetTaskStatus.cshtml" />
-=======
+
     <Content Include="Views\TaskManager\Task.cshtml" />
     <Content Include="Views\TaskReporting\UserDetail.cshtml" />
->>>>>>> 011b1b73ea1fc4b9ebbbe8c6c13a7a035989b58a
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
