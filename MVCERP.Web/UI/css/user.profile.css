@@ -1,0 +1,102 @@
+﻿.form-head row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    padding-top: 10px;
+}
+
+.user-detail {
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .user-detail h3 {
+        color: white;
+    }
+
+.user-profile img {
+    width: 100px;
+    height: 100px;
+}
+
+.form-group label{
+    color:white;
+    font-size:16px;
+    font-weight:normal;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+/*user profile dashboard*/
+.task-list .card {
+    margin-bottom: 1.875rem;
+    background-color: #fff;
+    transition: all .5s ease-in-out;
+    position: relative;
+    border: 0px solid transparent;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 0;
+    height: calc(100% - 30px);
+    border-radius: 50px;
+    /*padding: 10px 12px;*/
+}
+
+.task-list .card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.task-list .card-body.p-4 {
+    padding: 1.5rem !important;
+}
+
+.widget-stat .media {
+    padding: 0px 0;
+    align-items: center;
+}
+
+    .widget-stat .media > div {
+        border-radius: 50px;
+        padding: 10px 12px;
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #464a53;
+    }
+
+.media-body {
+    flex: 1;
+}
+
+.widget-stat .media .media-body h3 {
+    font-size: 40px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.widget-stat .media .media-body p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+}
+/*user profile dashboard*/

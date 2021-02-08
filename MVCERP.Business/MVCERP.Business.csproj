@@ -48,6 +48,8 @@
     <Compile Include="Business\Error\IErrorBusiness.cs" />
     <Compile Include="Business\Logs\ILogsBusiness.cs" />
     <Compile Include="Business\Logs\LogsBusiness.cs" />
+    <Compile Include="Business\Member\IMemberBusiness.cs" />
+    <Compile Include="Business\Member\MemberBusiness.cs" />
     <Compile Include="Business\Reports\DynamicReportBusiness.cs" />
     <Compile Include="Business\Reports\IDynamicReportBusiness.cs" />
     <Compile Include="Business\Reports\IMISReportComponentBusiness.cs" />
@@ -58,6 +60,8 @@
     <Compile Include="Business\Role\RoleBusiness.cs" />
     <Compile Include="Business\StaticData\IStaticDataBusiness.cs" />
     <Compile Include="Business\StaticData\StaticDataBusiness.cs" />
+    <Compile Include="Business\TaskManager\ITaskManagerBusiness.cs" />
+    <Compile Include="Business\TaskManager\TaskManagerBusiness.cs" />
     <Compile Include="Business\TaskReporting\ITaskReportingBusiness.cs" />
     <Compile Include="Business\TaskReporting\TaskReportingBusiness.cs" />
     <Compile Include="Business\User\IUserBusiness.cs" />

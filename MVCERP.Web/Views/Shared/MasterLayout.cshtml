@@ -151,6 +151,9 @@
                     <div class="collapse navbar-collapse" id="mainMenu">
                         <ul class="nav navbar-nav navbar-menu">
                             @*@Html.Partial("Menu")*@
+                            <li class="nav-item">
+                                @Html.ActionLink("Add New Task", "Task", "TaskManager", null, new { @class = "nav-link" })
+                            </li>
                         </ul>
                     </div>
                 </div>

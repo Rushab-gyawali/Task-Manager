@@ -10,5 +10,6 @@ namespace MVCERP.Business.Business.TaskReporting
     {
         List<TaskReportingCommon> GetAllTask();
         IEnumerable<TaskReportingCommon> GetStatus();
+
     }
 }

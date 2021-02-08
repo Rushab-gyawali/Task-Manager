@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using MVCERP.Repository.Repository.Common;
+using MVCERP.Shared.Common;
 
 namespace MVCERP.Repository.Repository.Common
 {
@@ -38,9 +40,10 @@ namespace MVCERP.Repository.Repository.Common
 
         public Dictionary<string, string> Dropdown(string ddlName, string Param)
         {
-            var sql = "exec proc_DropdownList @flag=" + dao.FilterString(ddlName);
-            sql += ", @Param = " + dao.FilterString(Param);
-            return dao.ParseDictionary(sql);
+               var sql = "exec PROC_DROPDOWNLIST @Flag=" + dao.FilterString(ddlName);
+               sql += ", @Param = " + dao.FilterString(Param); 
+                var dt = dao.ExecuteDataTable(sql);
+               return dao.ParseDictionary(sql);
         }
 
 

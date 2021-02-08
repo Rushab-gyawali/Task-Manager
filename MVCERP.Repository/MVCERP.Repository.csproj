@@ -52,6 +52,8 @@
     <Compile Include="Repository\Error\IErrorRepo.cs" />
     <Compile Include="Repository\Logs\ILogsRepository.cs" />
     <Compile Include="Repository\Logs\LogsRepository.cs" />
+    <Compile Include="Repository\Member\IMemberRepository.cs" />
+    <Compile Include="Repository\Member\MemberRepository.cs" />
     <Compile Include="Repository\Notification\INotificationRepository.cs" />
     <Compile Include="Repository\Notification\NotificationRepository.cs" />
     <Compile Include="Repository\Report\DynamicReportRepo.cs" />
@@ -65,6 +67,8 @@
     <Compile Include="Repository\Role\RoleRepository.cs" />
     <Compile Include="Repository\StaticData\IStaticDataRepository.cs" />
     <Compile Include="Repository\StaticData\StaticDataRepository.cs" />
+    <Compile Include="Repository\TaskManager\ITaskManagerRepository.cs" />
+    <Compile Include="Repository\TaskManager\TaskManagerRepository.cs" />
     <Compile Include="Repository\User\IUserRepository.cs" />
     <Compile Include="Repository\User\UserRepository.cs" />
     <Compile Include="Repository\TaskReporting\ITaskReportingRepository.cs" />

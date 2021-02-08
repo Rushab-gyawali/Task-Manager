@@ -20,8 +20,8 @@ namespace MVCERP.Repository.Repository.TaskReporting
             var list = new List<TaskReportingCommon>();
             try
             {
-                var sql = "EXEC proc_tblTaskManagers ";
-                sql += "@FLAG = 'A'";
+                var sql = "EXEC PROC_TASKMANAGER ";
+                sql += "@Flag = 'List'";
                 var dt = dao.ExecuteDataTable(sql);
 
                 if (null != dt)

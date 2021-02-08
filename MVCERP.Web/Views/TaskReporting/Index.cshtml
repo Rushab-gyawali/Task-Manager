@@ -4,8 +4,11 @@
     Layout = "~/Views/Shared/MasterLayout.cshtml";
 }
 
+<<<<<<< HEAD
 <h2>List of All Task</h2> @*<h2><a href="@Url.Action("GetTaskStatus","TaskReporting")"> Get Task Details</a></h2>*@
 
+=======
+>>>>>>> 011b1b73ea1fc4b9ebbbe8c6c13a7a035989b58a
 <script type="text/javascript">
         $(document).ready(function () {
                        $('#AllTaskList').DataTable({
@@ -19,6 +22,7 @@
                                 "url": "/TaskReporting/GetAllTask",
                                 "contentType": 'application/json; charset=utf-8',
                                 'data': function (data) {
+                                    //console.log(data);
                                     return data = JSON.stringify(data);
                                 }
                             },
@@ -41,14 +45,14 @@
                                 { 'data': 'IsActive', "orderable": true },
                                 { 'data': 'Status', "orderable": true },
                                 { 'data': 'CreatedBy', "orderable": false },
-                                { 'data': 'CreatedDate', "orderable": false },
-                                { 'data': 'Action', "orderable": false },
+                               { 'data': 'CreatedDate', "orderable": false },
+                               { 'data': 'Action', "orderable": false },
                                 
                             ],
                             "columnDefs":
                                 [
                                     { "className": "dt-center", "targets": "4" },
-                                    //  { "targets": 1, "className": "text-right" }
+                                      //{ "targets": 1, "className": "text-right" }
                                 ]
                         });
         });
@@ -64,8 +68,8 @@
                     <table id="AllTaskList" class="table table-hover" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                    <th>RowId</th>
-                    <th>TaskId</th>
+                                <th>RowId</th>
+                                <th>TaskId</th>
                                 <th>TaskName</th>
                                 <th>TaskStartDate</th>
                                 <th>TaskEndDate</th>

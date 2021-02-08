@@ -2,21 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MVCERP.Web.Models
 {
     public class TaskReportingModel
     {
-        public int RowId { get; set; }
+
+        public int? RowId { get; set; }
         public string TaskId { get; set; }
         public string TaskName { get; set; }
         public string TaskDescription { get; set; }
         public bool IsActive { get; set; }
         public string Status { get; set; }
+        public IEnumerable<SelectListItem> StatusList { get; set; }
         public string TaskStartDate { get; set; }
         public string TaskEndDate { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
+<<<<<<< HEAD
         
+=======
+        public string AssignTo { get; set; }
+>>>>>>> 011b1b73ea1fc4b9ebbbe8c6c13a7a035989b58a
     }
+
 }
