@@ -134,7 +134,6 @@ namespace MVCERP.Web.Controllers
         //    return View(model);
         //}
 
-        //
         // GET: /User/Edit/5
 
         public ActionResult Manage()

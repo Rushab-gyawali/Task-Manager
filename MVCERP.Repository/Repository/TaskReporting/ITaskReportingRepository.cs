@@ -13,5 +13,6 @@ namespace MVCERP.Repository.Repository.TaskReporting
         List<TaskReportingCommon> GetCompletedTask();
         List<TaskReportingCommon> GetPendingTask();
         List<TaskReportingCommon> GetAssignedTask();
+
     }
 }

@@ -60,6 +60,8 @@
     <Compile Include="Business\Role\RoleBusiness.cs" />
     <Compile Include="Business\StaticData\IStaticDataBusiness.cs" />
     <Compile Include="Business\StaticData\StaticDataBusiness.cs" />
+    <Compile Include="Business\TaskManager\ITaskManagerBusiness.cs" />
+    <Compile Include="Business\TaskManager\TaskManagerBusiness.cs" />
     <Compile Include="Business\TaskReporting\ITaskReportingBusiness.cs" />
     <Compile Include="Business\TaskReporting\TaskReportingBusiness.cs" />
     <Compile Include="Business\User\IUserBusiness.cs" />

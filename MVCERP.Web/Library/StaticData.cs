@@ -381,10 +381,10 @@ namespace MVCERP.Web.Library
             if (HasRight(Control, AddEdit))
             {
                 var enc = Base64Encode_URL(ExtraId.ToString());
-                if (Control.ToLower() == "taskmanger")
+                if (Control.ToLower() == "taskmanager")
                 {
 
-                    link += "<a href='/" + Control + "/Add?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
+                    link += "<a href='/" + Control + "/" +AddEdit +"?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
                 }
 
             }

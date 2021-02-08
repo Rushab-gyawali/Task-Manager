@@ -1,0 +1,95 @@
+﻿@model MVCERP.Web.Models.TaskReportingModel
+@{
+    ViewBag.Title = "Task";
+    string id = Request.QueryString["id"];
+}
+
+<link href="~/UI/css/bootstrap.css" rel="stylesheet" />
+<link href="~/UI/css/bootstrap.min.css" rel="stylesheet" />
+@{
+    //ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+
+
+
+<div class="task-form" style="padding-top:30px;">
+    <div class="container container-fluid">
+
+        @using (Html.BeginForm("Task", "TaskManager", FormMethod.Post, new { @id = "taskform" }))
+        {
+
+        <div style="display:grid;grid-template-columns:auto auto;grid-column-gap:50px">
+            @Html.HiddenFor(x => x.RowId, new { @class = "form-control" })
+            @Html.HiddenFor(x => x.TaskId, new { @class = "form-control" })
+
+            <div class="form-group">
+                <label for="TaskName">TaskName</label>
+                @Html.TextBoxFor(x => x.TaskName, new { @placeholder = "Enter TaskName", @class = "form-control", @id = "TaskName" })
+            </div>
+            <div class="form-group">
+                <label for="TaskStartDate">TaskStartDate</label>
+                @Html.TextBoxFor(x => x.TaskStartDate, new { @placeholder = "TaskStartDate", @class = "form-control", @id = "TaskStartDate", @autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                <label for="TaskEndDate">TaskEndDate</label>
+                @Html.TextBoxFor(x => x.TaskEndDate, new { @placeholder = "TaskEndDate", @class = "form-control", @id = "TaskEndDate", @autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                <label for="CreatedBy">CreatedBy</label>
+                @Html.TextBoxFor(x => x.CreatedBy, new { @placeholder = "CreatedBy", @class = "form-control", @id = "CreatedBy" })
+            </div>
+            <div class="form-group">
+                <label for="AssignTo">AssignTo</label>
+                @Html.TextBoxFor(x => x.AssignTo, new { @placeholder = "AssignTo", @class = "form-control", @id = "AssignTo" })
+            </div>
+            <div class="form-group">
+                <label for="TaskDescription">TaskDescription</label>
+                @Html.TextAreaFor(x => x.TaskDescription, new { @placeholder = "TaskDescription", @class = "form-control", @id = "TaskDescription" })
+            </div>
+
+            <div class="form-group">
+                <label for="Status">Status</label>
+                @Html.DropDownList("Status", new List<SelectListItem>
+                {
+                   new SelectListItem{ Text="Not Assigned", Value = "Not Assigned" },
+                   new SelectListItem{ Text="InProgress", Value = "InProgress" },
+                   new SelectListItem{ Text="Completed", Value = "Completed" },
+                   new SelectListItem{ Text="Testing", Value = "Testing" },
+                }, new { @class = "form-control" })
+            </div>
+        </div>
+            <div class="modal-footer">
+                @{
+                    if (id == null)
+                    {
+                        <button type="submit" class="btn btn-danger" id="btnAdd">Add</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary" id="btnUpdate">Update</button>
+
+                    }
+                    }
+                </div>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#TaskStartDate').datepicker({
+            controls: ['datetime'],
+            dateFormat: 'dd-mm-yy'
+        });
+        $('#TaskEndDate').datepicker({
+            controls: ['datetime'],
+            dateFormat: 'dd-mm-yy'
+        });
+
+        $(".navbar-inverse").hide();
+
+    });
+</script>
+

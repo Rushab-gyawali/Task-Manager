@@ -261,7 +261,7 @@ namespace MVCERP.Repository.Repository
             {
                 //for (int j = 0; j < dt.Columns.Count; j++)
                 //{
-                dictionary.Add(dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString());
+                dictionary.Add(dt.Rows[i][0].ToString(), dt.Rows[i][0].ToString());
                 //}
             }
             return dictionary;

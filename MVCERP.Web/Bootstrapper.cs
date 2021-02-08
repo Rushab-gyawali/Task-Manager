@@ -9,8 +9,8 @@ using MVCERP.Business.Business.Reports;
 using MVCERP.Business.Business.Error;
 using MVCERP.Business.Business.TaskReporting;
 using MVCERP.Repository.Repository.TaskReporting;
-using MVCERP.Repository.Repository.Member;
-using MVCERP.Business.Business.Member;
+using MVCERP.Business.Business.TaskManager;
+using MVCERP.Repository.Repository.TaskManager;
 
 namespace MVCERP.Web
 {
@@ -40,8 +40,8 @@ namespace MVCERP.Web
             container.RegisterType<IMISReportComponentBusiness, MISReportComponentBusiness>();
             container.RegisterType<ITaskReportingBusiness, TaskReportingBusiness>();
             container.RegisterType<ITaskReportingRepository, TaskReportingRepository>();
-            container.RegisterType<IMemberRepository, MemberRepository>();
-            container.RegisterType<IMemberBusiness, MemberBusiness>();
+            container.RegisterType<ITaskManagerBusiness, TaskManagerBusiness>();
+            container.RegisterType<ITaskManagerRepository, TaskManagerRepository>();
             return container;
         }
     }
