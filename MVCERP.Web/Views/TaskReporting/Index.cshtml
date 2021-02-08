@@ -1,61 +1,66 @@
 ﻿@model MVCERP.Shared.Common.TaskReportingCommon
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/MasterLayout.cshtml";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
 }
 
-<<<<<<< HEAD
-<h2>List of All Task</h2> @*<h2><a href="@Url.Action("GetTaskStatus","TaskReporting")"> Get Task Details</a></h2>*@
+<h2>List of All Task</h2>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+@section scripts{
 
-=======
->>>>>>> 011b1b73ea1fc4b9ebbbe8c6c13a7a035989b58a
+    @*<script src="~/UI/MeroTaskDashboard/vendor/jquery/jquery.min.js"></script>*@
+
+    <script src="~/UI/MeroTaskDashboard/vendor/datatables/js/jquery.dataTables.min.js"></script>
+
+}
+
+
 <script type="text/javascript">
-        $(document).ready(function () {
-                       $('#AllTaskList').DataTable({
-                           "responsive": true,
-                           "processing": false,
-                           "serverSide": false,
-                            "searchDelay": 1500,
-                            "ajax": {
-                                "type": 'z',
-                                "dataType": 'json',
-                                "url": "/TaskReporting/GetAllTask",
-                                "contentType": 'application/json; charset=utf-8',
-                                'data': function (data) {
-                                    //console.log(data);
-                                    return data = JSON.stringify(data);
-                                }
-                            },
-                            lengthMenu:
-                                [
-                                    [25, 50, 100],
-                                    ['25', '50', '100']
-                                ],
-                            "language": {
-                                "search": "",
-                                "searchPlaceholder": "Search..."
-                            },
-                           columns: [
-                               { 'data': 'RowId', "orderable": true, "searchable": true },
-                               { 'data': 'TaskId', "orderable": true },
-                               { 'data': 'TaskName', "orderable": true, "searchable": true },
-                                { 'data': 'TaskStartDate', "orderable": true },
-                                { 'data': 'TaskEndDate', "orderable": true },
-                                { 'data': 'TaskDescription', "orderable": true },
-                                { 'data': 'IsActive', "orderable": true },
-                                { 'data': 'Status', "orderable": true },
-                                { 'data': 'CreatedBy', "orderable": false },
-                               { 'data': 'CreatedDate', "orderable": false },
-                               { 'data': 'Action', "orderable": false },
-                                
-                            ],
-                            "columnDefs":
-                                [
-                                    { "className": "dt-center", "targets": "4" },
-                                      //{ "targets": 1, "className": "text-right" }
-                                ]
-                        });
+    $(document).ready(function () {
+        $('#AllTaskList').DataTable({
+            "responsive": true,
+            "processing": false,
+            "serverSide": false,
+            "searchDelay": 1500,
+            "ajax": {
+                "type": 'z',
+                "dataType": 'json',
+                "url": "/TaskReporting/GetAllTask",
+                "contentType": 'application/json; charset=utf-8',
+                'data': function (data) {
+                    return data = JSON.stringify(data);
+                }
+            },
+            lengthMenu:
+                [
+                    [25, 50, 100],
+                    ['25', '50', '100']
+                ],
+            "language": {
+                "search": "",
+                "searchPlaceholder": "Search..."
+            },
+            columns: [
+
+               
+                { 'data': 'TaskName', "orderable": true, "searchable": true },
+                { 'data': 'TaskStartDate', "orderable": true },
+                { 'data': 'TaskEndDate', "orderable": true },
+                { 'data': 'TaskDescription', "orderable": true },
+                { 'data': 'IsActive', "orderable": true },
+                { 'data': 'Status', "orderable": true },
+                { 'data': 'CreatedBy', "orderable": false },
+                { 'data': 'CreatedDate', "orderable": false },
+                { 'data': 'Action', "orderable": false },
+
+            ],
+            "columnDefs":
+                [
+                    { "className": "dt-center", "targets": "4" },
+                    //  { "targets": 1, "className": "text-right" }
+                ]
         });
+    });
 
 </script>
 
@@ -64,12 +69,12 @@
         <div class="panel-heading list-heading">
             <div class="panel-body list-body">
                 <div class="table-responsive">
-                  
+
                     <table id="AllTaskList" class="table table-hover" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                                <th>RowId</th>
-                                <th>TaskId</th>
+                        <thead>
+                            <tr>
+
+                           
                                 <th>TaskName</th>
                                 <th>TaskStartDate</th>
                                 <th>TaskEndDate</th>

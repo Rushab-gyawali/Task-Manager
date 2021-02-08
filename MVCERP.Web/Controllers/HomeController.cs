@@ -57,70 +57,6 @@ namespace MVCERP.Web.Controllers
             return View();
         }
 
-        //void CheckLicense()
-        //{
-        //    iSolutionLifeLicense CheckVer = new iSolutionLifeLicense();
-        //    string[] Users = CheckVer.AUsers.Split('=');
-
-
-        //    version = CheckVer.CheckLicense(GetDomainName().Trim().ToLower());
-        //    switch (version)
-        //    {
-        //        case iSolutionLifeLicense.LicStatus.ClockChanged:
-        //            //bntSubmit.Enabled = false;
-        //            //dvLogin.Visible = false;
-        //            ViewData["msg"]  = "The system clock has been manually changed, and the application has been locked out to prevent unauthorized access!";
-        //            //lnkForgotpwd.Visible = false;
-        //            break;
-
-        //        case iSolutionLifeLicense.LicStatus.Exception:
-        //            //bntSubmit.Enabled = false;
-        //            //dvLogin.Visible = false;
-        //            ViewData["msg"] = "The registration information has been tampered with, and the program has been corrupted.";
-        //            //lnkForgotpwd.Visible = false;
-        //            break;
-
-        //        case iSolutionLifeLicense.LicStatus.Expire:
-        //            //bntSubmit.Enabled = false;
-        //            //dvLogin.Visible = false;
-        //            ViewData["msg"] = "Your total trial period is expired. Please contact your software vendor.";
-        //            //lnkRegister.Visible = false;
-        //            //lnkForgotpwd.Visible = false;
-        //            break;
-
-        //        case iSolutionLifeLicense.LicStatus.FullVersion:
-        //            //lnkRegister.Visible = false;
-        //            //SetFocus(userName);
-        //            //pwd.Attributes.Add("oncontextmenu", "return false;");
-        //            if (Users.Length == 2)
-        //            {
-        //                //Session["LimitedUsers"] = Users[1];
-        //                LimitedUsers = Users[1];
-        //            }
-        //            else
-        //            {
-        //                //Session["LimitedUsers"] = 5;
-        //                LimitedUsers = "5";
-        //            }
-
-        //            break;
-
-        //        case iSolutionLifeLicense.LicStatus.Trail:
-        //            TrialSetUP(Convert.ToInt32(CheckVer.UsedTrialDays));
-        //            break;
-        //    }
-
-        //}
-        private void TrialSetUP(int usedDays)
-        {
-            ViewData["msg"] = "Trial version Application valid for 30 days.";
-            LimitedUsers = "5";
-            Session["LimitedUsers"] = 5;
-            Session["UsedDays"] = UsedDays;
-            UsedDays = usedDays.ToString();
-            //SetFocus(userName);
-            //pwd.Attributes.Add("oncontextmenu", "return false;");
-        }
         private string GetDomainName()
         {
             string cURL = HttpContext.Request.Url.AbsoluteUri;
@@ -160,26 +96,8 @@ namespace MVCERP.Web.Controllers
             return View(model);
         }
         // [Authorize]
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
 
-            return View();
-        }
         [Authorize]
-        public ActionResult Master()
-        {
-            ViewBag.Message = "Your app description page.";
-
-            return View("DashBoard");
-            //return RedirectToAction("Login", "Account");
-        }
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
 
         //[HttpGet]
         ////[Authorize]
@@ -768,6 +686,7 @@ namespace MVCERP.Web.Controllers
             return View(c);
         }
         [HttpPost]
+
         [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(ChangePassword model)
         {
@@ -803,12 +722,5 @@ namespace MVCERP.Web.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        public ActionResult TestPage()
-        {
-
-            return View();
-        }
-
     }
 }
