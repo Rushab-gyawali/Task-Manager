@@ -13,5 +13,6 @@ namespace MVCERP.Business.Business.TaskReporting
         List<TaskReportingCommon> GetAllPendingTask();
         List<TaskReportingCommon> GetAllAssignedTask();
 
+
     }
 }

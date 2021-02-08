@@ -1,11 +1,9 @@
-﻿using MVCERP.Business.Business.TaskManager;
+﻿using MVCERP.Business.Business.Common;
+using MVCERP.Business.Business.TaskManager;
 using MVCERP.Shared.Common;
 using MVCERP.Web.Library;
 using MVCERP.Web.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MVCERP.Web.Controllers
@@ -15,10 +13,12 @@ namespace MVCERP.Web.Controllers
         //
         // GET: /TaskManager/
         ITaskManagerBusiness buss;
+        ICommonBuss ddl;
 
-        public TaskManagerController(ITaskManagerBusiness _buss)
+        public TaskManagerController(ITaskManagerBusiness _buss, ICommonBuss _ddl)
         {
             buss = _buss;
+            ddl = _ddl;
         }
 
         public ActionResult Index()
@@ -34,12 +34,14 @@ namespace MVCERP.Web.Controllers
             var model = new TaskReportingModel();
             if (TaskId == "")
             {
+                var user = StaticData.GetUser();
+                ViewBag.user = user;
+                ViewData["Status"] = StaticData.SetDDLValue(ddl.SetDropdown("StatusList", StaticData.GetUser()), "", "Select Status");
                 return View();
             }
             else
             {
                 var data = buss.GetById(TaskId);
-               
                 model.TaskName = data[0].TaskName;
                 model.TaskStartDate = data[0].TaskStartDate;
                 model.TaskEndDate = data[0].TaskEndDate;
@@ -47,8 +49,7 @@ namespace MVCERP.Web.Controllers
                 model.Status = data[0].Status;
                 model.CreatedBy = data[0].CreatedBy;
                 model.AssignTo = data[0].AssignTo;
-                model.TaskId = data[0].TaskId;
-                model.RowId = data[0].RowId;
+                model.TaskId = data[0].TaskId; 
                 return View(model);
             }
         }
@@ -67,7 +68,6 @@ namespace MVCERP.Web.Controllers
                     common.CreatedBy = task.CreatedBy;
                     common.AssignTo = task.AssignTo;
                     common.TaskId = task.TaskId;
-                    common.RowId = Convert.ToInt32(task.RowId);
                 var response = buss.TaskManager(common);
                     StaticData.SetMessageInSession(response);
                     if (response.ErrorCode == 1)
@@ -91,12 +91,6 @@ namespace MVCERP.Web.Controllers
 
             return View(task);
         }
-        //public JsonResult GetById(string TaskId)
-        //{
-        //    var id = StaticData.Base64Decode_URL(TaskId);
-        //    var data = buss.GetById(id);
-        //    return Json(new { data = data }, JsonRequestBehavior.AllowGet);
-        //}
 
     }
 }

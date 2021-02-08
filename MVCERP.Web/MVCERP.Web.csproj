@@ -225,6 +225,7 @@
     <None Include="Scripts\jquery-1.8.2-vsdoc.js" />
     <Content Include="UI\css\nepali.datepicker.v2.2.min.css" />
     <Content Include="UI\css\printinletterhead.css" />
+    <Content Include="UI\css\user.profile.css" />
     <Content Include="UI\DataTable\jquery-1.12.4.js" />
     <Content Include="UI\DataTable\jquery.dataTables.min.css" />
     <Content Include="UI\DataTable\jquery.dataTables.min.js" />
@@ -439,6 +440,7 @@
     <Content Include="Views\Home\TestPage.cshtml" />
     <Content Include="Views\TaskReporting\Index.cshtml" />
     <Content Include="Views\TaskManager\Task.cshtml" />
+    <Content Include="Views\TaskReporting\UserDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

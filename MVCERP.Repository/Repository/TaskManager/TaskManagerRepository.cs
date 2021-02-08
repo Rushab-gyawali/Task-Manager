@@ -42,6 +42,7 @@ namespace MVCERP.Repository.Repository.TaskManager
                             TaskStartDate = item["TaskStartDate"].ToString(),
                             TaskEndDate = item["TaskEndDate"].ToString(),
                             CreatedDate = item["CreatedDate"].ToString(),
+                            AssignTo = item["AssignTo"].ToString(),
                             IsActive = Convert.ToBoolean(item["IsActive"])
                         };
                         sn++;
@@ -61,7 +62,7 @@ namespace MVCERP.Repository.Repository.TaskManager
         public DbResponse TaskManager(TaskReportingCommon common)
         {
             var sql = "exec PROC_TASKMANAGER ";
-            sql += "@Flag = " + dao.FilterString((common.RowId > 0 ? "Update" : "Insert"));
+            sql += "@Flag = " + dao.FilterString((common.TaskId == null ? "Insert" : "Update"));
             sql += ",@TaskName = " + dao.FilterString(common.TaskName.ToString());
             sql += ",@TaskStartDate = " + dao.FilterString(common.TaskStartDate);
             sql += ",@TaskEndDate = " + dao.FilterString(common.TaskEndDate);
@@ -69,8 +70,15 @@ namespace MVCERP.Repository.Repository.TaskManager
             sql += ",@Status = " + dao.FilterString(common.Status.ToString());
             sql += ",@CreatedBy = " + dao.FilterString(common.CreatedBy.ToString());
             sql += ",@AssignTo = " + dao.FilterString(common.AssignTo.ToString());
-            sql += ",@TaskId = " + dao.FilterString(common.TaskId.ToString());
-            return dao.ParseDbResponse(sql);
+            if (common.TaskId == null)
+            {
+                return dao.ParseDbResponse(sql);
+            }
+            else
+            {
+                sql += ",@TaskId = " + dao.FilterString(common.TaskId.ToString());
+                return dao.ParseDbResponse(sql);
+            }
         }
     }
 }
