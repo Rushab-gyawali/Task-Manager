@@ -28,6 +28,7 @@ namespace MVCERP.Repository.Repository.Member
             sql += ",@Email = " + dao.FilterString(setup.Email);
             sql += ",@PhoneNo = " + dao.FilterString(setup.PhoneNo);
             sql += ",@Password = " + dao.FilterString(setup.Password);
+            sql += ",@AdminRIght = " + dao.FilterString(setup.AdminRight.ToString());
             if(setup.ID == 0)
             {
                 return dao.ParseDbResponse(sql);
@@ -63,7 +64,8 @@ namespace MVCERP.Repository.Repository.Member
                             UserName = item["UserName"].ToString(),
                             Email = item["Email"].ToString(),
                             PhoneNo = item["PhoneNo"].ToString(),
-                            Password = item["Password"].ToString()
+                            Password = item["Password"].ToString(),
+                            AdminRight = Convert.ToBoolean(item["AdminRight"]),
 
 
                         };

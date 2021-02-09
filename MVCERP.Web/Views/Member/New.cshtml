@@ -50,6 +50,10 @@
                     <label for="CPassword">Confirm Password</label>
                     @Html.PasswordFor(x => x.CPassword, new { @placeholder = "Confirm Password", @class = "form-control", @id = "CPassword" })
                 </div>
+                <div class=" form-group">
+                    <label for="Admin Right">Admin Right</label>
+                    @Html.CheckBoxFor(x => x.AdminRight, new { @class = "form-control", @id = "AdminRight"})
+                </div>
 
                 <div class="modal-footer">
                     @{

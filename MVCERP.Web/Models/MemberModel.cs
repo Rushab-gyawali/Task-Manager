@@ -33,6 +33,7 @@ namespace MVCERP.Web.Models
         public string CPassword { get; set; }
 
         public DateTime? CreatedDate { get; set; }
+        public bool AdminRight { get; set; }
 
     }
 }

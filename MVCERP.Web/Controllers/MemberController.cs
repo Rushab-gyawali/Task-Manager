@@ -54,6 +54,7 @@ namespace MVCERP.Web.Controllers
                 model.Email = data[0].Email;
                 model.PhoneNo = data[0].PhoneNo;
                 model.Password = data[0].Password;
+                //model.AdminRight = Convert.ToBoolean(data[0].AdminRight);
 
 
                 return View(model);
@@ -75,6 +76,7 @@ namespace MVCERP.Web.Controllers
                 common.Email = model.Email;
                 common.PhoneNo = model.PhoneNo;
                 common.Password = StaticData.Base64Encode(model.Password);
+                common.AdminRight = Convert.ToBoolean(model.AdminRight);
                 var response = bussiness.AddUsers(common);
                 StaticData.SetMessageInSession(response);
                 if (response.ErrorCode == 1)
