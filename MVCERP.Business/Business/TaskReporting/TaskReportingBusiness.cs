@@ -25,5 +25,14 @@ namespace MVCERP.Business.Business.TaskReporting
         {
             return repo.GetStatus();
         }
+
+        public List<TaskReportingCommon> StatusCount(TaskReportingCommon common)
+        {
+            return repo.StatusCount(common);
+        }
+        public List<TaskReportingCommon> StatusList(string status, string user)
+        {
+            return repo.StatusList(status, user);
+        }
     }
 }

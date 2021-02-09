@@ -97,7 +97,7 @@
                                 var menu = MVCERP.Web.Library.UserMonitor.GetInstance().GetMenus(user);
                                 if (!string.IsNullOrWhiteSpace(user) && null != menu)
                                 {
-                                    var num = menu.Where(x => x.ParentGroup == "NEW MIS Report").GroupBy(x => x.MenuGroup);
+                                    var num = menu.Where(x => x.ParentGroup == "MIS Report").GroupBy(x => x.MenuGroup);
                                     if (num.Count() > 0)
                                     {
                                         foreach (var sub1 in num)

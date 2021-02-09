@@ -22,6 +22,10 @@ namespace MVCERP.Web.Models
         public string CreatedDate { get; set; }
         public string AssignTo { get; set; }
 
+        //for count status
+        public int StatusCount { get; set; }
+        public string StatusListCount { get; set; }
+
     }
 
 }

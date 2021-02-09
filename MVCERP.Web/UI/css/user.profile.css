@@ -45,7 +45,7 @@ hr {
 /*user profile dashboard*/
 .task-list .card {
     margin-bottom: 1.875rem;
-    background-color: #fff;
+    /*background-color: #fff;*/
     transition: all .5s ease-in-out;
     position: relative;
     border: 0px solid transparent;
@@ -57,6 +57,12 @@ hr {
     height: calc(100% - 30px);
     border-radius: 50px;
     /*padding: 10px 12px;*/
+    background-color: transparent;
+}
+
+.task-list .count-status{
+    width:18% !important;
+    background-color:transparent;
 }
 
 .task-list .card-body {
@@ -69,10 +75,9 @@ hr {
 }
 
 .widget-stat .media {
-    padding: 0px 0;
+    padding: 5px 0;
     align-items: center;
 }
-
     .widget-stat .media > div {
         border-radius: 50px;
         padding: 10px 12px;
@@ -81,6 +86,11 @@ hr {
         justify-content: center;
         align-items: center;
         color: #464a53;
+        width: 195px;
+        height:120px;
+    }
+    .widget-stat .media > div h3,p{
+        text-align:center;
     }
 
 .media-body {
@@ -98,5 +108,11 @@ hr {
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5;
+}
+
+.nav-link{
+    display:inline-block;
+    border-radius:5px;
+    padding:10px;
 }
 /*user profile dashboard*/

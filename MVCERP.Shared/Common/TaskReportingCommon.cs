@@ -18,5 +18,9 @@ namespace MVCERP.Shared.Common
 
         public string AssignTo { get; set; }
 
+        //for count status
+        public int StatusCount { get; set; }
+        public string StatusListCount { get; set; }
+
     }
 }

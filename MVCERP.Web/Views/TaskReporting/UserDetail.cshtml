@@ -2,55 +2,93 @@
 
 @{
     ViewBag.Title = "UserDetail";
-    Layout = "~/Views/Shared/MasterLayout.cshtml";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
 }
 <link href="~/UI/css/user.profile.css" rel="stylesheet" />
-<style>
-</style>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/UI/MeroTaskDashboard/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).ready(function () {
+            $('#myList').hide();
+            
+        });
+    });
+    function userList(status) {
+        debugger;
+       // $('.dropdown-item').click(function () {
+            $('#myList').show();
+       // });
+        $('#AllTaskList').DataTable({
+            "responsive": true,
+            "processing": false,
+            "serverSide": false,
+            "searchDelay": 1500,
+            "ajax": {
+                "type": 'z',
+                "dataType": 'json',
+                "url": "/TaskReporting/StatusList" + status,
+                "contentType": 'application/json; charset=utf-8',
+                'data': function (data) {
+                    return data = JSON.stringify(data);
+                }
+            },
+            lengthMenu:
+                [
+                    [25, 50, 100],
+                    ['25', '50', '100']
+                ],
+            "language": {
+                "search": "",
+                "searchPlaceholder": "Search..."
+            },
+            columns: [
 
-<div class="container row">
-    <div class="container-fluid col-md-4" style=" background: linear-gradient( 135deg, #e03051 0%, #e75c76 100%);height:85vh;">
-        <div class="user-profile">
-            <div class="user-detail">
-                <h3>
-                        @ViewBag.user
-                </h3>
-            </div>
-            <div>
-                <img src="~/Images/user.png" alt="Alternate Text" class="img-fluid" />
-            </div>
+
+                { 'data': 'TaskName', "orderable": true, "searchable": true },
+                { 'data': 'TaskStartDate', "orderable": true },
+                { 'data': 'TaskEndDate', "orderable": true },
+                { 'data': 'TaskDescription', "orderable": true },
+                { 'data': 'IsActive', "orderable": true },
+                { 'data': 'Status', "orderable": true },
+                { 'data': 'CreatedBy', "orderable": false },
+                { 'data': 'CreatedDate', "orderable": false },
+                { 'data': 'Action', "orderable": false },
+
+            ],
+            "columnDefs":
+                [
+                    { "className": "dt-center", "targets": "4" },
+                    //  { "targets": 1, "className": "text-right" }
+                ]
+        });
+    }
+
+</script>
+
+<div class="container">
+    <div class="container-fluid">
+        <a class="nav-link dropdown-toggle btn-success" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Status
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-item" onchange="userList('Assigned Inprogress');">Assigned Inprogress</div>
+            <div class="dropdown-item" onclick="userList('Assigned Inprogress');">Completed</div>
+            <div class="dropdown-item" onclick="userList('Assigned Inprogress');">Testing</div>
         </div>
-        <hr />
-        @using (Html.BeginForm("Search", "TaskManager", FormMethod.Post, new { @id = "taskform" }))
-        {
 
-    <div class="form-group">
-        <label for="Status" class="text-white">Status</label>
-        @Html.DropDownListFor(m => m.Status, ViewData["StatusList"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
     </div>
-
-            <button type="submit" class="btn btn-danger" id="btnsearch">Search</button>
-        }
-    </div>
-    <div class="col-md-8">
-        <div class="container-fluid">
-            <div class="form-head d-flex mb-3 align-items-start">
-                <div class="mr-auto d-none d-lg-block">
-                    <h2 class="text-black font-w600 mb-0">Dashboard</h2>
-                    <p class="mb-0">Welcome to @ViewBag.user !</p>
-                </div>
-            </div>
-
-            <div class="task-list">
+    <div class="container-fluid">
+        <div class="task-list">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 count-status">
                     <div class="widget-stat card">
                         <div class="card-body p-4">
                             <div class="media ai-icon">
                                 <div class="mr-3 bgl-primary text-primary">
                                     <!-- <i class="ti-user"></i> -->
                                     <div class="media-body">
-                                        <h3 class="mb-0 text-black"><span class="counter ml-0">56</span></h3>
+                                        <h3 class="mb-0 text-black"><span class="counter ml-0">@ViewBag.statusAssigned</span></h3>
                                         <p class="mb-0">InProgress Task</p>
                                     </div>
                                 </div>
@@ -66,7 +104,7 @@
                                     <!-- <i class="ti-user"></i> -->
 
                                     <div class="media-body">
-                                        <h3 class="mb-0 text-black"><span class="counter ml-0">126</span>k</h3>
+                                        <h3 class="mb-0 text-black"><span class="counter ml-0">@ViewBag.statuscomplete </span></h3>
                                         <p class="mb-0">Completed Task</p>
                                     </div>
                                 </div>
@@ -82,7 +120,7 @@
                                     <!-- <i class="ti-user"></i> -->
 
                                     <div class="media-body">
-                                        <h3 class="mb-0 text-black"><span class="counter ml-0">279</span></h3>
+                                        <h3 class="mb-0 text-black"><span class="counter ml-0">@ViewBag.statusTesting</span></h3>
                                         <p class="mb-0">Testing Task</p>
                                     </div>
                                 </div>
@@ -98,7 +136,7 @@
                                     <!-- <i class="ti-user"></i> -->
 
                                     <div class="media-body">
-                                        <h3 class="mb-0 text-black"><span class="counter ml-0">65</span></h3>
+                                        <h3 class="mb-0 text-black"><span class="counter ml-0">@ViewBag.statuscount</span></h3>
                                         <p class="mb-0">Total Assigned Task</p>
                                     </div>
                                 </div>
@@ -106,10 +144,46 @@
                         </div>
                     </div>
                 </div>
-                </div>
-            </div>
             </div>
         </div>
     </div>
+</div>
+
+<!--------------------list of user task-------------------->
+
+
+<div class="container listing-container" id="myList">
+    <div class="panel panel-default">
+        <div class="panel-heading list-heading">
+            <div class="panel-body list-body">
+                <div class="table-responsive">
+
+                    <table id="AllTaskList" class="table table-hover" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+
+
+                                <th>TaskName</th>
+                                <th>TaskStartDate</th>
+                                <th>TaskEndDate</th>
+                                <th>TaskDescription</th>
+                                <th>IsActive</th>
+                                <th>Status</th>
+                                <th>CreatedBy</th>
+                                <th>CreatedDate</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 

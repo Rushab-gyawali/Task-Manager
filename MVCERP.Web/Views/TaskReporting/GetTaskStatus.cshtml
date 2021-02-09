@@ -9,8 +9,8 @@
 @{
     var statusList = Model.Select(x => x.Status).Distinct().ToList();
 
-    var notAssignedList = Model.Where(x => x.Status == "NULL").ToList();
-    var inProgressList = Model.Where(x => x.Status == "active").ToList();
+    var notAssignedList = Model.Where(x => x.Status == "Not Assigned").ToList();
+    var inProgressList = Model.Where(x => x.Status == "Assigned InProgress").ToList();
     var completedList = Model.Where(x => x.Status == "Completed").ToList();
     var TestingList = Model.Where(x => x.Status == "Testing").ToList();
 }
