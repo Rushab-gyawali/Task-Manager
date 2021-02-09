@@ -28,25 +28,48 @@ namespace MVCERP.Web.Controllers
               var data = bussiness.ListUsers();
                 for (int i = 0; i < data.Count; i++)
                 {
-                    data[i].Action = StaticData.GetActions("Member", data[i].ID, "");
+                    data[i].Action = StaticData.GetActions("Member",  data[i].ID, data[i].ID.ToString(), "New");
                 }
                 return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
+
+
         public ActionResult New()
         {
-            return View();
+            string id = Request.QueryString["id"];
+            var ID = StaticData.Base64Decode_URL(id);
+            var model = new MemberModel();
+            if (ID == "")
+            {
+                var user = StaticData.GetUser();
+                ViewBag.user = user;
+                return View();
+            }
+            else
+            {
+                var data = bussiness.GetById(ID);
+                model.ID = data[0].ID.ToString();
+                model.FullName = data[0].FullName;
+                model.UserName = data[0].UserName;
+                model.Email = data[0].Email;
+                model.PhoneNo = data[0].PhoneNo;
+                model.Password = data[0].Password;
+
+
+                return View(model);
+            }
         }
 
 
         [HttpPost]
-        public ActionResult AddUser(MemberModel model)
+        public ActionResult New(MemberModel model)
         {
-    
+
             if (ModelState.IsValid)
             {
                 MemberCommon common = new MemberCommon();
-               
-                common.ID = model.ID;
+
+                common.ID = Convert.ToInt32(model.ID);
                 common.FullName = model.FullName;
                 common.UserName = model.UserName;
                 common.Email = model.Email;
@@ -54,12 +77,12 @@ namespace MVCERP.Web.Controllers
                 common.Password = StaticData.Base64Encode(model.Password);
                 var response = bussiness.AddUsers(common);
                 StaticData.SetMessageInSession(response);
-                if (response.ErrorCode == 0)
+                if (response.ErrorCode == 1)
                 {
                     ModelState.AddModelError("", response.Message);
                     return View(model);
                 }
-                return RedirectToAction("Index","Member");
+                return RedirectToAction("Index", "Member");
             }
             else
             {

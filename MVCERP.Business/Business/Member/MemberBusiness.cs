@@ -21,6 +21,11 @@ namespace MVCERP.Business.Business.Member
             return repo.AddUser(setup);
         }
 
+        public List<MemberCommon> GetById(string ID)
+        {
+            return repo.GetById(ID);
+        }
+
         public List<MemberCommon> ListUsers()
         {
             return repo.ListUsers();

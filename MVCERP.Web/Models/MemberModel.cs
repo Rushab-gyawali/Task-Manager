@@ -10,8 +10,8 @@ namespace MVCERP.Web.Models
     public class MemberModel 
     {
 
-        public int ID { get; set; }
-        [Required]
+        public string ID { get; set; }
+        
         public string FullName { get; set; }
 
         [Required]

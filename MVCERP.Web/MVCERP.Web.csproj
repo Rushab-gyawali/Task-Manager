@@ -159,10 +159,12 @@
     </Compile>
     <Compile Include="Controllers\HelperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MISReport\MISUserReportController.cs" />
     <Compile Include="Controllers\MISReport\MISController.cs" />
     <Compile Include="Controllers\MISReport\MISGenerateReportController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\TaskManagerController.cs" />
     <Compile Include="Controllers\TaskReportingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\SessionExpiryFilterAttribute.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="Library\Reports.cs" />
     <Compile Include="Library\StaticData.cs" />
     <Compile Include="Library\UserMonitor.cs" />
+    <Compile Include="Models\MemberModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\TaskReportingModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -3300,6 +3303,10 @@
     <Content Include="UI\MeroTaskDashboard\vendor\summernote\font\summernote.ttf" />
     <Content Include="UI\MeroTaskDashboard\vendor\summernote\font\summernote.woff" />
     <Content Include="Views\Shared\MeroTaskMainLayout.cshtml" />
+    <Content Include="Views\TaskManager\Task.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\New.cshtml" />
+    <Content Include="Views\TaskReporting\UserDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

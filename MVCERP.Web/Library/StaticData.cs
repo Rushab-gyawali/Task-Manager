@@ -386,6 +386,11 @@ namespace MVCERP.Web.Library
 
                     link += "<a href='/" + Control + "/" +AddEdit +"?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
                 }
+                else if (Control.ToLower() == "member")
+                {
+
+                    link += "<a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
+                }
 
             }
 

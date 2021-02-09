@@ -149,10 +149,15 @@ namespace MVCERP.Repository.Repository.User
         public UserCommon UserLogin(LoginCommon login)
         {
             var sql = "EXEC proc_UserLogin @FLAG ='login'";
+
             sql += ",@UserName = " + dao.FilterString(login.UserName);
             sql += ",@Password = " + dao.FilterString(login.Password);
             sql += ",@Ip = " + dao.FilterString(login.Ip);
             sql += ",@BrowserInfo = " + dao.FilterString(login.BrowserInfo);
+
+
+
+
 
             var dr = dao.ExecuteDataRow(sql);
           var model = new UserCommon();
