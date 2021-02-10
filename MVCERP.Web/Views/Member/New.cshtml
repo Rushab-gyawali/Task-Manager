@@ -1,74 +1,125 @@
-﻿
-
-@model MVCERP.Web.Models.MemberModel
+﻿@model MVCERP.Web.Models.MemberModel
 
 
 @{
     ViewBag.Title = "CreateUser";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
+    string id = Request.QueryString["id"];
 }
-<link href="~/Template/CSS/material-design-iconic-font.min.css" rel="stylesheet" />
-<link href="~/Template/CSS/style.css" rel="stylesheet" />
-<script src="~/Template/JS/jquery-ui.min.js"></script>
-<script src="~/Template/JS/main.js"></script>
-<div class="main">
 
-    <!-- Sign up form -->
-    <section class="signup">
-        <div class="container">
-            <div class="signup-content">
-                <div class="signup-form">
-                    @using (Html.BeginForm("AddUser", "Member", FormMethod.Post, new { @id = "Singupform" }))
-                    {
-                        <h2 class=" form-title"> Register User</h2>
-                        <div class="form-group">
-                            <label for="FullName"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            @*<input type="text" name="FullName" id="FullName" placeholder="Your Full Name" />*@
-                            @Html.TextBoxFor(x => x.FullName, new { @placeholder = "Full Name", @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            <label for="UserName"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            @*<input type="text" name="UserName" id="UserName" placeholder="Your User Name" />*@
-                            @Html.TextBoxFor(x => x.UserName, new { @placeholder = "User Name", @class = "form-control" })
+@*<link href="~/UI/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/UI/css/bootstrap.min.css" rel="stylesheet" />*@
 
-                        </div>
-                        <div class="form-group">
-                            <label for="email"><i class="zmdi zmdi-email"></i></label>
-                            @*<input type="email" name="email" id="email" placeholder="Your Email" />*@
-                            @Html.TextBoxFor(x => x.Email, new { @placeholder = "Email", @class = "form-control" })
 
-                        </div>
-                        <div class="form-group">
-                            <label for="PhoneNo"><i class="zmdi zmdi-lock"></i></label>
-                            @*<input type="number" name="PhoneNo" id="PhoneNo" placeholder="PhoneNumber" />*@
-                            @Html.TextBoxFor(x => x.PhoneNo, new { @placeholder = "PhoneNo", @class = "form-control" })
 
-                        </div>
-                        <div class="form-group">
-                            <label for="password"><i class="zmdi zmdi-lock"></i></label>
-                            @*<input type="password" name="pass" id="pass" placeholder="Password" />*@
-                            @Html.PasswordFor(x => x.Password, new { @placeholder = "Password", @class = "form-control" })
-
-                        </div>
-                        <div class="form-group">
-                            <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                            @*<input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" />*@
-                            @Html.PasswordFor(x => x.CPassword, new { @placeholder = "Confirm Password ", @class = "form-control" })
-                        </div>
-
-                        <div class="form-group form-button">
-                            <input type="submit" name="signup" id="signup" class="form-submit" value="signup" />
-                        </div>
-
-                    }
-
+<!-- Sign up form -->
+<div class="User-form" style="padding-top:30px;">
+    <div class="container container-fluid">
+        @using (Html.BeginForm("New", "Member", FormMethod.Post, new { @id = "Singupform" }))
+        {
+            <h2 class=" form-title"> Register User</h2>
+            <div style="display:grid;grid-template-columns:auto auto;grid-column-gap:50px">
+                @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
+                <div class="text-danger">
+                    @ViewBag.ErrorMessage
                 </div>
-                <div class="signup-image">
-
-                    <figure> <img src="~/Images/signup-image.jpg" alt="sing up image"></figure>
 
 
+
+                <div class="form-group">
+                    <label for="FullName">Full Name</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.FullName)
+                    </div>
+                    @Html.TextBoxFor(x => x.FullName, new { @placeholder = "Enter FullName", @class = "form-control", @id = "FullName" })
+                </div>
+
+                <div class="form-group">
+                    <label for="UserName">UserName</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.UserName)
+                    </div>
+                    @Html.TextBoxFor(x => x.UserName, new { @placeholder = "Enter UserName", @class = "form-control", @id = "UserName" })
+                </div>
+
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.Email)
+                    </div>
+                    @Html.TextBoxFor(x => x.Email, new { @placeholder = "Enter Email", @class = "form-control", @id = "Email" })
+                </div>
+
+                <div class="form-group">
+                    <label for="PhoneNo">Phone No</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.PhoneNo)
+                    </div>
+                    @Html.TextBoxFor(x => x.PhoneNo, new { @placeholder = "Enter PhoneNo", @class = "form-control", @id = "PhoneNo" })
+                </div>
+                <div class="form-group">
+                    <label for="password">password </label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.Password)
+                    </div>
+                    @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter password", @class = "form-control", @id = "Password" })
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="CPassword">Confirm Password</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.Password)
+                    </div>
+                    @Html.PasswordFor(x => x.CPassword, new { @placeholder = "Confirm Password", @class = "form-control", @id = "CPassword" })
+                    <input type="checkbox" onclick="myFunction()">Show Password
+                </div>
+
+                <div class="form-group">
+                    <label for="AdminRight">Admin Right</label>
+                    @Html.CheckBoxFor(x => x.AdminRight, new { @class = "form-control", @id = "AdminRight" })
+                </div>
+
+                <div class="form-group">
+                    @{
+                        if (id == null)
+                        {
+                            <div class="text-danger">
+                                @ViewData["msg"]
+                            </div>
+                            <button type="submit" class="btn btn-danger" id="btnAdd">Add</button>
+                        }
+                        else
+                        {
+                            <div class="text-danger">
+                                @ViewData["msg"]
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="btnUpdate">Update</button>
+                        }
+                    }
                 </div>
             </div>
-        </div>
-    </section>
+        }
+    </div>
 </div>
+
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("Password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+        let otherfield = document.getElementById("CPassword")
+        if (otherfield.type === "password") {
+            otherfield.type = "text";
+        } else {
+            otherfield.type = "password";
+        }
+          
+        }
+    
+</script>

@@ -1,8 +1,16 @@
 ﻿@model MVCERP.Shared.Common.MemberCommon
-@{ ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/MasterLayout.cshtml"; }
+@{ ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml"; }
 
-<h2>List of All Task</h2>
+<h2>List of All Users</h2>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+@section scripts{
+
+    @*<script src="~/UI/MeroTaskDashboard/vendor/jquery/jquery.min.js"></script>*@
+
+    <script src="~/UI/MeroTaskDashboard/vendor/datatables/js/jquery.dataTables.min.js"></script>
+
+}
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -18,6 +26,7 @@
                 "contentType": 'application/json; charset=utf-8',
                 'data': function (data) {
                     return data = JSON.stringify(data);
+                    console.log(data);
                 }
             },
             lengthMenu:
@@ -35,7 +44,7 @@
                 { 'data': 'UserName', "orderable": true, "searchable": true },
                 { 'data': 'Email', "orderable": true },
                 { 'data': 'PhoneNo', "orderable": true },
-
+                { 'data': 'Action', "orderable": false },
 
             ],
             "columnDefs":
@@ -48,7 +57,7 @@
 
 </script>
 
-@Html.ActionLink("Add User", "New", "Member", null, new { @class = "nav-link" })
+
 <div class="container listing-container">
     <div class="panel panel-default">
         <div class="panel-heading list-heading">
@@ -64,6 +73,7 @@
                                 <th>UserName</th>
                                 <th>Email</th>
                                 <th>Phone Number</th>
+                                <th>Action</th>
 
                             </tr>
                         </thead>

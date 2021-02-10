@@ -70,7 +70,7 @@ namespace MVCERP.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        // [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         public ActionResult Index(LoginModel model)
         {
             string ip = Request.ServerVariables["REMOTE_ADDR"]
@@ -90,7 +90,7 @@ namespace MVCERP.Web.Controllers
                 Session["ForcePwdChange"] = resp.ForcePwdChange;
                 Session["UserName"] = model.UserName;              
                 Session["sysDate"] = StaticData.DBToFrontDate(System.DateTime.Now.ToShortDateString());
-                return RedirectToAction("UserDetail", "TaskReporting");
+                return RedirectToAction("Index", "TaskReporting");
             }
             ViewData["msg"] = "The user name or password provided is incorrect.";
             return View(model);

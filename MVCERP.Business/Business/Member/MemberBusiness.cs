@@ -21,6 +21,16 @@ namespace MVCERP.Business.Business.Member
             return repo.AddUser(setup);
         }
 
+        public DbResponse DeleteUser(int ID)
+        {
+            return repo.DeleteUser(ID);
+        }
+
+        public List<MemberCommon> GetById(string ID)
+        {
+            return repo.GetById(ID);
+        }
+
         public List<MemberCommon> ListUsers()
         {
             return repo.ListUsers();

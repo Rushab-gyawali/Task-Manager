@@ -11,6 +11,8 @@ using MVCERP.Business.Business.TaskReporting;
 using MVCERP.Repository.Repository.TaskReporting;
 using MVCERP.Business.Business.TaskManager;
 using MVCERP.Repository.Repository.TaskManager;
+using MVCERP.Business.Business.Member;
+using MVCERP.Repository.Repository.Member;
 
 namespace MVCERP.Web
 {
@@ -42,6 +44,9 @@ namespace MVCERP.Web
             container.RegisterType<ITaskReportingRepository, TaskReportingRepository>();
             container.RegisterType<ITaskManagerBusiness, TaskManagerBusiness>();
             container.RegisterType<ITaskManagerRepository, TaskManagerRepository>();
+            container.RegisterType<IMemberRepository, MemberRepository>();
+            container.RegisterType<IMemberBusiness, MemberBusiness>();
+
             return container;
         }
     }
