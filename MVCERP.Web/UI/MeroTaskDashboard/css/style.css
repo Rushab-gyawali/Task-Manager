@@ -272,8 +272,9 @@ hr {
   overflow: visible; }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem; }
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
 
 p {
   margin-top: 0;
@@ -512,7 +513,13 @@ h1, .h1 {
   font-size: 2.25rem; }
 
 h2, .h2 {
-  font-size: 1.875rem; }
+    font-family: "Poppins", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #4F5465;
+    margin: 0px;
+    padding: 15px 0px
+}
 
 h3, .h3 {
   font-size: 1.5rem; }

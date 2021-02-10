@@ -108,16 +108,6 @@ namespace MVCERP.Web.Controllers
             }
             return Json(new { data = data },JsonRequestBehavior.AllowGet);
         }
-        public JsonResult StatusList(string status)
-        {
-            var user = StaticData.GetUser();
-            var data = _business.StatusList(status, user);
-            for (int i = 0; i < data.Count; i++)
-            {
-                data[i].Action = StaticData.GetActions("TaskManager", data[i].RowId, data[i].TaskId, "Task");
-            }
-            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
-        }
 
         public ActionResult GetTaskStatus()
         {
@@ -129,6 +119,19 @@ namespace MVCERP.Web.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public JsonResult StatusList(string status)
+        {
+            var user = StaticData.GetUser();
+            var data = _business.StatusList(status, user);
+            for (int i = 0; i < data.Count; i++)
+            {
+                data[i].Action = StaticData.GetActions("TaskManager", data[i].RowId, data[i].TaskId, "Task");
+            }
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 
 }

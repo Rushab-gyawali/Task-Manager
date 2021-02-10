@@ -1,0 +1,70 @@
+﻿@model MVCERP.Web.Models.TaskReportingModel
+@{
+    ViewBag.Title = "Assigned";
+}
+@{
+    ViewBag.Title = "UserDetail";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
+}@section scripts{
+    <script type="text/javascript" src="../../ui/js/iSolution_calendar.js"></script>
+    <script type="text/javascript" src="../../ui/js/nepali.datepicker.v2.2.min.js"></script>
+    <script src="~/UI/jstree/jstree.min.js"></script>
+    }
+
+
+    @*<script src="~/Scripts/jquery-1.8.2.min.js"></script>*@
+    <!----------------------Report-------------------->
+
+    <div class="form-horizontal pt-5">
+        @using (Html.BeginForm("Assigned", "TaskReporting", FormMethod.Post, new { @id = "taskform" }))
+        {
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header">
+                        <h3 class="text-black">Status Report </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"> From Date <small class="text-danger">*</small></label>
+                        <div class="col-sm-6">
+                            @Html.TextBox("FromDate", "", new { @class = "form-control", @placeholder = "From Date", @readonly = "readonly" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"> To Date <small class="text-danger">*</small></label>
+                        <div class="col-sm-6">
+                            @Html.TextBox("ToDate", "", new { @class = "form-control", @placeholder = "To Date", @readonly = "readonly" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group text-right">
+                        <button type="submit" id="btnReport" class="btn btn-success">Generate Report</button>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+    <script type="text/javascript" src="~/UI/js/MISReport.js"></script>
+        <script type="text/javascript">
+            //$(function () {
+            debugger;
+                ShowCalDefault("#FromDate");
+                ShowCalDefault("#ToDate");
+                ShowNepEngCalendar('#NepFromDate', '#FromDate');
+                ShowNepEngCalendar("#NepToDate", "#ToDate");
+                //var mis = MIS.BusinesReport();
+                @* mis.renderInit("@MVCERP.Web.Library.StaticData.GetUrlRoot()", "", "");*@
+    //});
+
+        </script>
+
