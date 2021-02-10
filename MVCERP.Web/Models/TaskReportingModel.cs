@@ -8,7 +8,6 @@ namespace MVCERP.Web.Models
 {
     public class TaskReportingModel
     {
-
         public int? RowId { get; set; }
         public string TaskId { get; set; }
         public string TaskName { get; set; }

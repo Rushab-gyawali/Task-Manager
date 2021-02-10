@@ -5,15 +5,12 @@
 }
 
 <h2>List of All Task</h2>
-<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+ 
+
 @section scripts{
 
-    @*<script src="~/UI/MeroTaskDashboard/vendor/jquery/jquery.min.js"></script>*@
-
     <script src="~/UI/MeroTaskDashboard/vendor/datatables/js/jquery.dataTables.min.js"></script>
-
-}
-
+  }
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -42,7 +39,7 @@
             },
             columns: [
 
-               
+
                 { 'data': 'TaskName', "orderable": true, "searchable": true },
                 { 'data': 'TaskStartDate', "orderable": true },
                 { 'data': 'TaskEndDate', "orderable": true },
@@ -73,8 +70,6 @@
                     <table id="AllTaskList" class="table table-hover" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-
-                           
                                 <th>TaskName</th>
                                 <th>TaskStartDate</th>
                                 <th>TaskEndDate</th>

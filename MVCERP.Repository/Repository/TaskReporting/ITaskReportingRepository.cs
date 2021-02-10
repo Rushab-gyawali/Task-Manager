@@ -13,7 +13,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
 
         IEnumerable<TaskReportingCommon> GetStatus();
 
-
+        DbResponse ChangeTask(string id, string task);
 
     }
 }
