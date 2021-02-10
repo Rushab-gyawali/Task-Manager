@@ -28,38 +28,65 @@ namespace MVCERP.Web.Controllers
               var data = bussiness.ListUsers();
                 for (int i = 0; i < data.Count; i++)
                 {
-                    data[i].Action = StaticData.GetActions("Member", data[i].ID, "");
+                    data[i].Action = StaticData.GetActions("Member",  data[i].ID, data[i].ID.ToString(), "New");
                 }
                 return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
+
+
         public ActionResult New()
         {
-            return View();
+            string id = Request.QueryString["id"];
+            var ID = StaticData.Base64Decode_URL(id);
+            var model = new MemberModel();
+            if (ID == "")
+            {
+                var user = StaticData.GetUser();
+                ViewBag.user = user;
+                return View();
+            }
+            else
+            {
+                var data = bussiness.GetById(ID);
+                model.ID = data[0].ID.ToString();
+                model.FullName = data[0].FullName;
+                model.UserName = data[0].UserName;
+                model.Email = data[0].Email;
+                model.PhoneNo = data[0].PhoneNo;
+                model.Password = data[0].Password;
+                //model.AdminRight = Convert.ToBoolean(data[0].AdminRight);
+
+
+                return View(model);
+            }
         }
 
 
         [HttpPost]
-        public ActionResult AddUser(MemberModel model)
+        public ActionResult New(MemberModel model)
         {
-    
+            var user = StaticData.GetUser();
+
             if (ModelState.IsValid)
             {
                 MemberCommon common = new MemberCommon();
-               
-                common.ID = model.ID;
+
+                common.ID = Convert.ToInt32(model.ID);
                 common.FullName = model.FullName;
                 common.UserName = model.UserName;
                 common.Email = model.Email;
                 common.PhoneNo = model.PhoneNo;
                 common.Password = StaticData.Base64Encode(model.Password);
+                common.AdminRight = Convert.ToBoolean(model.AdminRight);
+                common.CreatedBy = user;
                 var response = bussiness.AddUsers(common);
                 StaticData.SetMessageInSession(response);
-                if (response.ErrorCode == 0)
+                if (response.ErrorCode == 1)
                 {
                     ModelState.AddModelError("", response.Message);
                     return View(model);
                 }
-                return RedirectToAction("Index","Member");
+                return RedirectToAction("Index", "Member");
             }
             else
             {
@@ -69,9 +96,40 @@ namespace MVCERP.Web.Controllers
 
                 ModelState.AddModelError("", errors);
             }
-
+            ViewData["msg"] = "The password and Confirm password doesnot match.";
             return View(model);
         }
 
+        public ActionResult DeleteUser()
+        {
+            string id = Request.QueryString["id"];
+            var Id = StaticData.Base64Decode_URL(id);
+            var ID = Convert.ToInt32(Id);
+            if (ModelState.IsValid)
+            {
+                MemberCommon common = new MemberCommon();
+                common.ID = ID;
+                var response = bussiness.DeleteUser(ID);
+                StaticData.SetMessageInSession(response);
+                if (response.ErrorCode == 1)
+                {
+                    ModelState.AddModelError("", response.Message);
+                    ViewData["msg"] = "Delete Failed";
+                    return RedirectToAction("Index", "Member");
+
+                }
+                ViewData["msg"] = "Delete Successful";
+                return RedirectToAction("Index", "Member");
+            }
+            else
+            {
+                var errors = string.Join("; ", ModelState.Values
+                .SelectMany(x => x.Errors)
+                .Select(x => x.ErrorMessage));
+
+                ModelState.AddModelError("", errors);
+            }
+            return RedirectToAction("Index", "Member");
+        }
     }
 }

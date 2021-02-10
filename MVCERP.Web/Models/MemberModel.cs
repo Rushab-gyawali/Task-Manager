@@ -10,7 +10,8 @@ namespace MVCERP.Web.Models
     public class MemberModel 
     {
 
-        public int ID { get; set; }
+        public string ID { get; set; }
+        
         [Required]
         public string FullName { get; set; }
 
@@ -23,16 +24,20 @@ namespace MVCERP.Web.Models
         [Required]
         public string PhoneNo { get; set; }
 
-       // [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-       // [DataType(DataType.Password)]
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string CPassword { get; set; }
 
         public DateTime? CreatedDate { get; set; }
+        public bool AdminRight { get; set; }
+        public string CreatedBy { get; set; }
 
     }
 }

@@ -3307,7 +3307,10 @@
     <Content Include="Views\TaskManager\Task.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\New.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\TaskReporting\MeroTaskMainLayout.cshtml" />
+=======
+>>>>>>> cbc9bea234d8db9f48b01eb17495c1e23c387457
     <Content Include="Views\TaskReporting\UserDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>

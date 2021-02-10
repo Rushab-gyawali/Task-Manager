@@ -10,5 +10,7 @@ namespace MVCERP.Business.Business.Member
     {
         List<MemberCommon> ListUsers();
         DbResponse AddUsers(MemberCommon setup);
+        List<MemberCommon> GetById(string ID);
+        DbResponse DeleteUser(int ID);
     }
 }

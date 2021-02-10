@@ -41,24 +41,50 @@
 </head>
 <body>
     <div class="login-form">
-        @using (Html.BeginForm("Index", "Home",FormMethod.Post,new { @id="loginform"})) {
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @id = "loginform" }))
+        {
             <h2 class="text-center">Log in</h2>
-            <div class="form-group">
-                @Html.TextBoxFor(x=>x.UserName, new { @placeholder="Enter Username",@class="form-control" })
+            <div class="text-danger">
+                @ViewData["msg"]
             </div>
             <div class="form-group">
-                @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter Password", @class = "form-control" })
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(x => x.UserName)
+                </div>
+
+                @Html.TextBoxFor(x => x.UserName, new { @placeholder = "Enter Username", @class = "form-control", @id = "username" })
             </div>
+
             <div class="form-group">
-                    <input type="submit" value="Login" class="btn btn-primary" />
-               
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+                @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter Password", @class = "form-control", id = "password" })
+                <input type="checkbox" onclick="myFunction()">Show Password
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" id="btn" />
+
             </div>
             <div class="clearfix">
-                <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-                <a href="#" class="float-right">Forgot Password?</a>
+                <label class="float-left form-check-label"><input type="checkbox">Remember me</label>
+
             </div>
         }
-        <p class="text-center"><a href="#">Create an Account</a></p>
+
     </div>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+
 </body>
 </html>
