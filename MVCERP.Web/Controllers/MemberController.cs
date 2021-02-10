@@ -65,6 +65,7 @@ namespace MVCERP.Web.Controllers
         [HttpPost]
         public ActionResult New(MemberModel model)
         {
+            var user = StaticData.GetUser();
 
             if (ModelState.IsValid)
             {
@@ -77,6 +78,7 @@ namespace MVCERP.Web.Controllers
                 common.PhoneNo = model.PhoneNo;
                 common.Password = StaticData.Base64Encode(model.Password);
                 common.AdminRight = Convert.ToBoolean(model.AdminRight);
+                common.CreatedBy = user;
                 var response = bussiness.AddUsers(common);
                 StaticData.SetMessageInSession(response);
                 if (response.ErrorCode == 1)

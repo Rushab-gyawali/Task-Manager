@@ -37,6 +37,7 @@ namespace MVCERP.Web.Models
 
         public DateTime? CreatedDate { get; set; }
         public bool AdminRight { get; set; }
+        public string CreatedBy { get; set; }
 
     }
 }

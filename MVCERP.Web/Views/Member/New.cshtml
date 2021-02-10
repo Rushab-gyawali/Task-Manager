@@ -8,11 +8,11 @@
 }
 
 @*<link href="~/UI/css/bootstrap.css" rel="stylesheet" />
-<link href="~/UI/css/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/UI/css/bootstrap.min.css" rel="stylesheet" />*@
 
 
 
-    <!-- Sign up form -->
+<!-- Sign up form -->
 <div class="User-form" style="padding-top:30px;">
     <div class="container container-fluid">
         @using (Html.BeginForm("New", "Member", FormMethod.Post, new { @id = "Singupform" }))
@@ -23,14 +23,14 @@
                 <div class="text-danger">
                     @ViewBag.ErrorMessage
                 </div>
-              
+
 
 
                 <div class="form-group">
                     <label for="FullName">Full Name</label>
-                        <div class="text-danger">
-                            @Html.ValidationMessageFor(x => x.FullName)
-                        </div>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.FullName)
+                    </div>
                     @Html.TextBoxFor(x => x.FullName, new { @placeholder = "Enter FullName", @class = "form-control", @id = "FullName" })
                 </div>
 
@@ -62,7 +62,8 @@
                     <div class="text-danger">
                         @Html.ValidationMessageFor(x => x.Password)
                     </div>
-                    @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter password", @class = "form-control", @id = "password" })
+                    @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter password", @class = "form-control", @id = "Password" })
+                    
                 </div>
 
                 <div class="form-group">
@@ -71,6 +72,7 @@
                         @Html.ValidationMessageFor(x => x.Password)
                     </div>
                     @Html.PasswordFor(x => x.CPassword, new { @placeholder = "Confirm Password", @class = "form-control", @id = "CPassword" })
+                    <input type="checkbox" onclick="myFunction()">Show Password
                 </div>
 
                 <div class="form-group">
@@ -97,7 +99,27 @@
                     }
                 </div>
             </div>
-                }
-            </div>
+        }
+    </div>
 </div>
-       
+
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("Password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+        let otherfield = document.getElementById("CPassword")
+        if (otherfield.type === "password") {
+            otherfield.type = "text";
+        } else {
+            otherfield.type = "password";
+        }
+          
+        }
+    
+</script>

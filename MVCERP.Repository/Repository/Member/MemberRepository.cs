@@ -29,7 +29,8 @@ namespace MVCERP.Repository.Repository.Member
             sql += ",@PhoneNo = " + dao.FilterString(setup.PhoneNo);
             sql += ",@Password = " + dao.FilterString(setup.Password);
             sql += ",@AdminRIght = " + dao.FilterString(setup.AdminRight.ToString());
-            if(setup.ID == 0)
+            sql += ",@CreatedBy = " + dao.FilterString(setup.CreatedBy.ToString());
+            if (setup.ID == 0)
             {
                 return dao.ParseDbResponse(sql);
             }

@@ -45,26 +45,27 @@
         {
             <h2 class="text-center">Log in</h2>
             <div class="text-danger">
-            @ViewData["msg"]
-           </div>
+                @ViewData["msg"]
+            </div>
             <div class="form-group">
                 <div class="text-danger">
                     @Html.ValidationMessageFor(x => x.UserName)
                 </div>
-                
+
                 @Html.TextBoxFor(x => x.UserName, new { @placeholder = "Enter Username", @class = "form-control", @id = "username" })
             </div>
-           
-    <div class="form-group">
-        <div class="text-danger">
-            @Html.ValidationMessageFor(x => x.Password)
-        </div>
-        @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter Password", @class = "form-control", @id = "password" })
-    </div>
-            
+
+            <div class="form-group">
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+                @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter Password", @class = "form-control", id = "password" })
+                <input type="checkbox" onclick="myFunction()">Show Password
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-primary" id="btn" />
-               
+
             </div>
             <div class="clearfix">
                 <label class="float-left form-check-label"><input type="checkbox">Remember me</label>
@@ -73,6 +74,17 @@
         }
 
     </div>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 
 </body>
 </html>
