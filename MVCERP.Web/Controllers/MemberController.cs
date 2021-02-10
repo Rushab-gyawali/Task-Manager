@@ -94,7 +94,7 @@ namespace MVCERP.Web.Controllers
 
                 ModelState.AddModelError("", errors);
             }
-
+            ViewData["msg"] = "The password and Confirm password doesnot match.";
             return View(model);
         }
 

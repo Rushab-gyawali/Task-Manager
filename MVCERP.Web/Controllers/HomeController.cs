@@ -70,7 +70,7 @@ namespace MVCERP.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        // [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         public ActionResult Index(LoginModel model)
         {
             string ip = Request.ServerVariables["REMOTE_ADDR"]

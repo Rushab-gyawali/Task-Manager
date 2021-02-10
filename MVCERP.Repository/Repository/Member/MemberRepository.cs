@@ -39,7 +39,7 @@ namespace MVCERP.Repository.Repository.Member
                 sql += ",@ID = " + dao.FilterString(setup.ID.ToString());
                 return dao.ParseDbResponse(sql);
             }
-            
+           
         }
 
         public List<MemberCommon> GetById(string ID)

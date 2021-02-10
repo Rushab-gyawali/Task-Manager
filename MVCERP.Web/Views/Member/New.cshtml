@@ -20,58 +20,84 @@
             <h2 class=" form-title"> Register User</h2>
             <div style="display:grid;grid-template-columns:auto auto;grid-column-gap:50px">
                 @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
+                <div class="text-danger">
+                    @ViewBag.ErrorMessage
+                </div>
+              
 
 
                 <div class="form-group">
                     <label for="FullName">Full Name</label>
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(x => x.FullName)
+                        </div>
                     @Html.TextBoxFor(x => x.FullName, new { @placeholder = "Enter FullName", @class = "form-control", @id = "FullName" })
                 </div>
 
                 <div class="form-group">
                     <label for="UserName">UserName</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.UserName)
+                    </div>
                     @Html.TextBoxFor(x => x.UserName, new { @placeholder = "Enter UserName", @class = "form-control", @id = "UserName" })
                 </div>
 
                 <div class="form-group">
                     <label for="Email">Email</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.Email)
+                    </div>
                     @Html.TextBoxFor(x => x.Email, new { @placeholder = "Enter Email", @class = "form-control", @id = "Email" })
                 </div>
 
                 <div class="form-group">
                     <label for="PhoneNo">Phone No</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.PhoneNo)
+                    </div>
                     @Html.TextBoxFor(x => x.PhoneNo, new { @placeholder = "Enter PhoneNo", @class = "form-control", @id = "PhoneNo" })
                 </div>
                 <div class="form-group">
                     <label for="password">password </label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.Password)
+                    </div>
                     @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter password", @class = "form-control", @id = "password" })
                 </div>
 
                 <div class="form-group">
                     <label for="CPassword">Confirm Password</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.Password)
+                    </div>
                     @Html.PasswordFor(x => x.CPassword, new { @placeholder = "Confirm Password", @class = "form-control", @id = "CPassword" })
                 </div>
-                <div class=" form-group">
-                    <label for="Admin Right">Admin Right</label>
-                    @Html.CheckBoxFor(x => x.AdminRight, new { @class = "form-control", @id = "AdminRight"})
+
+                <div class="form-group">
+                    <label for="AdminRight">Admin Right</label>
+                    @Html.CheckBoxFor(x => x.AdminRight, new { @class = "form-control", @id = "AdminRight" })
                 </div>
 
-                <div class="modal-footer">
+                <div class="form-group">
                     @{
                         if (id == null)
                         {
+                            <div class="text-danger">
+                                @ViewData["msg"]
+                            </div>
                             <button type="submit" class="btn btn-danger" id="btnAdd">Add</button>
                         }
                         else
                         {
+                            <div class="text-danger">
+                                @ViewData["msg"]
+                            </div>
                             <button type="submit" class="btn btn-primary" id="btnUpdate">Update</button>
-
                         }
-                     }
+                    }
                 </div>
-
-
             </div>
-         }   
-    </div>
+                }
+            </div>
 </div>
        
