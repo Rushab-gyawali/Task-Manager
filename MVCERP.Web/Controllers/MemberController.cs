@@ -98,5 +98,36 @@ namespace MVCERP.Web.Controllers
             return View(model);
         }
 
+        public ActionResult DeleteUser()
+        {
+            string id = Request.QueryString["id"];
+            var Id = StaticData.Base64Decode_URL(id);
+            var ID = Convert.ToInt32(Id);
+            if (ModelState.IsValid)
+            {
+                MemberCommon common = new MemberCommon();
+                common.ID = ID;
+                var response = bussiness.DeleteUser(ID);
+                StaticData.SetMessageInSession(response);
+                if (response.ErrorCode == 1)
+                {
+                    ModelState.AddModelError("", response.Message);
+                    ViewData["msg"] = "Delete Failed";
+                    return RedirectToAction("Index", "Member");
+
+                }
+                ViewData["msg"] = "Delete Successful";
+                return RedirectToAction("Index", "Member");
+            }
+            else
+            {
+                var errors = string.Join("; ", ModelState.Values
+                .SelectMany(x => x.Errors)
+                .Select(x => x.ErrorMessage));
+
+                ModelState.AddModelError("", errors);
+            }
+            return RedirectToAction("Index", "Member");
+        }
     }
 }

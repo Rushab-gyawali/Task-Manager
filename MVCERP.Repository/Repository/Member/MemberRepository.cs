@@ -42,6 +42,14 @@ namespace MVCERP.Repository.Repository.Member
            
         }
 
+        public DbResponse DeleteUser(int ID)
+        {
+            var sql = "exec proc_tblUsers ";
+            sql += "@Flag = 'Delete'";
+            sql += ",@ID  =" + ID;
+            return dao.ParseDbResponse(sql);
+        }
+
         public List<MemberCommon> GetById(string ID)
         {
             var list = new List<MemberCommon>();

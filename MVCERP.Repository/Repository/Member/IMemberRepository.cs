@@ -11,6 +11,7 @@ namespace MVCERP.Repository.Repository.Member
             List<MemberCommon> ListUsers();
         DbResponse AddUser(MemberCommon setup);
         List<MemberCommon> GetById(string ID);
+        DbResponse DeleteUser(int ID);
     }
 
     
