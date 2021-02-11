@@ -47,13 +47,8 @@
 
                 <div class="form-group">
                     <label for="Status">Status</label>
-                    @Html.DropDownList("Status", new List<SelectListItem>
-                    {
-                       new SelectListItem{ Text="Not Assigned", Value = "Not Assigned" },
-                       new SelectListItem{ Text="InProgress", Value = "InProgress" },
-                       new SelectListItem{ Text="Completed", Value = "Completed" },
-                       new SelectListItem{ Text="Testing", Value = "Testing" },
-                    }, new { @class = "form-control" })
+                    @Html.DropDownListFor(x => x.Status, ViewData["Status"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
+                   
                 </div>
             </div>
             <div class="modal-footer">

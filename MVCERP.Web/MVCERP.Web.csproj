@@ -165,10 +165,7 @@
     <Compile Include="Controllers\MISReport\MISGenerateReportController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TaskManagerController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\TaskReportController.cs" />
-=======
->>>>>>> cbc9bea234d8db9f48b01eb17495c1e23c387457
     <Compile Include="Controllers\TaskReportingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\SessionExpiryFilterAttribute.cs" />
@@ -3312,14 +3309,12 @@
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\New.cshtml" />
     <Content Include="Views\TaskReporting\UserDetail.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\TestPage.cshtml" />
     <Content Include="Views\TaskReport\Index.cshtml" />
     <Content Include="Views\TaskReport\Assigned.cshtml" />
-=======
->>>>>>> cbc9bea234d8db9f48b01eb17495c1e23c387457
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
