@@ -153,6 +153,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\BackLogController.cs" />
     <Compile Include="Controllers\DynamicReportController.cs" />
     <Compile Include="Controllers\ErrorController.cs">
       <SubType>Code</SubType>
@@ -165,13 +166,8 @@
     <Compile Include="Controllers\MISReport\MISGenerateReportController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TaskManagerController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\TaskReportController.cs" />
-=======
-
     <Compile Include="Controllers\TaskReportController.cs" />
-
->>>>>>> a33afffb1212f2a9f1e15de835808a811ea49ed3
     <Compile Include="Controllers\TaskReportingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\SessionExpiryFilterAttribute.cs" />
@@ -193,6 +189,7 @@
     <Compile Include="Library\Reports.cs" />
     <Compile Include="Library\StaticData.cs" />
     <Compile Include="Library\UserMonitor.cs" />
+    <Compile Include="Models\BackLogTaskModel.cs" />
     <Compile Include="Models\MemberModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\TaskReportingModel.cs" />
@@ -3315,16 +3312,13 @@
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\New.cshtml" />
     <Content Include="Views\TaskReporting\UserDetail.cshtml" />
-
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\TestPage.cshtml" />
     <Content Include="Views\TaskReport\Index.cshtml" />
     <Content Include="Views\TaskReport\Assigned.cshtml" />
-<<<<<<< HEAD
-=======
-
->>>>>>> a33afffb1212f2a9f1e15de835808a811ea49ed3
+    <Content Include="Views\BackLog\Index.cshtml" />
+    <Content Include="Views\BackLog\NewTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
