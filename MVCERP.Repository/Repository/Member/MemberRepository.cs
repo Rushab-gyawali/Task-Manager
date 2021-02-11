@@ -22,7 +22,6 @@ namespace MVCERP.Repository.Repository.Member
         {
             var sql = "exec proc_tblUsers ";
             sql += "@Flag = " + dao.FilterString((setup.ID > 0 ? "Update" : "Insert"));
-            //sql += ",@rowId = " + dao.FilterString(setup.UniqueId.ToString());
             sql += ",@FullName = " + dao.FilterString(setup.FullName);
             sql += ",@UserName = " + dao.FilterString(setup.UserName);
             sql += ",@Email = " + dao.FilterString(setup.Email);

@@ -17,7 +17,6 @@ namespace MVCERP.Web.Controllers
         public MemberController(IMemberBusiness _buss)
         {
             bussiness = _buss;
-
         }
         public ActionResult Index()
         {
