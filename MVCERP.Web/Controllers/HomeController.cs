@@ -691,6 +691,7 @@ namespace MVCERP.Web.Controllers
             membercommon.UserName = user;
             var data = business.ListUsersProfile(membercommon);
             changemodel.ID = data[0].ID;
+            changemodel.OldCheckPassword = StaticData.Base64Decode(data[0].Password);
             //var c = new ChangePassword();
             return View(changemodel);
         }
@@ -699,6 +700,7 @@ namespace MVCERP.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(ChangePasswordModel pwdmodel)
         {
+
             if (string.IsNullOrWhiteSpace(pwdmodel.OldPassword))
             {
                 StaticData.SetMessageInSession(1, "Old Password Field is required");
@@ -708,6 +710,13 @@ namespace MVCERP.Web.Controllers
             if (string.IsNullOrWhiteSpace(pwdmodel.NewPassword))
             {
                 StaticData.SetMessageInSession(1, "New Password Field is required");
+                ModelState.AddModelError("", "error");
+                return View(pwdmodel);
+            }
+
+            if (pwdmodel.OldPassword != pwdmodel.OldCheckPassword)
+            {
+                StaticData.SetMessageInSession(1, "Old password password do not match.");
                 ModelState.AddModelError("", "error");
                 return View(pwdmodel);
             }

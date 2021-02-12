@@ -158,6 +158,7 @@ namespace MVCERP.Repository.Repository.Member
                             UserName = item["UserName"].ToString(),
                             Email = item["Email"].ToString(),
                             PhoneNo = item["PhoneNo"].ToString(),
+                            Password = item["Password"].ToString(),
                             //  Password = item["Password"].ToString(),
                         };
                         sn++;

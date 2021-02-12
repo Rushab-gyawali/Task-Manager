@@ -56,6 +56,8 @@ namespace MVCERP.Web.Models
         public string OldPassword { get; set; }
         public string NewPassword { get; set; }
         public string ConfirmPassword { get; set; }
+        public string OldCheckPassword { get; set; }
+
 
     }
 }
