@@ -21,6 +21,11 @@ namespace MVCERP.Business.Business.Member
             return repo.AddUser(setup);
         }
 
+        public DbResponse ChangePassword(ChangePasswordCommon common)
+        {
+            return repo.ChangePassword(common);
+        }
+
         public DbResponse DeleteUser(int ID)
         {
             return repo.DeleteUser(ID);
@@ -34,6 +39,11 @@ namespace MVCERP.Business.Business.Member
         public List<MemberCommon> ListUsers()
         {
             return repo.ListUsers();
+        }
+
+        public List<MemberCommon> ListUsersProfile(MemberCommon common)
+        {
+            return repo.ListUsersProfile(common);
         }
     }
 }

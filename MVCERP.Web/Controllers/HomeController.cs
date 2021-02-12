@@ -6,6 +6,7 @@ using MVCERP.Web.Models;
 using System.Data;
 using MVCERP.Business.Business.User;
 using MVCERP.Shared.Common;
+using MVCERP.Business.Business.Member;
 
 namespace MVCERP.Web.Controllers
 {
@@ -14,12 +15,14 @@ namespace MVCERP.Web.Controllers
     public class HomeController : Controller
     {
         IUserBusiness buss;
+        IMemberBusiness business;
         //.LicStatus version;
         private string LimitedUsers;
         private string UsedDays;
-        public HomeController(IUserBusiness _buss)
+        public HomeController(IUserBusiness _buss, IMemberBusiness _business)
         {
             buss = _buss;
+            business = _business;
         }
         public ActionResult Dashboard2()
         {
@@ -90,7 +93,7 @@ namespace MVCERP.Web.Controllers
                 Session["ForcePwdChange"] = resp.ForcePwdChange;
                 Session["UserName"] = model.UserName;              
                 Session["sysDate"] = StaticData.DBToFrontDate(System.DateTime.Now.ToShortDateString());
-                return RedirectToAction("Index", "TaskReporting");
+                return RedirectToAction("UserDetail", "TaskReporting");
             }
             ViewData["msg"] = "The user name or password provided is incorrect.";
             return View(model);
@@ -99,9 +102,9 @@ namespace MVCERP.Web.Controllers
 
         [Authorize]
 
-        //[HttpGet]
-        ////[Authorize]
-        //[SessionExpiryFilter]
+        [HttpGet]
+        [Authorize]
+        [SessionExpiryFilter]
         public ActionResult LogOff()
         {
             UserMonitor.GetInstance().RemoveUser(StaticData.GetUser());
@@ -109,7 +112,7 @@ namespace MVCERP.Web.Controllers
             Session.Abandon();
             Session.RemoveAll();
             Session.Clear();
-            return RedirectToAction("", "Home");
+            return RedirectToAction("Index", "Home");
         }
         [AllowAnonymous]
         [SessionExpiryFilter]
@@ -682,45 +685,54 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult ChangePassword()
         {
-            var c = new ChangePassword();
-            return View(c);
+            ChangePasswordModel changemodel = new ChangePasswordModel();
+            var user = StaticData.GetUser();
+            MemberCommon membercommon = new MemberCommon();
+            membercommon.UserName = user;
+            var data = business.ListUsersProfile(membercommon);
+            changemodel.ID = data[0].ID;
+            //var c = new ChangePassword();
+            return View(changemodel);
         }
         [HttpPost]
 
         [ValidateAntiForgeryToken]
-        public ActionResult ChangePassword(ChangePassword model)
+        public ActionResult ChangePassword(ChangePasswordModel pwdmodel)
         {
-            if (string.IsNullOrWhiteSpace(model.OldPassword))
+            if (string.IsNullOrWhiteSpace(pwdmodel.OldPassword))
             {
                 StaticData.SetMessageInSession(1, "Old Password Field is required");
                 ModelState.AddModelError("", "error");
-                return View(model);
+                return View(pwdmodel);
             }
-            if (string.IsNullOrWhiteSpace(model.NewPassword))
+            if (string.IsNullOrWhiteSpace(pwdmodel.NewPassword))
             {
                 StaticData.SetMessageInSession(1, "New Password Field is required");
                 ModelState.AddModelError("", "error");
-                return View(model);
+                return View(pwdmodel);
             }
 
-            if (model.NewPassword != model.ConfirmPassword)
+            if (pwdmodel.NewPassword != pwdmodel.ConfirmPassword)
             {
                 StaticData.SetMessageInSession(1, "New password and confirmation password do not match.");
                 ModelState.AddModelError("", "error");
-                return View(model);
+                return View(pwdmodel);
             }
-            model.UserName = StaticData.GetUser();
-            model.User = StaticData.GetUser();
-            model.OldPassword = StaticData.Base64Encode(model.OldPassword);
-            model.NewPassword = StaticData.Base64Encode(model.NewPassword);
-            var resp = buss.ChangePassword(model);
+            pwdmodel.UserName = StaticData.GetUser();
+
+            ChangePasswordCommon common = new ChangePasswordCommon();
+            common.ID = pwdmodel.ID;
+            common.OldPassword = StaticData.Base64Encode(pwdmodel.OldPassword);
+            common.NewPassword = StaticData.Base64Encode(pwdmodel.NewPassword);
+            var resp = business.ChangePassword(common);
             if (resp.ErrorCode == 1)
             {
                 StaticData.SetMessageInSession(resp);
                 ModelState.AddModelError("", "error");
-                return View(model);
+                return View(common);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
+       
     }
 }

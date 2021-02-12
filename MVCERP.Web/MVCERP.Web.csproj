@@ -3319,6 +3319,7 @@
     <Content Include="Views\TaskReport\Assigned.cshtml" />
     <Content Include="Views\BackLog\Index.cshtml" />
     <Content Include="Views\BackLog\NewTask.cshtml" />
+    <Content Include="Views\Member\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
