@@ -1,4 +1,5 @@
 ﻿
+using MVCERP.Shared.Common;
 using MVCERP.Shared.Common.ReportComponent;
 
 namespace MVCERP.Repository.Repository.Report
@@ -11,51 +12,33 @@ namespace MVCERP.Repository.Repository.Report
             dao = new RepositoryDao();
         }
 
-        public ReportComponent GetMISReport(ReportComponent reportComponent, string User)
+        public TaskReportingCommon GetMISReport(TaskReportingCommon common, string User)
         {
-            var reportName = reportComponent.ReportName;
-            var sql = "";
-            switch (reportName)
-            {    
-
-                case "MISUserRegisterReport":
-                    if (reportComponent.ReportType == "summary")
-                    {
-                        sql = "EXEC proc_MISUserReport @flag='MISAgentRegisterSummary' ";
-                    }
-                    else
-                    {
-                        sql = "EXEC proc_MISUserReport @flag='MISAgentRegister' ";
-                    }
-                    sql += ",@User = " + dao.FilterString(User);
-                    sql += ",@fromDate= " + dao.FilterStringDR(reportComponent.FromDate);
-                    sql += ",@toDate = " + dao.FilterStringDR(reportComponent.ToDate);
-                    break;
-
-
-                default:
-                    break;
-            }
+            var sql = "EXEC PROC_TASKMANAGER @Flag='TaskReport' ";
+            sql += ",@AssignTo = " + dao.FilterString(User);
+            sql += ",@TaskStartDate= " + dao.FilterStringDR(common.TaskStartDate);
+            sql += ",@TaskEndDate = " + dao.FilterStringDR(common.TaskEndDate);
+            sql += ",@Status = " + dao.FilterStringDR(common.Status);
 
             var res = dao.ExecuteDataset(sql);
             if (res.Tables.Count == 1)
             {
-                reportComponent.ReportData = res.Tables[0];
-                reportComponent.ReportHeader = res.Tables[1];
+                common.ReportData = res.Tables[0];
+                //common.ReportHeader = res.Tables[1];
 
             }
             else if (res.Tables.Count > 1)
             {
-                reportComponent.ReportData = res.Tables[0];
-                reportComponent.ReportHeader = res.Tables[1];
+                common.ReportData = res.Tables[0];
+                //common.ReportHeader = res.Tables[1];
             }
 
             else
             {
-                reportComponent.ReportData = res.Tables[0];
+                common.ReportData = res.Tables[0];
             }
 
-            return reportComponent;
+            return common;
 
         }
 

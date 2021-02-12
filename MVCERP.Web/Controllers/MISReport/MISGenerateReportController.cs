@@ -22,43 +22,48 @@ namespace MVCERP.Web.Controllers.MISReport
             ddl = _ddl;
         }
 
-
-        //[EnableCors]
         public ActionResult GenerateReport()
         {
             StaticData.CheckSession();
-            Shared.Common.ReportComponent.ReportComponent reportComponent = new Shared.Common.ReportComponent.ReportComponent();
+            Shared.Common.TaskReportingCommon common = new Shared.Common.TaskReportingCommon();
             var reportName = Request.QueryString["reportName"];
-            reportComponent.ReportName = reportName;
+            var fromdate = Request.QueryString["FromDate"];
+            var todate = Request.QueryString["ToDate"];
+            var taskstatus = Request.QueryString["ReportStatus"];
+            common.ReportName = StaticData.Base64Decode_URL(reportName);
 
-            switch (reportName)
-            {    
+            switch (common.ReportName)
+            {
 
                 case "MISUserRegisterReport":
-                    reportComponent.ReportType = Request.QueryString["ReportType"];
-                    if (reportComponent.ReportType == "summary")
+                    common.Status = Request.QueryString["ReportStatus"];
+                    if (common.Status == "summary")
                     {
-                        reportComponent.ReportTitle = "User Register Summary Report";
+                        common.ReportTitle = "User Register Summary Report";
                     }
                     else
                     {
-                        reportComponent.ReportTitle = "User Register Report";
-                    }                    
-                    reportComponent.FromDate = StaticData.FrontToDBDate(Request.QueryString["FromDate"]);                   
-                    reportComponent.ToDate = StaticData.FrontToDBDate(Request.QueryString["ToDate"]);   
-                    break;    
+                        common.ReportTitle = "User Status Report";
+                    }
+                    var taskstartdate = StaticData.Base64Decode_URL(fromdate);
+                    common.TaskStartDate = taskstartdate.ToString();
+                    var taskenddate  = StaticData.Base64Decode_URL(todate);
+                    common.TaskEndDate = taskenddate.ToString();
+                    common.Status = StaticData.Base64Decode_URL(taskstatus);
+                    break;
 
                 default:
                     break;
             }
 
 
-            reportComponent = _buss.GetMISReport(reportComponent, StaticData.GetUser());
-            var unManipulatedData = StaticData.Clone(reportComponent);        
-            StaticData.GetClosedXmlExcelSheet(reportComponent);
-            unManipulatedData.ExcelLink = reportComponent.ExcelLink;
-            unManipulatedData.ShowHeader = true;
-            return View(unManipulatedData);
+            common = _buss.GetMISReport(common, StaticData.GetUser());
+            //var unManipulatedData = StaticData.Clone(common);
+            //StaticData.GetClosedXmlExcelSheet(common);
+            //unManipulatedData.ExcelLink = common.ExcelLink;
+            //unManipulatedData.ShowHeader = true;
+            //return View(unManipulatedData);
+            return View(common);
         }
 
     }
