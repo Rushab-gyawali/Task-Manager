@@ -90,7 +90,7 @@ namespace MVCERP.Web.Controllers
                 Session["ForcePwdChange"] = resp.ForcePwdChange;
                 Session["UserName"] = model.UserName;              
                 Session["sysDate"] = StaticData.DBToFrontDate(System.DateTime.Now.ToShortDateString());
-                return RedirectToAction("Index", "TaskReporting");
+                return RedirectToAction("UserDetail", "TaskReporting");
             }
             ViewData["msg"] = "The user name or password provided is incorrect.";
             return View(model);

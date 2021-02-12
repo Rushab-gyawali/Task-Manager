@@ -70,5 +70,12 @@ namespace MVCERP.Repository.Repository.Common
             sql += ", @User = " + dao.FilterString(User);
             return dao.DropdownList(sql);
         }
+
+        public Dictionary<string, string> SetDropdownUser(string ddlName, string Param = "")
+        {
+            var sql = "exec [dbo].[proc_tblUsers] @Flag=" + dao.FilterString(ddlName);
+            var dt = dao.ExecuteDataTable(sql);
+            return dao.ParseDictionary(sql);
+        }
     }
 }

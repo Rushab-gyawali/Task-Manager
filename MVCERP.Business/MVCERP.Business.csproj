@@ -64,6 +64,8 @@
     <Compile Include="Business\TaskManager\TaskManagerBusiness.cs" />
     <Compile Include="Business\TaskReporting\ITaskReportingBusiness.cs" />
     <Compile Include="Business\TaskReporting\TaskReportingBusiness.cs" />
+    <Compile Include="Business\TaskReport\ITaskReportBusiness.cs" />
+    <Compile Include="Business\TaskReport\TaskReportBusiness.cs" />
     <Compile Include="Business\User\IUserBusiness.cs" />
     <Compile Include="Business\User\UserBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
