@@ -50,7 +50,9 @@ namespace MVCERP.Web.Controllers
                 model.Status = data[0].Status;
                 model.CreatedBy = data[0].CreatedBy;
                 model.AssignTo = data[0].AssignTo;
-                model.TaskId = data[0].TaskId; 
+                model.TaskId = data[0].TaskId;
+                ViewData["AssignTo"] = StaticData.SetDDLValue(ddl.SetDropdownUser("UserDropDown", StaticData.GetUser()), "", "Select User");
+                ViewData["Status"] = StaticData.SetDDLValue(ddl.SetDropdown("StatusList", StaticData.GetUser()), "", "Select Status");
                 return View(model);
             }
         }
@@ -70,14 +72,15 @@ namespace MVCERP.Web.Controllers
                     common.CreatedBy = user;
                     common.AssignTo = task.AssignTo;
                     common.TaskId = task.TaskId;
-                var response = buss.TaskManager(common);
+                    var response = buss.TaskManager(common);
                     StaticData.SetMessageInSession(response);
                     if (response.ErrorCode == 1)
                     {
-                        ModelState.AddModelError("", response.Message);
-                        return View(task);
+                      ModelState.AddModelError("", response.Message);                     
+                    return View(task);
                     }
-                    return RedirectToAction("Index", "TaskReporting");
+          
+                return RedirectToAction("Index", "TaskReporting");
                 }
                 else
                 {
@@ -92,6 +95,36 @@ namespace MVCERP.Web.Controllers
             //db.SaveChanges();
 
             return View(task);
+        }
+        public ActionResult DeleteTask()
+        {
+            string Taskid = Request.QueryString["id"];
+            var TaskID = StaticData.Base64Decode_URL(Taskid);
+            if (ModelState.IsValid)
+            {
+                TaskReportingCommon common = new TaskReportingCommon();
+                common.TaskId = TaskID;
+                var response = buss.DeleteTask(common);
+                StaticData.SetMessageInSession(response);
+                if (response.ErrorCode == 1)
+                {
+                    ModelState.AddModelError("", response.Message);
+                    ViewData["msg"] = "Delete Failed";
+                    return RedirectToAction("Index", "TaskReporting");
+
+                }
+                ViewData["msg"] = "Delete Successful";
+                return RedirectToAction("Index", "TaskReporting");
+            }
+            else
+            {
+                var errors = string.Join("; ", ModelState.Values
+                .SelectMany(x => x.Errors)
+                .Select(x => x.ErrorMessage));
+
+                ModelState.AddModelError("", errors);
+            }
+            return RedirectToAction("Index", "TaskReporting");
         }
 
     }

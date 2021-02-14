@@ -3315,6 +3315,8 @@
     <Content Include="Views\TaskReport\Index.cshtml" />
     <Content Include="Views\TaskReport\Assigned.cshtml" />
     <Content Include="Views\MISGenerateReport\GenerateReport.cshtml" />
+    <Content Include="Views\TaskReport\Completed.cshtml" />
+    <Content Include="Views\TaskReport\Testing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

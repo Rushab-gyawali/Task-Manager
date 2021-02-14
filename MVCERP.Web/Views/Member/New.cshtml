@@ -18,14 +18,11 @@
         @using (Html.BeginForm("New", "Member", FormMethod.Post, new { @id = "Singupform" }))
         {
             <h2 class=" form-title"> Register User</h2>
+            <div class="text-danger">
+                @ViewBag.ErrorMessage
+            </div>
             <div style="display:grid;grid-template-columns:auto auto;grid-column-gap:50px">
                 @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
-                <div class="text-danger">
-                    @ViewBag.ErrorMessage
-                </div>
-
-
-
                 <div class="form-group">
                     <label for="FullName">Full Name</label>
                     <div class="text-danger">
@@ -63,7 +60,7 @@
                         @Html.ValidationMessageFor(x => x.Password)
                     </div>
                     @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter password", @class = "form-control", @id = "Password" })
-                    
+
                 </div>
 
                 <div class="form-group">

@@ -1,17 +1,17 @@
-﻿@model MVCERP.Web.Models.TaskReportingModel
+﻿@model MVCERP.Shared.Common.TaskReportingCommon
 @{
-    //Layout = "~/Views/Shared/MasterLayout.cshtml";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
 }
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>GenerateReport</title>
-    <link href="~/UI/ReportComponent/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/UI/ReportComponent/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/UI/ReportComponent/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/UI/ReportComponent/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/UI/css/materialdesignicons.min.css" rel="stylesheet" />
-    <link href="~/UI/css/portal.css" rel="stylesheet" />
+    <link href="~/UI/css/materialdesignicons.min.css" rel="stylesheet" />*@
+    @*<link href="~/UI/css/portal.css" rel="stylesheet" />*@
     <style type="text/css">
         html, body {
             width: 100%;
@@ -128,7 +128,7 @@
 <body>
     <div class="container">
         <div class="btn-group btn-report-download">
-            <a href="@Model.ExcelLink" class="btn btn-sm btn-primary"><i class="mdi mdi-file-excel"></i> Download Excel</a>
+            @*<a href="@Model.ExcelLink" class="btn btn-sm btn-primary"><i class="mdi mdi-file-excel"></i> Download Excel</a>*@
             @*<div class="form-group text-right no-print">
                     <a href="#" class="btn btn-link" onclick="ExportToExcelV('report');">
                         <i class="mdi mdi-file-excel"></i> Excel2
@@ -139,7 +139,7 @@
             <thead>
                 <tr>
                         <th style="padding-bottom: 10px" colspan="@Model.ReportData.Columns.Count">
-                            <img src="~/UI/images/logo.png" style="width: 175px; float: left;" />
+                            @*<img src="~/UI/images/logo.png" style="width: 175px; float: left;" />*@
                             <h1 style="font-size: 22px; font-weight: 600; text-transform: uppercase; padding: 10px 0px 5px 195px;">
                                 @MVCERP.Web.Library.StaticData.GetCompanyHeader()
                             </h1>

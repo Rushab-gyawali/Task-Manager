@@ -30,8 +30,33 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult Assigned()
         {
-            ViewData["Status"] = StaticData.SetDDLValue(ddl.SetDropdown("StatusList", StaticData.GetUser()), "", "Select Status");
             return View();
+        }
+
+        public ActionResult Completed()
+        {
+            return View();
+        }
+
+        public ActionResult Testing()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Completed(TaskReportingModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var ReportName = "MISUserRegisterReport";
+                var status = "Completed";
+                var reportname = StaticData.Base64Encode_URL(ReportName);
+                var startdate = StaticData.Base64Encode_URL(model.TaskStartDate);
+                var enddate = StaticData.Base64Encode_URL(model.TaskEndDate);
+                var reportstatus = StaticData.Base64Encode_URL(status);
+                return RedirectToAction("GenerateReport", "MISGenerateReport", new { FromDate = startdate, ToDate = enddate, ReportStatus = reportstatus, reportName = reportname });
+            }
+            return RedirectToAction("Index", "TaskReport");
         }
 
         [HttpPost]
@@ -41,6 +66,22 @@ namespace MVCERP.Web.Controllers
             {
                 var ReportName = "MISUserRegisterReport";
                 var status = "Assigned InProgress";
+                var reportname = StaticData.Base64Encode_URL(ReportName);
+                var startdate = StaticData.Base64Encode_URL(model.TaskStartDate);
+                var enddate = StaticData.Base64Encode_URL(model.TaskEndDate);
+                var reportstatus = StaticData.Base64Encode_URL(status);
+                return RedirectToAction("GenerateReport", "MISGenerateReport", new { FromDate = startdate, ToDate = enddate, ReportStatus = reportstatus, reportName = reportname });
+            }
+            return RedirectToAction("Index", "TaskReport");
+        }
+
+        [HttpPost]
+        public ActionResult Testing(TaskReportingModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var ReportName = "MISUserRegisterReport";
+                var status = "Testing";
                 var reportname = StaticData.Base64Encode_URL(ReportName);
                 var startdate = StaticData.Base64Encode_URL(model.TaskStartDate);
                 var enddate = StaticData.Base64Encode_URL(model.TaskEndDate);

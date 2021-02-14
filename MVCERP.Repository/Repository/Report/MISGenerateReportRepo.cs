@@ -24,13 +24,13 @@ namespace MVCERP.Repository.Repository.Report
             if (res.Tables.Count == 1)
             {
                 common.ReportData = res.Tables[0];
-                //common.ReportHeader = res.Tables[1];
+                common.ReportHeader = res.Tables[1];
 
             }
             else if (res.Tables.Count > 1)
             {
                 common.ReportData = res.Tables[0];
-                //common.ReportHeader = res.Tables[1];
+                common.ReportHeader = res.Tables[1];
             }
 
             else

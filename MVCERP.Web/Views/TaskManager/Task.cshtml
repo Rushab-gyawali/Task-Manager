@@ -13,7 +13,7 @@
 <div class="task-form" style="padding-top:30px;">
     <div class="container container-fluid">
 
-        @using (Html.BeginForm("Task", "TaskManager", FormMethod.Post, new { @id = "taskform" }))
+        @using (Html.BeginForm("Task", "TaskManager", FormMethod.Post, new { @id = "taskform",@name="task-form" }))
         {
 
             <div style="display:grid;grid-template-columns:auto auto;grid-column-gap:50px">
@@ -22,35 +22,29 @@
 
                 <div class="form-group">
                     <label for="TaskName">TaskName</label>
-                    @Html.TextBoxFor(x => x.TaskName, new { @placeholder = "Enter TaskName", @class = "form-control", @id = "TaskName" })
+                    @Html.TextBoxFor(x => x.TaskName, new { @placeholder = "Enter TaskName", @class = "form-control", @id = "TaskName", @required = "required" })
                 </div>
                 <div class="form-group">
                     <label for="TaskStartDate">TaskStartDate</label>
-                    @Html.TextBoxFor(x => x.TaskStartDate, new { @placeholder = "TaskStartDate", @class = "form-control", @id = "TaskStartDate", @autocomplete = "off" })
+                    @Html.TextBoxFor(x => x.TaskStartDate, new { @placeholder = "TaskStartDate [mm/dd/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskStartDate", @autocomplete = "off", @required = "required" })
                 </div>
                 <div class="form-group">
                     <label for="TaskEndDate">TaskEndDate</label>
-                    @Html.TextBoxFor(x => x.TaskEndDate, new { @placeholder = "TaskEndDate", @class = "form-control", @id = "TaskEndDate", @autocomplete = "off" })
-                </div>
-                <div class="form-group">
-                    <label for="CreatedBy">CreatedBy</label>
-                    @Html.TextBoxFor(x => x.CreatedBy, new { @placeholder = @ViewBag.user, @class = "form-control", @id = "CreatedBy", @readonly = "readonly" })
+                    @Html.TextBoxFor(x => x.TaskEndDate, new { @placeholder = "TaskEndDate [mm/dd/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskEndDate", @autocomplete = "off", @required = "required" })
                 </div>
                 <div class="form-group">
                     <label for="AssignTo">AssignTo</label>
                     @Html.DropDownListFor(x => x.AssignTo, ViewData["AssignTo"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
-
-                    @*@Html.TextBoxFor(x => x.AssignTo, new { @placeholder = "AssignTo", @class = "form-control", @id = "AssignTo" })*@
                 </div>
                 <div class="form-group">
                     <label for="TaskDescription">TaskDescription</label>
-                    @Html.TextAreaFor(x => x.TaskDescription, new { @placeholder = "TaskDescription", @class = "form-control", @id = "TaskDescription" })
+                    @Html.TextAreaFor(x => x.TaskDescription, new { @placeholder = "TaskDescription", @class = "form-control", @id = "TaskDescription", @required = "required" })
                 </div>
 
                 <div class="form-group">
                     <label for="Status">Status</label>
                     @Html.DropDownListFor(x => x.Status, ViewData["Status"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
-                   
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -69,4 +63,156 @@
         }
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+@*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnAdd").click(function () {
+            if ($("#TaskName").val() == "") {
+                $("#TaskName").css("border-color", "red");
+            }
+            else if ($("#TaskName").val().match(/(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})$/)){
+                $("#TaskName").css("border-color", "green");
+            }
+            else if (!$("#TaskName").val().match(/(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})$/)) {
+                $("#TaskName").css("border-color", "red");
+            }
+            else {
+                $("#TaskName").css("border-color", "red");
+            }
+
+            if ($("#TaskDescription").val() == "") {
+                $("#TaskDescription").css("border-color", "red");
+            }
+            else {
+                $("#TaskDescription").css("border-color", "green");
+            }
+
+            if ($("#AssignTo").val() == "") {
+                $("#AssignTo").css("border-color", "red");
+            }
+
+            else {
+                $("#AssignTo").css("border-color", "green");
+            }
+
+            if ($("#Status").val() == "") {
+                $("#Status").css("border-color", "red");
+            }
+
+            else {
+                $("#Status").css("border-color", "green");
+            }
+
+            //taskstartdate format
+
+            var taskstartdate = $("#TaskStartDate").val();
+            var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+            // Match the date format through regular expression
+            if (taskstartdate.match(dateformat)) {
+                debugger;
+                //Test which seperator is used '/' or '-'
+                var opera1 = taskstartdate.split('/');
+                var opera2 = taskstartdate.split('-');
+                lopera1 = opera1.length;
+                lopera2 = opera2.length;
+                // Extract the string into month, date and year
+                if (lopera1 > 1) {
+                    var pdate = taskstartdate.split('/');
+                }
+                else if (lopera2 > 1) {
+                    var pdate = taskstartdate.split('-');
+                }
+                var dd = parseInt(pdate[0]);
+                var mm = parseInt(pdate[1]);
+                var yy = parseInt(pdate[2]);
+                // Create list of days of a month [assume there is no leap year by default]
+                var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                if (mm == 1 || mm > 2) {
+                    if (dd > ListofDays[mm - 1]) {
+                        $("#TaskStartDate").css("border-color", "red");
+                        return false;
+                    }
+                }
+                if (mm == 2) {
+                    var lyear = false;
+                    if ((!(yy % 4) && yy % 100) || !(yy % 400)) {
+                        lyear = true;
+                    }
+                    if ((lyear == false) && (dd >= 29)) {
+                        $("#TaskStartDate").css("border-color", "red");
+                        return false;
+                    }
+                    if ((lyear == true) && (dd > 29)) {
+                        $("#TaskStartDate").css("border-color", "red");
+                        return false;
+                    }
+                }
+                $("#TaskStartDate").css("border-color", "green");
+                return true;
+            }
+            else {
+                $("#TaskStartDate").css("border-color", "red");
+                return false;
+            }
+
+            
+
+        })
+    });
+
+    $("#btnAdd").click(function () {
+        //taskenddate formate
+        var taskenddate = $("#TaskEndDate").val();
+        var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+        if (taskenddate.match(dateformat)) {
+            debugger;
+            //Test which seperator is used '/' or '-'
+            var opera1 = taskenddate.split('/');
+            var opera2 = taskenddate.split('-');
+            lopera1 = opera1.length;
+            lopera2 = opera2.length;
+            // Extract the string into month, date and year
+            if (lopera1 > 1) {
+                var pdate = taskenddate.split('/');
+            }
+            else if (lopera2 > 1) {
+                var pdate = taskenddate.split('-');
+            }
+            var dd = parseInt(pdate[0]);
+            var mm = parseInt(pdate[1]);
+            var yy = parseInt(pdate[2]);
+            // Create list of days of a month [assume there is no leap year by default]
+            var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (mm == 1 || mm > 2) {
+                if (dd > ListofDays[mm - 1]) {
+                    $("#TaskEndDate").css("border-color", "red");
+                    return false;
+                }
+            }
+            if (mm == 2) {
+                var lyear = false;
+                if ((!(yy % 4) && yy % 100) || !(yy % 400)) {
+                    lyear = true;
+                }
+                if ((lyear == false) && (dd >= 29)) {
+                    $("#TaskEndDate").css("border-color", "red");
+                    return false;
+                }
+                if ((lyear == true) && (dd > 29)) {
+                    $("#TaskEndDate").css("border-color", "red");
+                    return false;
+                }
+            }
+            $("#TaskEndDate").css("border-color", "green");
+            return true;
+        }
+        else {
+            $("#TaskEndDate").css("border-color", "red");
+            return false;
+        }
+    });
+
+</script>
 
