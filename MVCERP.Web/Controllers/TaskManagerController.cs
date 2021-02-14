@@ -51,6 +51,8 @@ namespace MVCERP.Web.Controllers
                 model.CreatedBy = data[0].CreatedBy;
                 model.AssignTo = data[0].AssignTo;
                 model.TaskId = data[0].TaskId;
+
+
                 ViewData["AssignTo"] = StaticData.SetDDLValue(ddl.SetDropdownUser("UserDropDown", StaticData.GetUser()), "", "Select User");
                 ViewData["Status"] = StaticData.SetDDLValue(ddl.SetDropdown("StatusList", StaticData.GetUser()), "", "Select Status");
                 return View(model);
