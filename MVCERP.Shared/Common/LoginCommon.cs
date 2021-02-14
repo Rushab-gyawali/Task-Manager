@@ -16,13 +16,5 @@ namespace MVCERP.Shared.Common
         public string Ip { get; set; }
         public string BrowserInfo { get; set; }
     }
-   public class ChangePassword
-   {
-       public string User { get; set; }
-       public string UserName { get; set; }
-       public string OldPassword { get; set; }
-       public string NewPassword { get; set; }
-       public string ConfirmPassword { get; set; }
-
-   }
+   
 }

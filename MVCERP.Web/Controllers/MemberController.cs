@@ -130,5 +130,20 @@ namespace MVCERP.Web.Controllers
             }
             return RedirectToAction("Index", "Member");
         }
+
+        public ActionResult Profile()
+        {
+            var user = StaticData.GetUser();
+            MemberModel model = new MemberModel();
+            MemberCommon common = new MemberCommon();
+            common.UserName = user;
+            var data = bussiness.ListUsersProfile(common);
+            model.ID = data[0].ID.ToString(); 
+            model.FullName = data[0].FullName;
+            model.Email = data[0].Email;
+            model.PhoneNo = data[0].PhoneNo;
+
+            return View(model);
+        }
     }
 }

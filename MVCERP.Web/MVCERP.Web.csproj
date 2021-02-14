@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -153,6 +153,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\BackLogController.cs" />
     <Compile Include="Controllers\DynamicReportController.cs" />
     <Compile Include="Controllers\ErrorController.cs">
       <SubType>Code</SubType>
@@ -166,6 +167,7 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TaskManagerController.cs" />
     <Compile Include="Controllers\TaskReportController.cs" />
+
     <Compile Include="Controllers\TaskReportingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\SessionExpiryFilterAttribute.cs" />
@@ -187,6 +189,7 @@
     <Compile Include="Library\Reports.cs" />
     <Compile Include="Library\StaticData.cs" />
     <Compile Include="Library\UserMonitor.cs" />
+    <Compile Include="Models\BackLogTaskModel.cs" />
     <Compile Include="Models\MemberModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\TaskReportingModel.cs" />
@@ -3314,9 +3317,15 @@
     <Content Include="Views\Home\TestPage.cshtml" />
     <Content Include="Views\TaskReport\Index.cshtml" />
     <Content Include="Views\TaskReport\Assigned.cshtml" />
+    <Content Include="Views\BackLog\Index.cshtml" />
+    <Content Include="Views\BackLog\NewTask.cshtml" />
+    <Content Include="Views\Member\Profile.cshtml" />
+
     <Content Include="Views\MISGenerateReport\GenerateReport.cshtml" />
+
     <Content Include="Views\TaskReport\Completed.cshtml" />
     <Content Include="Views\TaskReport\Testing.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
