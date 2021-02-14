@@ -1,0 +1,341 @@
+﻿@model MVCERP.Web.Models.TaskReportingModel
+@{
+    //Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GenerateReport</title>
+    <link href="~/UI/ReportComponent/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/UI/ReportComponent/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/UI/ReportComponent/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/UI/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/UI/css/portal.css" rel="stylesheet" />
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: auto;
+            background: #fff;
+        }
+
+        body {
+            overflow-x: scroll;
+            overflow-y: scroll;
+        }
+
+        .container {
+            width: auto;
+            height: auto;
+            padding: 15px;
+        }
+
+        .dataTables_info {
+            padding: 10px;
+        }
+
+        table#report {
+            font-size: 12px;
+            margin: 15px 15px 15px 0px;
+        }
+
+            table#report > tbody > tr > td,
+            table#report > tbody > tr > th,
+            table#report > tfoot > tr > td,
+            table#report > tfoot > tr > th,
+            table#report > thead > tr > td,
+            table#report > thead > tr > th {
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+
+            table#report tr td table tr td,
+            table#report tr th table tr td,
+            table#report tr td table tr th,
+            table#report tr th table tr th {
+                padding: 2px;
+                border: 0px;
+            }
+        /*#report > tbody > tr:last-child {
+            background: #CCC;
+            font-weight: bold;
+            border-bottom: 1px solid #CCC;
+        }*/
+    </style>
+    <script>
+        function ExportToExcelV(tableid) {
+            var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+            var textRange; var j = 0;
+            tab = document.getElementById(tableid);//.getElementsByTagName('table'); // id of table
+            if (tab == null) {
+                return false;
+            }
+            if (tab.rows.length == 0) {
+                return false;
+            }
+
+            for (j = 0; j < tab.rows.length; j++) {
+                tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+                //tab_text=tab_text+"</tr>";
+            }
+
+            tab_text = tab_text + "</table>";
+            tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+            {
+                txtArea1.document.open("txt/html", "replace");
+                txtArea1.document.write(tab_text);
+                txtArea1.document.close();
+                txtArea1.focus();
+                sa = txtArea1.document.execCommand("SaveAs", true, "download.xlsx");
+            }
+            else                 //other browser not tested on IE 11
+                //sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+                try {
+                    var blob = new Blob([tab_text], { type: "application/vnd.ms-excel" });
+                    window.URL = window.URL || window.webkitURL;
+                    link = window.URL.createObjectURL(blob);
+                    a = document.createElement("a");
+                    if (document.getElementById("caption") != null) {
+                        a.download = document.getElementById("caption").innerText;
+                    }
+                    else {
+                        a.download = 'download';
+                    }
+
+                    a.href = link;
+
+                    document.body.appendChild(a);
+
+                    a.click();
+
+                    document.body.removeChild(a);
+                } catch (e) {
+                }
+
+
+            return false;
+            //return (sa);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="btn-group btn-report-download">
+            <a href="@Model.ExcelLink" class="btn btn-sm btn-primary"><i class="mdi mdi-file-excel"></i> Download Excel</a>
+            @*<div class="form-group text-right no-print">
+                    <a href="#" class="btn btn-link" onclick="ExportToExcelV('report');">
+                        <i class="mdi mdi-file-excel"></i> Excel2
+                    </a>
+                </div>*@
+        </div>
+        <table class="table table-striped nowrap" id="report">
+            <thead>
+                <tr>
+                        <th style="padding-bottom: 10px" colspan="@Model.ReportData.Columns.Count">
+                            <img src="~/UI/images/logo.png" style="width: 175px; float: left;" />
+                            <h1 style="font-size: 22px; font-weight: 600; text-transform: uppercase; padding: 10px 0px 5px 195px;">
+                                @MVCERP.Web.Library.StaticData.GetCompanyHeader()
+                            </h1>
+                            <p style="font-size: 14px; font-weight: 600; margin-bottom: 5px; padding-left: 195px">
+                                @Html.Raw(MVCERP.Web.Library.StaticData.CompanyAddress())
+                            </p>
+                        </th>
+                    </tr>
+                <tr>
+                    <th colspan="@Model.ReportData.Columns.Count">
+                        <h4 class="text-center text-uppercase">@Model.ReportTitle</h4>
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="@Model.ReportData.Columns.Count">
+                        <table style="width: 100%; text-align: center;">
+                            @{
+                                if (@Model.ShowHeader)
+                                {
+                                    <tr>
+                                        @{
+                                            for (int j = 2; j < Model.ReportHeader.Columns.Count; j++)
+                                            {
+                                                if (!@Model.ReportHeader.Rows[0][j].ToString().IsEmpty())
+                                                {
+                                                    <td>
+                                                        @{
+                                                            <strong>@Model.ReportHeader.Columns[j]</strong>
+                                                            if (!@Model.ReportHeader.Rows[0][j].ToString().IsEmpty())
+                                                            {
+                                                                @Html.Raw(Model.ReportHeader.Rows[0][j].ToString())
+                                                            }
+                                                        }
+                                                    </td>
+                                                }
+                                            }
+                                        }
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    @{
+                        for (int j = 0; j < @Model.ReportData.Columns.Count; j++)
+                        {
+                            <th>@Model.ReportData.Columns[j]</th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @{
+
+                    for (int i = 0; i < Model.ReportData.Rows.Count; i++)
+                    {
+                        <tr>
+                            @{
+                                for (int j = 0; j < Model.ReportData.Columns.Count; j++)
+                                {
+                                    <td>@Html.Raw(Model.ReportData.Rows[i][j])</td>
+                                }
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfoot>
+                @{
+                    if (@Model.ShowHeader)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if (!@Model.ReportHeader.Rows[0][j].ToString().IsEmpty())
+                            {
+                                <tr>
+                                    <td colspan="@Model.ReportData.Columns.Count">
+                                        @{
+                                            <strong>@Model.ReportHeader.Columns[j] : </strong>
+                                            if (!@Model.ReportHeader.Rows[0][j].ToString().IsEmpty())
+                                            {
+                                                @Model.ReportHeader.Rows[0][j].ToString()
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                }
+            </tfoot>
+        </table>
+    </div>
+
+    <script src="~/UI/ReportComponent/js/jquery-3.3.1.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/jquery.min.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/jquery.sumtabletotal.min.js" type="text/javascript"></script>
+
+    <script src="~/UI/ReportComponent/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/dataTables.fixedHeader.min.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/dataTables.responsive.min.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/responsive.bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="~/UI/ReportComponent/js/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/buttons.flash.min.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/jszip.min.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/pdfmake.min.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/vfs_fonts.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="~/UI/ReportComponent/js/buttons.print.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            @* $("#report").sumtabletotal({
+                placeholder: '',
+                totalText: 'Sub Total',
+                color: "#000",
+                significant: 2,
+                totalIndexArry: [@Model.SumColumns]
+            });*@
+
+
+
+            var table = $('#report').DataTable({
+                responsive: false,
+                autoWidth: false,
+                paging: false,
+                ordering: false,
+                sorting: false,
+                pageLength: 100000,
+                // dom: 'Bfrti',
+                language: {
+                    "info": "Total _MAX_ Records Found",
+                },
+                buttons: [
+                    @*{ extend: 'excel', title: '@Model.ReportTitle',
+                       message: "@iSolutionLife.Web.Library.StaticData.GetCompanyHeader()  @Html.Raw(iSolutionLife.Web.Library.StaticData.CompanyAddress())"
+                    },
+                    { extend: 'pdf', title: '@Model.ReportTitle' },
+                    { extend: 'copy', title: '@Model.ReportTitle' },
+                    { extend: 'csv', title: '@Model.ReportTitle' },
+                    { extend: 'print', title: '@Model.ReportTitle' }*@
+                ],
+                columnDefs: [
+                    //{ className: "dt-right", "targets": asdasd() },
+                    //{ className: "dt-right", "targets": ($(".sorting_disabled:contains('SA')").index()) }
+                ]
+            });
+
+            $(function () {
+                var a = $(".sorting_disabled:contains('Sum Assured')").index() + 1;
+                var b = $(".sorting_disabled:contains('Gross Premium')").index() + 1;
+                var c = $(".sorting_disabled:contains('Medical')").index() + 1;
+                var d = $(".sorting_disabled:contains('Net Premium')").index() + 1;
+                var e = $(".sorting_disabled:contains('Premium')").index() + 1;
+                var f = $(".sorting_disabled:contains('Commission')").index() + 1;
+                var g = $(".sorting_disabled:contains('As On NB Premium')").index() + 1;
+                var h = $(".sorting_disabled:contains('As On FYRP Premium')").index() + 1;
+                var i = $(".sorting_disabled:contains('As On RP Premium')").index() + 1;
+                var j = $(".sorting_disabled:contains('As On Total')").index() + 1;
+                var k = $(".sorting_disabled:contains('Total Premium')").index() + 1;
+                var l = $(".sorting_disabled:contains('Total Lapsed Premium')").index() + 1;
+                var m = $(".sorting_disabled:contains('Installment Premium')").index() + 1;
+                var n = $(".sorting_disabled:contains('Today NB Premium')").index() + 1;
+                var o = $(".sorting_disabled:contains('Today FYRP Premium')").index() + 1;
+                var p = $(".sorting_disabled:contains('Today RP Premium')").index() + 1;
+                var r = $(".sorting_disabled:contains('Today Total Premium')").index() + 1;
+                var q = $(".sorting_disabled:contains('Late Fee')").index() + 1;
+                var s = $(".sorting_disabled:contains('Total Amount')").index() + 1;
+                var t = $(".sorting_disabled:contains('Policy Count')").index() + 1;
+                var u = $(".sorting_disabled:contains('Total Policy')").index() + 1;
+                $('table tr td:nth-child(' + a + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + b + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + c + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + d + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + e + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + f + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + g + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + h + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + i + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + j + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + k + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + l + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + m + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + n + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + o + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + p + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + q + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + r + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + s + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + t + ')').addClass('dt-right');
+                $('table tr td:nth-child(' + u + ')').addClass('dt-right');
+            });
+
+        });
+    </script>
+</body>
+</html>

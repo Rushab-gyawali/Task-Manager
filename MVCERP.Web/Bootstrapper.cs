@@ -13,6 +13,7 @@ using MVCERP.Business.Business.TaskManager;
 using MVCERP.Repository.Repository.TaskManager;
 using MVCERP.Business.Business.Member;
 using MVCERP.Repository.Repository.Member;
+using MVCERP.Business.Business.TaskReport;
 using MVCERP.Business.Business.BackLog;
 using MVCERP.Repository.Repository.BackLog;
 
@@ -48,8 +49,10 @@ namespace MVCERP.Web
             container.RegisterType<ITaskManagerRepository, TaskManagerRepository>();
             container.RegisterType<IMemberRepository, MemberRepository>();
             container.RegisterType<IMemberBusiness, MemberBusiness>();
-            container.RegisterType<IBackLogRepository, BackLogRepository>();
+            container.RegisterType<ITaskReportBusiness, TaskReportBusiness>();
             container.RegisterType<IBackLogBusiness, BackLogBusiness>();
+            container.RegisterType<IBackLogRepository, BackLogRepository>();
+
 
             return container;
         }
