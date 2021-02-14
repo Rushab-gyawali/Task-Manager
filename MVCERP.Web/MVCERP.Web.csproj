@@ -3317,9 +3317,11 @@
     <Content Include="Views\Home\TestPage.cshtml" />
     <Content Include="Views\TaskReport\Index.cshtml" />
     <Content Include="Views\TaskReport\Assigned.cshtml" />
-    <Content Include="Views\BackLog\Index.cshtml" />
     <Content Include="Views\BackLog\NewTask.cshtml" />
     <Content Include="Views\Member\Profile.cshtml" />
+    <Content Include="Views\BackLog\AddBackLogTask.cshtml" />
+    <Content Include="Views\BackLog\ListBackLogTask.cshtml" />
+    <Content Include="Views\BackLog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

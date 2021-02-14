@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MVCERP.Shared.Common.BackLogCommon
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
 }
@@ -16,7 +17,7 @@
     debugger;
     $(document).ready(function () {
         debugger;
-        $('#AllTaskList').DataTable({
+        $('#BackLogTaskList').DataTable({
             "responsive": true,
             "processing": false,
             "serverSide": false,
@@ -24,7 +25,7 @@
             "ajax": {
                 "type": 'z',
                 "dataType": 'json',
-                "url": "/TaskReporting/GetAllTask",
+                "url": "/BackLog/ListBackLogTask",
                 "contentType": 'application/json; charset=utf-8',
                 'data': function (data) {
                     return data = JSON.stringify(data);
@@ -41,13 +42,13 @@
             },
             columns: [
 
-
                 { 'data': 'TaskName', "orderable": true, "searchable": true },
-                { 'data': 'TaskStartDate', "orderable": true },
-                { 'data': 'TaskEndDate', "orderable": true },
                 { 'data': 'TaskDescription', "orderable": true },
-                { 'data': 'IsActive', "orderable": true },
-                { 'data': 'Status', "orderable": true },
+                { 'data': 'TaskReportedDate', "orderable": true },
+                { 'data': 'DiscussionDate', "orderable": true },
+                { 'data': 'Owner', "orderable": false },
+                { 'data': 'ClientId', "orderable": false },
+                { 'data': 'StoryPoint', "orderable": false },
                 { 'data': 'CreatedBy', "orderable": false },
                 { 'data': 'CreatedDate', "orderable": false },
                 { 'data': 'Action', "orderable": false },
@@ -69,19 +70,18 @@
             <div class="panel-body list-body">
                 <div class="table-responsive">
 
-                    <table id="AllTaskList" class="table table-hover" cellspacing="0" width="100%">
+                    <table id="BackLogTaskList" class="table table-hover" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-
-
-                                <th>TaskName</th>
-                                <th>TaskStartDate</th>
-                                <th>TaskEndDate</th>
-                                <th>TaskDescription</th>
-                                <th>IsActive</th>
-                                <th>Status</th>
-                                <th>CreatedBy</th>
-                                <th>CreatedDate</th>
+                                <th>Task Name</th>
+                                <th>Task Description</th>
+                                <th>Task Reported Date</th>
+                                <th>Discussion Date</th>
+                                <th>Owner</th>
+                                <th>Client Name</th>
+                                <th>Story point</th>
+                                <th>Created By</th>
+                                <th>Created Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
