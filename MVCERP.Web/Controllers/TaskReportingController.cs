@@ -42,12 +42,12 @@ namespace MVCERP.Web.Controllers
             if(ViewBag.user == StaticData.GetUser())
             {
                 string Status = "Completed";
-                string CreatedBy = user;
+                string AssignTo = user;
                 string StatusList = "";
                 var model = new TaskReportingModel();
                 var common = new TaskReportingCommon();
                 common.Status = Status;
-                common.CreatedBy = CreatedBy;
+                common.AssignTo = AssignTo;
                 common.StatusListCount = StatusList;
                 var data = _business.StatusCount(common);
                 model.StatusCount = data[0].StatusCount;
@@ -56,12 +56,12 @@ namespace MVCERP.Web.Controllers
             if (ViewBag.user == StaticData.GetUser())
             {
                 string Status = "Assigned InProgress";
-                string CreatedBy = user;
+                string AssignTo = user;
                 string StatusList = "";
                 var model = new TaskReportingModel();
                 var common = new TaskReportingCommon();
                 common.Status = Status;
-                common.CreatedBy = CreatedBy;
+                common.AssignTo = AssignTo;
                 common.StatusListCount = StatusList;
                 var data = _business.StatusCount(common);
                 model.StatusCount = data[0].StatusCount;
@@ -70,12 +70,12 @@ namespace MVCERP.Web.Controllers
             if (ViewBag.user == StaticData.GetUser())
             {
                 string Status = "Testing";
-                string CreatedBy = user;
+                string AssignTo = user;
                 string StatusList = "";
                 var model = new TaskReportingModel();
                 var common = new TaskReportingCommon();
                 common.Status = Status;
-                common.CreatedBy = CreatedBy;
+                common.AssignTo = AssignTo;
                 common.StatusListCount = StatusList;
                 var data = _business.StatusCount(common);
                 model.StatusCount = data[0].StatusCount;
@@ -84,12 +84,12 @@ namespace MVCERP.Web.Controllers
             if (ViewBag.user == StaticData.GetUser())
             {
                 string Status = " ";
-                string CreatedBy = user;
+                string AssignTo = user;
                 string StatusList = "StatusList";
                 var model = new TaskReportingModel();
                 var common = new TaskReportingCommon();
                 common.Status = Status;
-                common.CreatedBy = CreatedBy;
+                common.AssignTo = AssignTo;
                 common.StatusListCount = StatusList;
                 var data = _business.StatusCount(common);
                 model.StatusCount = data[0].StatusCount;
@@ -125,10 +125,6 @@ namespace MVCERP.Web.Controllers
         {
             var user = StaticData.GetUser();
             var data = _business.StatusList(status, user);
-            for (int i = 0; i < data.Count; i++)
-            {
-                data[i].Action = StaticData.GetActions("TaskManager", data[i].RowId, data[i].TaskId, "Task");
-            }
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
 

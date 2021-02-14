@@ -1,6 +1,7 @@
 ﻿using MVCERP.Business.Business.Common;
 using MVCERP.Business.Business.Reports;
 using MVCERP.Web.Library;
+using MVCERP.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;

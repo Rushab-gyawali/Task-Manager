@@ -24,5 +24,10 @@ namespace MVCERP.Business.Business.TaskManager
         {
            return repo.TaskManager(common);
         }
+
+        public DbResponse DeleteTask(TaskReportingCommon common)
+        {
+            return repo.DeleteTask(common);
+        }
     }
 }

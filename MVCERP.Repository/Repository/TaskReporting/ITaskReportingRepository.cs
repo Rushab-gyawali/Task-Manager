@@ -14,8 +14,5 @@ namespace MVCERP.Repository.Repository.TaskReporting
         IEnumerable<TaskReportingCommon> GetStatus();
         List<TaskReportingCommon> StatusCount(TaskReportingCommon common);
         List<TaskReportingCommon> StatusList(string status, string user);
-
-
-
     }
 }

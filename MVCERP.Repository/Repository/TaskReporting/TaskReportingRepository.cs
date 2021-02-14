@@ -36,6 +36,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
                             TaskName = item["TaskName"].ToString(),
                             TaskDescription = item["TaskDescription"].ToString(),
                             CreatedBy = item["CreatedBy"].ToString(),
+                            AssignTo = item["AssignTo"].ToString(),
                             Status = item["Status"].ToString(),
                             TaskStartDate = item["TaskStartDate"].ToString(),
                             TaskEndDate = item["TaskEndDate"].ToString(),
@@ -99,7 +100,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
                 var sql = "EXEC PROC_TASKMANAGER ";
                 sql += "@Flag = 'CountList'";
                 sql += ",@Status = " + dao.FilterString(common.Status);
-                sql += ",@CreatedBy = " + dao.FilterString(common.CreatedBy);
+                sql += ",@AssignTo = " + dao.FilterString(common.AssignTo);
                 sql += ",@CountStatus = " + dao.FilterString(common.Status);
                 sql += ",@StatusList = " + dao.FilterString(common.StatusListCount);
                 var dt = dao.ExecuteDataTable(sql);
@@ -134,7 +135,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
                 var sql = "EXEC PROC_TASKMANAGER ";
                 sql += "@Flag = 'ListStatus'";
                 sql += ",@Status = " + dao.FilterString(status);
-                sql += ",@CreatedBy = " + dao.FilterString(user);
+                sql += ",@AssignTo = " + dao.FilterString(user);
                 var dt = dao.ExecuteDataTable(sql);
 
                 if (null != dt)
@@ -149,6 +150,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
                             TaskName = item["TaskName"].ToString(),
                             TaskDescription = item["TaskDescription"].ToString(),
                             CreatedBy = item["CreatedBy"].ToString(),
+                            AssignTo = item["AssignTo"].ToString(),
                             Status = item["Status"].ToString(),
                             TaskStartDate = item["TaskStartDate"].ToString(),
                             TaskEndDate = item["TaskEndDate"].ToString(),
@@ -167,6 +169,5 @@ namespace MVCERP.Repository.Repository.TaskReporting
                 throw e;
             }
         }
-
     }
 }

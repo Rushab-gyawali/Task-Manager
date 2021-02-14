@@ -19,11 +19,11 @@
         @using (Html.BeginForm("New", "Member", FormMethod.Post, new { @id = "Singupform" }))
         {
             <h2 class=" form-title"> Register User</h2>
+            <div class="text-danger">
+                @ViewBag.ErrorMessage
+            </div>
             <div style="display:grid;grid-template-columns:auto auto;grid-column-gap:50px">
                 @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
-
-
-
 
                 <div class="form-group">
                     <label for="FullName">Full Name</label>
