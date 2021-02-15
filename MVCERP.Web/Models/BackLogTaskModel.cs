@@ -8,7 +8,7 @@ namespace MVCERP.Web.Models
     public class BackLogTaskModel
     {
 
-        public int? BackLogId { get; set; }
+        public string BackLogId { get; set; }
         public string TaskName { get; set; }
         public string TaskDescription { get; set; }
         public string TaskReportedDate { get; set; }

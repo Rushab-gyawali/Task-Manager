@@ -5,7 +5,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER   PROCEDURE [dbo].[proc_BackLog]
+CREATE OR ALTER   PROCEDURE [dbo].[proc_BackLog]
 (
 @Flag NVARCHAR(100) = NULL
 ,@BackLogId BIGINT = NULL
@@ -33,8 +33,17 @@ AS
 	
 			if(@Flag='Insert') 
 				BEGIN
-				INSERT INTO TBL_TASK_BACKLOG(TaskName,TaskDescription,TaskReportedDate,DiscussionDate,[Owner],ClientId,StoryPoint,CreatedBy,CreatedDate,IsActive, IsApproved)
-				VALUES (@TaskName,@TaskDescription,@TaskReportedDate,@DiscussionDate,@Owner,@ClientId,@StoryPoint,@CreatedBy,GETDATE(),1,0)
+				DECLARE @Sequence BIGINT
+
+				SELECT @Sequence = TaskSequence FROM dbo.TBL_TASK
+
+				SELECT @BackLogId = 'BLG_'+ CAST(@Sequence AS VARCHAR(10)) 
+
+				INSERT INTO TBL_TASK_BACKLOG(BackLogId,TaskName,TaskDescription,TaskReportedDate,DiscussionDate,[Owner],ClientId,StoryPoint,CreatedBy,CreatedDate,IsActive, IsApproved)
+				VALUES (@BackLogId,@TaskName,@TaskDescription,@TaskReportedDate,@DiscussionDate,@Owner,@ClientId,@StoryPoint,@CreatedBy,GETDATE(),1,0)
+
+				UPDATE dbo.TBL_TASK SET TaskSequence=TaskSequence+1
+
 				select '0' as ErrorCode,'Sucessfully Added' as Msg
 				END
 

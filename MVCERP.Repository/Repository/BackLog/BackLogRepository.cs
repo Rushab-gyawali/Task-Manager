@@ -19,8 +19,8 @@ namespace MVCERP.Repository.Repository.BackLog
 
         public DbResponse AddBackLogTask(BackLogCommon setup)
         {
-            var sql = "exec proc_BackLog ";
-            sql += "@Flag = " + "'" + (setup.BackLogId == 0 ? "Insert" : "Update") + "'";
+            var sql = "EXEC proc_BackLog ";
+            sql += "@Flag = " + dao.FilterString((setup.BackLogId == null ? "Insert" : "Update"));
             sql += ",@TaskName = " + dao.FilterString(setup.TaskName);
             sql += ",@TaskDescription = " + dao.FilterString(setup.TaskDescription);
             sql += ",@TaskReportedDate = " + dao.FilterString(setup.TaskReportedDate);
@@ -30,7 +30,7 @@ namespace MVCERP.Repository.Repository.BackLog
             sql += ",@StoryPoint = " + dao.FilterString(setup.StoryPoint);
             sql += ",@CreatedBy = " + dao.FilterString(setup.CreatedBy);
             
-            if (setup.BackLogId == 0)
+            if (setup.BackLogId == null)
             {
                 return dao.ParseDbResponse(sql);
             }
@@ -66,7 +66,7 @@ namespace MVCERP.Repository.Repository.BackLog
                     {
                         var common = new BackLogCommon
                         {
-                            BackLogId = Convert.ToInt32(item["BackLogId"]),
+                            BackLogId = item["BackLogId"].ToString(),
                             TaskName = item["TaskName"].ToString(),
                             TaskDescription = item["TaskDescription"].ToString(),
                             TaskReportedDate = item["TaskReportedDate"].ToString(),
@@ -108,7 +108,7 @@ namespace MVCERP.Repository.Repository.BackLog
                         var common = new BackLogCommon()
                         {
                             
-                            BackLogId = Convert.ToInt32(item["BackLogId"]),
+                            BackLogId = item["BackLogId"].ToString(),
                             TaskName = item["TaskName"].ToString(),
                             TaskDescription = item["TaskDescription"].ToString(),
                             TaskReportedDate = item["TaskReportedDate"].ToString(),

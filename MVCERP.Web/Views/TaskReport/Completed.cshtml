@@ -27,6 +27,7 @@
                     <label class="col-sm-5 control-label"> From Date <small class="text-danger">*</small></label>
                     <div class="col-sm-12">
                         @Html.TextBoxFor(x => x.TaskStartDate, new { @placeholder = "TaskStartDate [mm/dd/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskStartDate", @autocomplete = "off" })
+                        <small class="TaskStartDate"></small>
                     </div>
                 </div>
             </div>
@@ -35,6 +36,7 @@
                     <label class="col-sm-5 control-label"> To Date <small class="text-danger">*</small></label>
                     <div class="col-sm-12">
                         @Html.TextBoxFor(x => x.TaskEndDate, new { @placeholder = "TaskEndDate [mm/dd/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskEndDate", @autocomplete = "off" })
+                        <small class="TaskEndDate"></small>
                     </div>
                 </div>
             </div>
@@ -79,6 +81,7 @@
             if (mm == 1 || mm > 2) {
                 if (dd > ListofDays[mm - 1]) {
                     $("#TaskEndDate").css("border-color", "red");
+                    $(".TaskEndDate").html("Invalid Date");
                     return false;
                 }
             }
@@ -89,18 +92,22 @@
                 }
                 if ((lyear == false) && (dd >= 29)) {
                     $("#TaskEndDate").css("border-color", "red");
+                    $(".TaskEndDate").html("Invalid Date");
                     return false;
                 }
                 if ((lyear == true) && (dd > 29)) {
                     $("#TaskEndDate").css("border-color", "red");
+                    $(".TaskEndDate").html("Invalid Date");
                     return false;
                 }
             }
-                $("#TaskEndDate").css("border-color", "green");
+            $("#TaskEndDate").css("border-color", "green");
+            $(".TaskEndDate").html("");
                 return true;
         }
         else {
             $("#TaskEndDate").css("border-color", "red");
+            $(".TaskEndDate").html("Please Enter Validate Date");
             return false;
         }
     });
@@ -131,6 +138,7 @@
             if (mm == 1 || mm > 2) {
                 if (dd > ListofDays[mm - 1]) {
                     $("#TaskStartDate").css("border-color", "red");
+                    $(".TaskStartDate").html("Invalid Date");
                     return false;
                 }
             }
@@ -141,18 +149,22 @@
                 }
                 if ((lyear == false) && (dd >= 29)) {
                     $("#TaskStartDate").css("border-color", "red");
+                    $(".TaskStartDate").html("Invalid Date");
                     return false;
                 }
                 if ((lyear == true) && (dd > 29)) {
                     $("#TaskStartDate").css("border-color", "red");
+                    $(".TaskStartDate").html("Invalid Date");
                     return false;
                 }
             }
-                $("#TaskStartDate").css("border-color", "green");
+            $("#TaskStartDate").css("border-color", "green");
+            $(".TaskStartDate").html("");
                 return true;
         }
         else {
             $("#TaskStartDate").css("border-color", "red");
+            $(".TaskStartDate").html("Please Enter Validate Date");
             return false;
         }
     });

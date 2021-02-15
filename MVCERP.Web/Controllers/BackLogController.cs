@@ -44,8 +44,8 @@ namespace MVCERP.Web.Controllers
                 model.BackLogId = data[0].BackLogId;
                 model.TaskName = data[0].TaskName;
                 model.TaskDescription = data[0].TaskDescription;
-                model.TaskReportedDate = data[0].TaskReportedDate;
-                model.DiscussionDate = data[0].DiscussionDate;
+                model.TaskReportedDate = data[0].TaskReportedDate.ToString();
+                model.DiscussionDate = data[0].DiscussionDate.ToString();
                 model.ClientId = data[0].ClientId;
                 model.StoryPoint = data[0].StoryPoint;
 
@@ -62,7 +62,7 @@ namespace MVCERP.Web.Controllers
             if (ModelState.IsValid)
             {
                 var common = new BackLogCommon();
-                common.BackLogId = Convert.ToInt32(task.BackLogId);
+                common.BackLogId = task.BackLogId;
                 common.TaskName = task.TaskName;
                 common.TaskDescription = task.TaskDescription;
                 common.TaskReportedDate = task.TaskReportedDate;
@@ -100,7 +100,7 @@ namespace MVCERP.Web.Controllers
             var data = bussiness.ListBackLogTask();
             for (int i = 0; i < data.Count; i++)
             {
-                data[i].Action = StaticData.GetActions("BackLog", data[i].BackLogId, data[i].BackLogId.ToString(), "AddBackLogTask");
+                data[i].Action = StaticData.GetActions("BackLog",1, data[i].BackLogId.ToString(), "AddBackLogTask");
             }
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
@@ -116,7 +116,7 @@ namespace MVCERP.Web.Controllers
             if (ModelState.IsValid)
             {
                 BackLogCommon common = new BackLogCommon();
-                common.BackLogId = ID;
+                common.BackLogId = ID.ToString();
                 var response = bussiness.DeleteTask(common);
                 StaticData.SetMessageInSession(response);
                 if (response.ErrorCode == 1)
