@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="TaskEndDate">TaskEndDate</label>
-                    @Html.TextBoxFor(x => x.TaskEndDate, new { @placeholder = "TaskEndDate [mm/dd/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskEndDate", @autocomplete = "off", @required = "required" })
+                    @Html.TextBoxFor(x => x.TaskEndDate, new { @placeholder = "TaskEndDate [mm/d/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskEndDate", @autocomplete = "off", @required = "required" })
                 </div>
                 <div class="form-group">
                     <label for="AssignTo">AssignTo</label>
@@ -106,9 +106,9 @@
             }
 
             //taskstartdate format
-
+            debugger;
             var taskstartdate = $("#TaskStartDate").val();
-            var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+            var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
             // Match the date format through regular expression
             if (taskstartdate.match(dateformat)) {
                 debugger;
@@ -124,8 +124,9 @@
                 else if (lopera2 > 1) {
                     var pdate = taskstartdate.split('-');
                 }
-                var dd = parseInt(pdate[0]);
-                var mm = parseInt(pdate[1]);
+                debugger;
+                var mm = parseInt(pdate[0]);
+                var dd = parseInt(pdate[1]);
                 var yy = parseInt(pdate[2]);
                 // Create list of days of a month [assume there is no leap year by default]
                 var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -165,7 +166,7 @@
     $("#btnAdd").click(function () {
         //taskenddate formate
         var taskenddate = $("#TaskEndDate").val();
-        var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+        var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
         if (taskenddate.match(dateformat)) {
             debugger;
             //Test which seperator is used '/' or '-'

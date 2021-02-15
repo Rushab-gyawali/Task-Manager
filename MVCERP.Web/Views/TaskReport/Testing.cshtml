@@ -56,7 +56,7 @@
     $("#btnReport").click(function () {
         //taskenddate formate
         var taskenddate = $("#TaskEndDate").val();
-        var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+        var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
         if (taskenddate.match(dateformat)) {
             debugger;
             //Test which seperator is used '/' or '-'
@@ -96,8 +96,8 @@
                     return false;
                 }
             }
-            $("#TaskEndDate").css("border-color", "green");
-            return true;
+                $("#TaskEndDate").css("border-color", "green");
+                return true;
         }
         else {
             $("#TaskEndDate").css("border-color", "red");
@@ -108,7 +108,7 @@
     $("#btnReport").click(function () {
         //taskenddate formate
         var taskstartdate = $("#TaskStartDate").val();
-        var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+        var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
         if (taskstartdate.match(dateformat)) {
             debugger;
             //Test which seperator is used '/' or '-'
@@ -148,8 +148,8 @@
                     return false;
                 }
             }
-            $("#TaskStartDate").css("border-color", "green");
-            return true;
+                $("#TaskStartDate").css("border-color", "green");
+                return true;
         }
         else {
             $("#TaskStartDate").css("border-color", "red");
