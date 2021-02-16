@@ -77,5 +77,12 @@ namespace MVCERP.Repository.Repository.Common
             var dt = dao.ExecuteDataTable(sql);
             return dao.ParseDictionary(sql);
         }
+
+        public Dictionary<string, string> SetDropdownRoles(string ddlName, string Param = "")
+        {
+            var sql = "EXEC PROC_RoleList @Flag=" + dao.FilterString(ddlName);
+            var dt = dao.ExecuteDataTable(sql);
+            return dao.ParseDictionary(sql);
+        }
     }
 }
