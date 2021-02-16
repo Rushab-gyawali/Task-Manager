@@ -52,6 +52,8 @@
     <Compile Include="Business\Logs\LogsBusiness.cs" />
     <Compile Include="Business\Member\IMemberBusiness.cs" />
     <Compile Include="Business\Member\MemberBusiness.cs" />
+    <Compile Include="Business\Permission\IPermissionBusiness.cs" />
+    <Compile Include="Business\Permission\PermissionBusiness.cs" />
     <Compile Include="Business\Reports\DynamicReportBusiness.cs" />
     <Compile Include="Business\Reports\IDynamicReportBusiness.cs" />
     <Compile Include="Business\Reports\IMISReportComponentBusiness.cs" />

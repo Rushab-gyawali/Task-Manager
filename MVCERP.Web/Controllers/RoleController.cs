@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace MVCERP.Web.Controllers
 {
-    [SessionExpiryFilter]
+    //[SessionExpiryFilter]
     public class RoleController : Controller
     {
 
@@ -135,5 +135,10 @@ namespace MVCERP.Web.Controllers
 
             return View(model);
         }
+
+
+        
+
+
     }
 }

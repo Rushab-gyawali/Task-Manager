@@ -3,9 +3,7 @@
 
     var user = StaticData.GetUser();
     ViewBag.user = user;
-
 }
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,24 +74,25 @@
                                 <div>
 
                                     <a href="/Home/LogOff" class="btn-action" role="button" aria-pressed="true"><i class='mdi mdi-logout' style="font-size:29px;"></i></a>
-                                   
+
                                 </div>
                             </li>
-                            <li  class="nav-item">
+                            <li class="nav-item">
                                 <div>
-                                    @using (Html.BeginForm("Profile", "Member", FormMethod.Get, new { @id = "taskform" })) { 
+                                    @using (Html.BeginForm("Profile", "Member", FormMethod.Get, new { @id = "taskform" }))
+                                    {
                                         <button type="submit" class="btn btn-block btn-success">@ViewBag.User  <img src="~/Images/user.png" width="20" alt="" /></button>
-                                        }
+                                    }
 
                                 </div>
                             </li>
                             <li class="nav-item dropdown header-profile">
                                 @*<a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <div class="header-info">
-                                        <span>Hello, <strong class="text-uppercase">@ViewBag.user</strong></span>
-                                    </div>
-                                    <img src="~/Images/user.png" width="20" alt="" />
-                                </a>*@
+                                        <div class="header-info">
+                                            <span>Hello, <strong class="text-uppercase">@ViewBag.user</strong></span>
+                                        </div>
+                                        <img src="~/Images/user.png" width="20" alt="" />
+                                    </a>*@
 
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="./app-profile.html" class="dropdown-item ai-icon">
@@ -125,11 +124,11 @@
                             <i class="flaticon-381-networking"></i>
                             <span class="nav-text">Task</span>
                         </a>
-                                <ul aria-expanded="false">
-                                    <li><a href="/TaskManager/Task">Add Task</a></li>
-                                    <li><a href="/TaskReporting/Index">Tasks</a></li>
-                                    <li><a href="/TaskReporting/GetTaskStatus">Task Status</a></li>
-                                </ul>
+                        <ul aria-expanded="false">
+                            <li><a href="/TaskManager/Task">Add Task</a></li>
+                            <li><a href="/TaskReporting/Index">Tasks</a></li>
+                            <li><a href="/TaskReporting/GetTaskStatus">Task Status</a></li>
+                        </ul>
                     </li>
                     @*dashboard list*@
 
@@ -167,16 +166,17 @@
 
                     @* Role Management *@
 
-                <li>
-                    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                        <i class="flaticon-381-television"></i>
-                        <span class="nav-text">Role</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="/Role/Index"> Roles</a></li>
+                    <li>
+                        <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                            <i class="flaticon-381-television"></i>
+                            <span class="nav-text">Role</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/Role/Index">Roles</a></li>
+                            <li><a href="/Permission/Index">Permissions</a></li>
 
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
 
                     @* Role Management *@
 

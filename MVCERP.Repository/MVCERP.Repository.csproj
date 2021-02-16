@@ -58,6 +58,8 @@
     <Compile Include="Repository\Member\MemberRepository.cs" />
     <Compile Include="Repository\Notification\INotificationRepository.cs" />
     <Compile Include="Repository\Notification\NotificationRepository.cs" />
+    <Compile Include="Repository\Permission\IPermissionRepository.cs" />
+    <Compile Include="Repository\Permission\PermissionRepository.cs" />
     <Compile Include="Repository\Report\DynamicReportRepo.cs" />
     <Compile Include="Repository\Report\IDynamicReportRepo.cs" />
     <Compile Include="Repository\Report\IMISGenerateReportRepo.cs" />
@@ -84,6 +86,7 @@
       <Name>MVCERP.Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
