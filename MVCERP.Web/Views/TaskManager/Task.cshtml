@@ -130,24 +130,23 @@
 
             //taskstartdate format
             debugger;
-            var taskstartdate = $("#TaskStartDate").val();
+            var taskenddate = $("#TaskEndDate").val();
             var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
             // Match the date format through regular expression
-            if (taskstartdate.match(dateformat)) {
+            if (taskenddate.match(dateformat)) {
                 debugger;
                 //Test which seperator is used '/' or '-'
-                var opera1 = taskstartdate.split('/');
-                var opera2 = taskstartdate.split('-');
+                var opera1 = taskenddate.split('/');
+                var opera2 = taskenddate.split('-');
                 lopera1 = opera1.length;
                 lopera2 = opera2.length;
                 // Extract the string into month, date and year
                 if (lopera1 > 1) {
-                    var pdate = taskstartdate.split('/');
+                    var pdate = taskenddate.split('/');
                 }
                 else if (lopera2 > 1) {
-                    var pdate = taskstartdate.split('-');
+                    var pdate = taskenddate.split('-');
                 }
-                debugger;
                 var mm = parseInt(pdate[0]);
                 var dd = parseInt(pdate[1]);
                 var yy = parseInt(pdate[2]);
@@ -155,7 +154,7 @@
                 var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
                 if (mm == 1 || mm > 2) {
                     if (dd > ListofDays[mm - 1]) {
-                        $("#TaskStartDate").css("border-color", "red");
+                        $("#TaskEndDate").css("border-color", "red");
                         $(".TaskEndDate").html("Invalid Date");
                         return false;
                     }
@@ -166,23 +165,23 @@
                         lyear = true;
                     }
                     if ((lyear == false) && (dd >= 29)) {
-                        $("#TaskStartDate").css("border-color", "red");
-                        $(".TaskEndDate").html("Invalid Date");
+                        $("#TaskEndDate").css("border-color", "red");
+                        $(".TaskEndDate").html("Feburary has 28 days only");
                         return false;
                     }
                     if ((lyear == true) && (dd > 29)) {
-                        $("#TaskStartDate").css("border-color", "red");
-                        $(".TaskEndDate").html("Invalid Date");
+                        $("#TaskEndDate").css("border-color", "red");
+                        $(".TaskEndDate").html("Feburary has 28 days only");
                         return false;
                     }
                 }
-                $("#TaskStartDate").css("border-color", "green");
+                $("#TaskEndDate").css("border-color", "green");
                 $(".TaskEndDate").html("");
                 return true;
             }
             else {
-                $("#TaskStartDate").css("border-color", "red");
-                $(".TaskStartDate").html("Please Enter Validate Date");
+                $("#TaskEndDate").css("border-color", "red");
+                $(".TaskEndDate").html("Please Enter Validate Date");
                 return false;
             }
 
@@ -193,31 +192,32 @@
 
     $("#btnAdd").click(function () {
         //taskenddate formate
-        var taskenddate = $("#TaskEndDate").val();
+        var taskstartdate = $("#TaskStartDate").val();
         var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
-        if (taskenddate.match(dateformat)) {
+        if (taskstartdate.match(dateformat)) {
             debugger;
             //Test which seperator is used '/' or '-'
-            var opera1 = taskenddate.split('/');
-            var opera2 = taskenddate.split('-');
+            var opera1 = taskstartdate.split('/');
+            var opera2 = taskstartdate.split('-');
             lopera1 = opera1.length;
             lopera2 = opera2.length;
             // Extract the string into month, date and year
             if (lopera1 > 1) {
-                var pdate = taskenddate.split('/');
+                var pdate = taskstartdate.split('/');
             }
             else if (lopera2 > 1) {
-                var pdate = taskenddate.split('-');
+                var pdate = taskstartdate.split('-');
             }
-            var dd = parseInt(pdate[0]);
-            var mm = parseInt(pdate[1]);
+            debugger;
+            var mm = parseInt(pdate[0]);
+            var dd = parseInt(pdate[1]);
             var yy = parseInt(pdate[2]);
             // Create list of days of a month [assume there is no leap year by default]
             var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
             if (mm == 1 || mm > 2) {
                 if (dd > ListofDays[mm - 1]) {
-                    $("#TaskEndDate").css("border-color", "red");
-                    $(".TaskEndDate").html("Invalid Date");
+                    $("#TaskStartDate").css("border-color", "red");
+                    $(".TaskStartDate").html("Invalid Date");
                     return false;
                 }
             }
@@ -227,23 +227,23 @@
                     lyear = true;
                 }
                 if ((lyear == false) && (dd >= 29)) {
-                    $("#TaskEndDate").css("border-color", "red");
-                    $(".TaskEndDate").html("Invalid Date");
+                    $("#TaskStartDate").css("border-color", "red");
+                    $(".TaskStartDate").html("Feburary has 28 days only");
                     return false;
                 }
                 if ((lyear == true) && (dd > 29)) {
-                    $("#TaskEndDate").css("border-color", "red");
-                    $(".TaskEndDate").html("Invalid Date");
+                    $("#TaskStartDate").css("border-color", "red");
+                    $(".TaskStartDate").html("Feburary has 28 days only");
                     return false;
                 }
             }
-            $("#TaskEndDate").css("border-color", "green");
-            $(".TaskEndDate").html("");
+            $("#TaskStartDate").css("border-color", "green");
+            $(".TaskStartDate").html("");
             return true;
         }
         else {
-            $("#TaskEndDate").css("border-color", "red");
-            $(".TaskEndDate").html("Please Enter Validate Date");
+            $("#TaskStartDate").css("border-color", "red");
+            $(".TaskStartDate").html("Please Enter Validate Date");
             return false;
         }
     });
