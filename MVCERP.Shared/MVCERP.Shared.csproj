@@ -60,6 +60,7 @@
     <Compile Include="Common\PwbCommon.cs" />
     <Compile Include="Common\ReportComponent.cs" />
     <Compile Include="Common\RoleCommon.cs" />
+    <Compile Include="Common\RolesCommon.cs" />
     <Compile Include="Common\StaticDataCommon.cs" />
     <Compile Include="Common\TaskReportingCommon.cs" />
     <Compile Include="Library\ExcelDownload.cs" />

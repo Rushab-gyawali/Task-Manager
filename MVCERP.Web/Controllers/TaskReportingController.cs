@@ -1,6 +1,8 @@
 ﻿using MVCERP.Business.Business.Common;
 using MVCERP.Business.Business.TaskReporting;
 using MVCERP.Shared.Common;
+using MVCERP.Web.App_Start;
+using MVCERP.Web.Filters;
 using MVCERP.Web.Library;
 using MVCERP.Web.Models;
 using System;
@@ -19,18 +21,26 @@ namespace MVCERP.Web.Controllers
        ITaskReportingBusiness _business;
         ICommonBuss ddl;
 
+     
         public TaskReportingController(ITaskReportingBusiness business, ICommonBuss _ddl)
         {
             _business = business;
             ddl = _ddl;
         }
-        
+        [CheckSessionOut]
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult UserDetail()
         {
+            StaticData.CheckSession();
+            
+            
+
+
+
+
             var user = StaticData.GetUser();
             ViewBag.user = user;
             //var data = _business.GetUserDetails(user);

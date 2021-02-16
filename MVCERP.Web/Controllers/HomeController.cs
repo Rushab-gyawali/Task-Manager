@@ -12,6 +12,7 @@ namespace MVCERP.Web.Controllers
 {
     //[Authorize]
     //[InitializeSimpleMembership]
+    
     public class HomeController : Controller
     {
         IUserBusiness buss;
@@ -31,7 +32,7 @@ namespace MVCERP.Web.Controllers
         [AllowAnonymous]
         public ActionResult Index(string log = null)
         {
-
+            
             //CheckLicense();
 
 
@@ -71,11 +72,14 @@ namespace MVCERP.Web.Controllers
                 return "Not Found";
         }
 
+
+        
         [HttpPost]
         [AllowAnonymous]
-       // [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Index(LoginModel model)
         {
+           // StaticData.CheckSession();
             string ip = Request.ServerVariables["REMOTE_ADDR"]
                     , browser = Request.Browser.Browser + " Version :" + Request.Browser.Version;
         
@@ -90,7 +94,7 @@ namespace MVCERP.Web.Controllers
             if (resp.Code == "0")
             {
 
-                Session["ForcePwdChange"] = resp.ForcePwdChange;
+               // Session["ForcePwdChange"] = resp.ForcePwdChange;
                 Session["UserName"] = model.UserName;              
                 Session["sysDate"] = StaticData.DBToFrontDate(System.DateTime.Now.ToShortDateString());
                 return RedirectToAction("UserDetail", "TaskReporting");
@@ -101,14 +105,15 @@ namespace MVCERP.Web.Controllers
         // [Authorize]
 
         [Authorize]
-
         [HttpGet]
         [Authorize]
         [SessionExpiryFilter]
         public ActionResult LogOff()
         {
+            StaticData.CheckSession();
             UserMonitor.GetInstance().RemoveUser(StaticData.GetUser());
             //WebSecurity.Logout();
+            Session.Clear();
             Session.Abandon();
             Session.RemoveAll();
             Session.Clear();

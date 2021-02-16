@@ -58,6 +58,8 @@
     <Compile Include="Business\Reports\IReportBusiness.cs" />
     <Compile Include="Business\Reports\MISReportComponentBusiness.cs" />
     <Compile Include="Business\Reports\ReportBusiness.cs" />
+    <Compile Include="Business\Roles\IRolesBusiness.cs" />
+    <Compile Include="Business\Roles\RolesBusiness.cs" />
     <Compile Include="Business\Role\IRoleBusiness.cs" />
     <Compile Include="Business\Role\RoleBusiness.cs" />
     <Compile Include="Business\StaticData\IStaticDataBusiness.cs" />

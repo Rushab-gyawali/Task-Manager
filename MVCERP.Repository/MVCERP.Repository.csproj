@@ -65,6 +65,8 @@
     <Compile Include="Repository\Report\MISGenerateReportRepo.cs" />
     <Compile Include="Repository\Report\ReportRepository.cs" />
     <Compile Include="Repository\RepositoryDao.cs" />
+    <Compile Include="Repository\Roles\IRolesRepository.cs" />
+    <Compile Include="Repository\Roles\RolesRepository.cs" />
     <Compile Include="Repository\Role\IRoleRepository.cs" />
     <Compile Include="Repository\Role\RoleRepository.cs" />
     <Compile Include="Repository\StaticData\IStaticDataRepository.cs" />

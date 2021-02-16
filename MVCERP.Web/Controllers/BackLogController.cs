@@ -23,12 +23,17 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult Index()
         {
+
+            StaticData.CheckSession();
             return View();
         }
 
 
         public ActionResult AddBackLogTask()
         {
+
+            StaticData.CheckSession();
+
             string id = Request.QueryString["id"];
             var ID = StaticData.Base64Decode_URL(id);
             var model = new BackLogTaskModel();
@@ -57,6 +62,8 @@ namespace MVCERP.Web.Controllers
         [HttpPost]
         public ActionResult AddBackLogTask(BackLogTaskModel task)
         {
+
+            StaticData.CheckSession();
             var user = StaticData.GetUser();
 
             if (ModelState.IsValid)
@@ -97,6 +104,7 @@ namespace MVCERP.Web.Controllers
         }
         public JsonResult ListBackLogTask()
         {
+            StaticData.CheckSession();
             var data = bussiness.ListBackLogTask();
             for (int i = 0; i < data.Count; i++)
             {
@@ -110,6 +118,9 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult DeleteTask()
         {
+
+            StaticData.CheckSession();
+
             string id = Request.QueryString["id"];
             var Id = StaticData.Base64Decode_URL(id);
             var ID = Convert.ToInt32(Id);

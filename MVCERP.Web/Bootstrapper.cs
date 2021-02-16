@@ -16,6 +16,8 @@ using MVCERP.Repository.Repository.Member;
 using MVCERP.Business.Business.TaskReport;
 using MVCERP.Business.Business.BackLog;
 using MVCERP.Repository.Repository.BackLog;
+using MVCERP.Business.Business.Roles;
+using MVCERP.Repository.Repository.Roles;
 
 namespace MVCERP.Web
 {
@@ -52,6 +54,8 @@ namespace MVCERP.Web
             container.RegisterType<ITaskReportBusiness, TaskReportBusiness>();
             container.RegisterType<IBackLogBusiness, BackLogBusiness>();
             container.RegisterType<IBackLogRepository, BackLogRepository>();
+            container.RegisterType<IRolesBusiness, RolesBusiness>();
+            container.RegisterType<IRolesRepository, RolesRepository > ();
 
 
             return container;
