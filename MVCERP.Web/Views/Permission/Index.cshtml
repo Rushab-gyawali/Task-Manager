@@ -1,0 +1,18 @@
+﻿@model MVCERP.Web.Models.PermissionModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
+}
+
+<h2>Permissions</h2>
+
+@using (Html.BeginForm("Index", "Permission", FormMethod.Post, new { @id = "Permission-form", @name = "Permission-form" }))
+{
+
+    <div class="form-group">
+        <label for="RoleId">Roles</label>
+        @Html.DropDownListFor(x => x.RoleId, ViewData["RoleName"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
+        <small class="AssignTo"></small>
+    </div>
+}
