@@ -74,9 +74,11 @@
                     <input type="checkbox" onclick="myFunction()"> Show Password
                 </div>
 
-                <div class="form-group">
-                    <label for="AdminRight">Admin Right</label>
-                    @Html.CheckBoxFor(x => x.AdminRight, new { @class = "form-control", @id = "AdminRight" })
+                <div class="form-check">
+                    @Html.CheckBoxFor(x => x.AdminRight, new { @class = "form-check-input", @id = "AdminRight" })
+                    <label class="form-check-label" for="AdminRight">
+                        Admin Right
+                    </label>
                 </div>
 
                 <div class="form-group">

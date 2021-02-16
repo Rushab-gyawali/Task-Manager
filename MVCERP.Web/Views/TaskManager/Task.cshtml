@@ -23,27 +23,33 @@
                 <div class="form-group">
                     <label for="TaskName">TaskName</label>
                     @Html.TextBoxFor(x => x.TaskName, new { @placeholder = "Enter TaskName", @class = "form-control", @id = "TaskName", @required = "required" })
+                <small class="TaskName"></small>
                 </div>
                 <div class="form-group">
                     <label for="TaskStartDate">TaskStartDate</label>
                     @Html.TextBoxFor(x => x.TaskStartDate, new { @placeholder = "TaskStartDate [mm/dd/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskStartDate", @autocomplete = "off", @required = "required" })
+                    <small class="TaskStartDate"></small>
                 </div>
                 <div class="form-group">
                     <label for="TaskEndDate">TaskEndDate</label>
-                    @Html.TextBoxFor(x => x.TaskEndDate, new { @placeholder = "TaskEndDate [mm/dd/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskEndDate", @autocomplete = "off", @required = "required" })
+                    @Html.TextBoxFor(x => x.TaskEndDate, new { @placeholder = "TaskEndDate [mm/d/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskEndDate", @autocomplete = "off", @required = "required" })
+                    <small class="TaskEndDate"></small>
                 </div>
                 <div class="form-group">
                     <label for="AssignTo">AssignTo</label>
                     @Html.DropDownListFor(x => x.AssignTo, ViewData["AssignTo"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
+                    <small class="AssignTo"></small>
                 </div>
                 <div class="form-group">
                     <label for="TaskDescription">TaskDescription</label>
                     @Html.TextAreaFor(x => x.TaskDescription, new { @placeholder = "TaskDescription", @class = "form-control", @id = "TaskDescription", @required = "required" })
+                    <small class="TaskDescription"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="Status">Status</label>
                     @Html.DropDownListFor(x => x.Status, ViewData["Status"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
+                    <small class="Status"></small>
 
                 </div>
             </div>
@@ -69,14 +75,18 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnAdd").click(function () {
+            debugger;
             if ($("#TaskName").val() == "") {
                 $("#TaskName").css("border-color", "red");
+                $(".TaskName").html("Please Enter Task Name");
             }
             else if ($("#TaskName").val().match(/(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})$/)){
                 $("#TaskName").css("border-color", "green");
+                $(".TaskName").html("");
             }
             else if (!$("#TaskName").val().match(/(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})$/)) {
                 $("#TaskName").css("border-color", "red");
+                $(".TaskName").html("Please enter atleast 6 letter or enter character only");
             }
             else {
                 $("#TaskName").css("border-color", "red");
@@ -84,31 +94,44 @@
 
             if ($("#TaskDescription").val() == "") {
                 $("#TaskDescription").css("border-color", "red");
+                $(".TaskDescription").html("Please Enter Task Description");
+            }
+            else if ($("#TaskDescription").val() !== "") {
+                $("#TaskDescription").css("border-color", "green");
+                $(".TaskDescription").html("");
             }
             else {
-                $("#TaskDescription").css("border-color", "green");
+                $("#TaskDescription").css("border-color", "red");
             }
 
             if ($("#AssignTo").val() == "") {
                 $("#AssignTo").css("border-color", "red");
+                $(".AssignTo").html("Please Fill AssignTo Input");
             }
-
+            else if ($("#AssignTo").val() !== "") {
+                $("#AssignTo").css("border-color", "green");
+                $(".AssignTo").html("");
+            }
             else {
                 $("#AssignTo").css("border-color", "green");
             }
 
             if ($("#Status").val() == "") {
                 $("#Status").css("border-color", "red");
+                $(".Status").html("Please Fill Status Input");
             }
-
-            else {
+            else if ($("#Status").val() !== "") {
                 $("#Status").css("border-color", "green");
+                $(".Status").html("");
+            }
+            else {
+                $("#Status").css("border-color", "red");
             }
 
             //taskstartdate format
-
+            debugger;
             var taskstartdate = $("#TaskStartDate").val();
-            var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+            var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
             // Match the date format through regular expression
             if (taskstartdate.match(dateformat)) {
                 debugger;
@@ -124,14 +147,16 @@
                 else if (lopera2 > 1) {
                     var pdate = taskstartdate.split('-');
                 }
-                var dd = parseInt(pdate[0]);
-                var mm = parseInt(pdate[1]);
+                debugger;
+                var mm = parseInt(pdate[0]);
+                var dd = parseInt(pdate[1]);
                 var yy = parseInt(pdate[2]);
                 // Create list of days of a month [assume there is no leap year by default]
                 var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
                 if (mm == 1 || mm > 2) {
                     if (dd > ListofDays[mm - 1]) {
                         $("#TaskStartDate").css("border-color", "red");
+                        $(".TaskEndDate").html("Invalid Date");
                         return false;
                     }
                 }
@@ -142,18 +167,22 @@
                     }
                     if ((lyear == false) && (dd >= 29)) {
                         $("#TaskStartDate").css("border-color", "red");
+                        $(".TaskEndDate").html("Invalid Date");
                         return false;
                     }
                     if ((lyear == true) && (dd > 29)) {
                         $("#TaskStartDate").css("border-color", "red");
+                        $(".TaskEndDate").html("Invalid Date");
                         return false;
                     }
                 }
                 $("#TaskStartDate").css("border-color", "green");
+                $(".TaskEndDate").html("");
                 return true;
             }
             else {
                 $("#TaskStartDate").css("border-color", "red");
+                $(".TaskStartDate").html("Please Enter Validate Date");
                 return false;
             }
 
@@ -165,7 +194,7 @@
     $("#btnAdd").click(function () {
         //taskenddate formate
         var taskenddate = $("#TaskEndDate").val();
-        var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+        var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
         if (taskenddate.match(dateformat)) {
             debugger;
             //Test which seperator is used '/' or '-'
@@ -188,6 +217,7 @@
             if (mm == 1 || mm > 2) {
                 if (dd > ListofDays[mm - 1]) {
                     $("#TaskEndDate").css("border-color", "red");
+                    $(".TaskEndDate").html("Invalid Date");
                     return false;
                 }
             }
@@ -198,18 +228,22 @@
                 }
                 if ((lyear == false) && (dd >= 29)) {
                     $("#TaskEndDate").css("border-color", "red");
+                    $(".TaskEndDate").html("Invalid Date");
                     return false;
                 }
                 if ((lyear == true) && (dd > 29)) {
                     $("#TaskEndDate").css("border-color", "red");
+                    $(".TaskEndDate").html("Invalid Date");
                     return false;
                 }
             }
             $("#TaskEndDate").css("border-color", "green");
+            $(".TaskEndDate").html("");
             return true;
         }
         else {
             $("#TaskEndDate").css("border-color", "red");
+            $(".TaskEndDate").html("Please Enter Validate Date");
             return false;
         }
     });

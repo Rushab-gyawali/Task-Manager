@@ -9,13 +9,8 @@
 <h2>BackLogTask</h2>
 <div class="User-form" style="padding-top:30px;">
     <div class="container container-fluid">
-        <div class="text-danger">
-            @ViewBag.ErrorMessage
-        </div>
         @using (Html.BeginForm("AddBackLogTask", "BackLog", FormMethod.Post, new { @id = "Singupform" }))
         {
-
-            <h2 class=" form-title"> Register User</h2>
             <div style="display:grid;grid-template-columns:auto auto;grid-column-gap:50px">
 
 
@@ -24,9 +19,6 @@
 
                 <div class="form-group">
                     <label for="TaskName">Task Name</label>
-                    <div class="text-danger">
-                        @Html.ValidationMessageFor(x => x.TaskName)
-                    </div>
                     @Html.TextBoxFor(x => x.TaskName, new { @placeholder = "Task Name", @class = "form-control", @id = "TaskName" })
                 </div>
 
@@ -56,10 +48,7 @@
 
 
                 <div class="form-group">
-                    <label for="ClientId">Client Id </label>
-                    <div class="text-danger">
-                        @Html.ValidationMessageFor(x => x.ClientId)
-                    </div>
+                    <label for="ClientId">Client Id </label>    
                     @Html.TextBoxFor(x => x.ClientId, new { @placeholder = "ClientId", @class = "form-control", @id = "ClientId" })
 
                 </div>
