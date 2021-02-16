@@ -146,7 +146,7 @@ namespace MVCERP.Repository.Repository.User
             return dao.ParseDbResponse(sql);
         }
 
-        public UserCommon UserLogin(LoginCommon login)
+        public MemberCommon UserLogin(LoginCommon login)
         {
             var sql = "EXEC proc_UserLogin @FLAG ='login'";
 
@@ -156,11 +156,8 @@ namespace MVCERP.Repository.Repository.User
             sql += ",@BrowserInfo = " + dao.FilterString(login.BrowserInfo);
 
 
-
-
-
             var dr = dao.ExecuteDataRow(sql);
-          var model = new UserCommon();
+          var model = new MemberCommon();
             if (null !=dr)
             {
                 model.Code = dr["CODE"].ToString();

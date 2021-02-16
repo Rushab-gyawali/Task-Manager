@@ -7,6 +7,7 @@ using System.Text;
 
 namespace MVCERP.Repository.Repository.BackLog
 {
+    
      public class BackLogRepository : IBackLogRepository
     {
         RepositoryDao dao;

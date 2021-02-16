@@ -16,7 +16,7 @@ namespace MVCERP.Business.Business.User
         DbResponse AssignUserRole(string User, string Username, string RoleList);
         DbResponse Changeuserpassword(string username,string pwd,string id);
 
-        UserCommon UserLogin(LoginCommon login);
+        MemberCommon UserLogin(LoginCommon login);
 
         List<UserCommon> GetAllList(string User, string Search, int Pagesize);
 

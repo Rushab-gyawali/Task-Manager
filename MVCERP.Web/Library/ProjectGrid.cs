@@ -22,8 +22,8 @@ namespace MVCERP.Web.Library
                 sb.AppendLine("<div class=\"col-sm-6\">");
                 //sb.AppendLine("<h1>Agency List</h1>");
                 sb.AppendLine("<ol class=\"breadcrumb\">");
-                sb.AppendLine(string.Format("<li><a href=\"#\">{0}</a></li>", (breadcrumb1 == "" ? "Home" : breadcrumb1)));
-                sb.AppendLine(string.Format("<li><a href=\"#\">{0}</a></li>", (breadcrumb2 == "" ? "Management" : breadcrumb2)));
+                //sb.AppendLine(string.Format("<li><a href=\"#\">{0}</a></li>", (breadcrumb1 == "" ? "Home" : breadcrumb1)));
+                //sb.AppendLine(string.Format("<li><a href=\"#\">{0}</a></li>", (breadcrumb2 == "" ? "Management" : breadcrumb2)));
                 sb.AppendLine("<li class=\"active\">" + ControlerName + " List</li>");
                 sb.AppendLine("</ol>");
                 sb.AppendLine("</div>");

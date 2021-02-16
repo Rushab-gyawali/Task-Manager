@@ -8,9 +8,10 @@ using System.Collections.Generic;
 
 namespace MVCERP.Web.Controllers
 {
-    [SessionExpiryFilter]
+    //[SessionExpiryFilter]
     public class RoleController : Controller
     {
+
         MVCERP.Business.Business.Role.IRoleBusiness buss;
         private const string ControllerName = "Role";
         private const string ViewId = "108400";
@@ -18,6 +19,7 @@ namespace MVCERP.Web.Controllers
         private const string RoleId = "108420";
         public RoleController(MVCERP.Business.Business.Role.IRoleBusiness _buss)
         {
+            StaticData.CheckSession();
             buss = _buss;
         }
         //
@@ -25,7 +27,7 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult Index(string Search="", int Pagesize=10)
         {
-            StaticData.CheckFunctionId(ControllerName,ViewId);
+            StaticData.CheckSession();
             var list = buss.GetList(StaticData.GetUser(), Search, Pagesize);
             foreach (var item in list)
             {
@@ -40,8 +42,8 @@ namespace MVCERP.Web.Controllers
             param.Add("Action", "Action");
 
             ProjectGrid.column = param;
-            var grid = ProjectGrid.MakeGrid(list, "Role", Search, Pagesize, true, "", "", "Setup", "System Setup");
-            ViewData["grid"] = grid;
+          var grid = ProjectGrid.MakeGrid(list, "Role", Search, Pagesize, true);
+          ViewData["grid"] = grid;
             return View();
         }
 
@@ -50,6 +52,7 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult Details(int id = 0)
         {
+            StaticData.CheckSession();
             RoleModel rolemodel = null;// db.RoleModels.Find(id);
             if (rolemodel == null)
             {
@@ -60,7 +63,7 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult Role()
         {
-            StaticData.CheckFunctionId(ControllerName,RoleId);
+            StaticData.CheckSession();
             string id = StaticData.GetIdFromQuery();
             var data = buss.GetAssignedList(StaticData.GetUser(), id);
             ViewData["Menu"] = Helper.GetMenuList(data);
@@ -71,7 +74,7 @@ namespace MVCERP.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Role(string returnUrl)
         {
-            StaticData.CheckFunctionId(ControllerName,RoleId);
+            StaticData.CheckSession();
             var id = Request.Form["RoleId"];
             var functionRole = Request.Form["functionRole"];
             functionRole = StaticData.MakeXmlByComa(functionRole);
@@ -91,7 +94,7 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult Manage()
         {
-            StaticData.CheckFunctionId(ControllerName, AddEditId);
+            StaticData.CheckSession();
             RoleModel model = new RoleModel();
             var data = buss.GetListById(StaticData.GetUser(), StaticData.GetIdFromQuery());
             if (data.Count > 0)
@@ -111,7 +114,7 @@ namespace MVCERP.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Manage(RoleModel model)
         {
-            StaticData.CheckFunctionId(ControllerName, AddEditId);
+            StaticData.CheckSession();
             if (ModelState.IsValid)
             {
                 MVCERP.Shared.Common.RoleCommon common = new MVCERP.Shared.Common.RoleCommon();
@@ -132,5 +135,10 @@ namespace MVCERP.Web.Controllers
 
             return View(model);
         }
+
+
+        
+
+
     }
 }

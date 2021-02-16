@@ -52,12 +52,16 @@
     <Compile Include="Business\Logs\LogsBusiness.cs" />
     <Compile Include="Business\Member\IMemberBusiness.cs" />
     <Compile Include="Business\Member\MemberBusiness.cs" />
+    <Compile Include="Business\Permission\IPermissionBusiness.cs" />
+    <Compile Include="Business\Permission\PermissionBusiness.cs" />
     <Compile Include="Business\Reports\DynamicReportBusiness.cs" />
     <Compile Include="Business\Reports\IDynamicReportBusiness.cs" />
     <Compile Include="Business\Reports\IMISReportComponentBusiness.cs" />
     <Compile Include="Business\Reports\IReportBusiness.cs" />
     <Compile Include="Business\Reports\MISReportComponentBusiness.cs" />
     <Compile Include="Business\Reports\ReportBusiness.cs" />
+    <Compile Include="Business\Roles\IRolesBusiness.cs" />
+    <Compile Include="Business\Roles\RolesBusiness.cs" />
     <Compile Include="Business\Role\IRoleBusiness.cs" />
     <Compile Include="Business\Role\RoleBusiness.cs" />
     <Compile Include="Business\StaticData\IStaticDataBusiness.cs" />
