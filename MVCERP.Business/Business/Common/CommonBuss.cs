@@ -49,5 +49,10 @@ namespace MVCERP.Business.Business.Common
         {
             return repo.SetDropdownUser(ddlName,Param);
         }
+
+        public Dictionary<string, string> SetDropdownRoles(string ddlName, string Param = "")
+        {
+            return repo.SetDropdownRoles(ddlName, Param);
+        }
     }
 }

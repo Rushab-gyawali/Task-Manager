@@ -6,3 +6,15 @@
 }
 
 <h2>Permissions</h2>
+<<<<<<< HEAD
+=======
+
+@using (Html.BeginForm("Index", "Permission", FormMethod.Post, new { @id = "Permission-form", @name = "Permission-form" }))
+{
+
+    <div class="form-group">
+        <label for="RoleId">Roles</label>
+        @Html.DropDownListFor(x => x.RoleName, ViewData["Roles"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
+    </div>
+}
+>>>>>>> a5b17ff59a12de0066dea114a3ad688163296373
