@@ -202,7 +202,7 @@
     <Compile Include="Library\UserMonitor.cs" />
     <Compile Include="Models\BackLogTaskModel.cs" />
     <Compile Include="Models\MemberModel.cs" />
-    <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\PermissionModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\RolesModel.cs" />
     <Compile Include="Models\TaskReportingModel.cs" />

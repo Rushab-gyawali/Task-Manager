@@ -18,6 +18,8 @@ using MVCERP.Business.Business.BackLog;
 using MVCERP.Repository.Repository.BackLog;
 using MVCERP.Business.Business.Roles;
 using MVCERP.Repository.Repository.Roles;
+using MVCERP.Business.Business.Permission;
+using MVCERP.Repository.Repository.Permission;
 
 namespace MVCERP.Web
 {
@@ -56,6 +58,8 @@ namespace MVCERP.Web
             container.RegisterType<IBackLogRepository, BackLogRepository>();
             container.RegisterType<IRolesBusiness, RolesBusiness>();
             container.RegisterType<IRolesRepository, RolesRepository > ();
+            container.RegisterType<IPermissionBusiness, PermissionBusiness>();
+            container.RegisterType<IPermissionRepository, PermissionRepository>();
 
 
             return container;
