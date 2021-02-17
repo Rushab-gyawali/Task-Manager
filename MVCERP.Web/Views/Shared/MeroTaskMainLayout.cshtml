@@ -33,9 +33,9 @@
 
     <div id="main-wrapper">
         <div class="nav-header">
-            <a href="#" class="brand-logo">
+            <a href="#" class="brand-logo" style="height:50px">
                 <img class="logo-abbr" src="~/UI/MeroTaskDashboard/images/MY_Logo.jpg" alt="MeroTaskLogo" style="max-width:100px">
-                <p>Task Manager</p>
+                @*<p>Task Manager</p>*@
 
             </a>
 
@@ -90,21 +90,18 @@
             </div>
         </div>
 
-        <div class="deznav">
+        <div class="deznav" style="margin-top:unset">
             <div class="deznav-scroll">
-                <ul class="metismenu" id="menu">
+                <ul class="metismenu" id="menu" style="padding-top:0px;">
                     <li>
                         <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                             <i class="flaticon-381-networking"></i>
-                            <span class="nav-text">Dashboard</span>
+                            <span class="nav-text">Task</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Analytics</a></li>
-                            <li><a href="#">Review</a></li>
-                            <li><a href="#">Order</a></li>
-                            <li><a href="#">Order List</a></li>
-                            <li><a href="#">General Customers</a></li>
+                            <li><a href="#">ListofTask</a></li>
+                            <li><a href="#">AddNewTask</a></li>
+
                         </ul>
                     </li>
                     <li>
@@ -121,55 +118,15 @@
                     <li>
                         <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                             <i class="flaticon-381-controls-3"></i>
-                            <span class="nav-text">Charts</span>
+                            <span class="nav-text">BackLog</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#">Flot</a></li>
-                            <li><a href="#">Morris</a></li>
-                            <li><a href="#">Chartjs</a></li>
-                            <li><a href="#">Chartist</a></li>
-                            <li><a href="#">Sparkline</a></li>
-                            <li><a href="#">Peity</a></li>
+                            <li><a href="/Sprint/Index">SprintList</a></li>
+                            <li><a href="#">AddedSprint</a></li>
+                            
                         </ul>
                     </li>
-                    <li>
-                        <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                            <i class="flaticon-381-internet"></i>
-                            <span class="nav-text">Bootstrap</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="#">Accordion</a></li>
-                            <li><a href="#">Alert</a></li>
-                            <li><a href="#">Badge</a></li>
-                            <li><a href="#">Button</a></li>
-                            <li><a href="#">Modal</a></li>
-                            <li><a href="#">Button Group</a></li>
-                            <li><a href="#">List Group</a></li>
-                            <li><a href="#">Media Object</a></li>
 
-
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                            <i class="flaticon-381-heart"></i>
-                            <span class="nav-text">Plugins</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="#">Select 2</a></li>
-                            <li><a href="#">Nestedable</a></li>
-                            <li><a href="#">Noui Slider</a></li>
-                            <li><a href="#">Sweet Alert</a></li>
-                            <li><a href="#">Toastr</a></li>
-                            <li><a href="#">Jqv Map</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="widget-basic.html" class="ai-icon" aria-expanded="false">
-                            <i class="flaticon-381-settings-2"></i>
-                            <span class="nav-text">Widget</span>
-                        </a>
-                    </li>
                 </ul>
 
 
@@ -203,7 +160,9 @@
     <script src="~/UI/js/jquery-ui.min.js"></script>
     <script src="~/UI/MeroTaskDashboard/js/popper.min.js"></script>
     <script src="~/UI/MeroTaskDashboard/vendor/bootstrap/dist/js/bootstrap.js"></script>
+
     @*<script src="~/UI/MeroTaskDashboard/vendor/datatables/js/jquery.dataTables.min.js"></script>*@
+
     <!-- Required vendors -->
 
     <script src="~/UI/MeroTaskDashboard/vendor/global/global.min.js"></script>

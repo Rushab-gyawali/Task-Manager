@@ -68,7 +68,7 @@ namespace MVCERP.Web.Controllers
                     common.CreatedBy = task.CreatedBy;
                     common.AssignTo = task.AssignTo;
                     common.TaskId = task.TaskId;
-                var response = buss.TaskManager(common);
+                    var response = buss.TaskManager(common);
                     StaticData.SetMessageInSession(response);
                     if (response.ErrorCode == 1)
                     {

@@ -65,6 +65,8 @@
     <Compile Include="Repository\RepositoryDao.cs" />
     <Compile Include="Repository\Role\IRoleRepository.cs" />
     <Compile Include="Repository\Role\RoleRepository.cs" />
+    <Compile Include="Repository\Sprint\ISprintRepository.cs" />
+    <Compile Include="Repository\Sprint\SprintRepository.cs" />
     <Compile Include="Repository\StaticData\IStaticDataRepository.cs" />
     <Compile Include="Repository\StaticData\StaticDataRepository.cs" />
     <Compile Include="Repository\TaskManager\ITaskManagerRepository.cs" />

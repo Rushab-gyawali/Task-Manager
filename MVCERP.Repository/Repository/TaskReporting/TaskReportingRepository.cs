@@ -17,7 +17,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
 
         public DbResponse ChangeTask(string id, string task)
         {
-            var sql = "EXEC proc_tblTaskManagers ";
+            var sql = "EXEC PROC_TBLTASK ";
             sql += "@Flag = 'C'";
             sql += ",@TaskId = " + dao.FilterString(id);
             sql += ",@Status = " + dao.FilterString(task);
@@ -29,7 +29,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
             var list = new List<TaskReportingCommon>();
             try
             {
-                var sql = "EXEC proc_tblTaskManagers ";
+                var sql = "EXEC PROC_TBLTASK ";
                 sql += "@Flag = 'A'";
                 var dt = dao.ExecuteDataTable(sql);
 
@@ -69,7 +69,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
             var list = new List<TaskReportingCommon>();
             try
             {
-                var sql = "EXEC proc_tblTaskManagers ";
+                var sql = "EXEC PROC_TBLTASK ";
                 sql += "@FLAG = 'S'";
                 var dt = dao.ExecuteDataTable(sql);
 
