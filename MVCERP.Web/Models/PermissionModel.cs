@@ -6,13 +6,10 @@ using System.Web.Mvc;
 
 namespace MVCERP.Web.Models
 {
-    public class PermissionModel
+    public class PermissionModel : RoleModel
     {
-        public int MenuId { get; set; }
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
-
-        public IEnumerable<SelectListItem> RoleList { get; set; }
-        public IEnumerable<SelectListItem> ModelList { get; set; }
+        public string ParentMenu { get; set; }
+        public string Menu { get; set; }
+        public string URL { get; set; }
     }
 }

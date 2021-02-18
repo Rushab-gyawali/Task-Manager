@@ -9,6 +9,11 @@ namespace MVCERP.Repository.Repository.Permission
     public class PermissionRepository : IPermissionRepository
     {
         RepositoryDao dao;
+        public PermissionRepository()
+        {
+            dao = new RepositoryDao();
+        }
+
         public DbResponse Delete(int ID)
         {
             throw new NotImplementedException();
@@ -29,14 +34,14 @@ namespace MVCERP.Repository.Repository.Permission
             throw new NotImplementedException();
         }
 
-        public List<PermissionCommon> RolesList(string status, string user)
+
+        public List<PermissionCommon> MenuList()
         {
             var list = new List<PermissionCommon>();
             try
             {
-                var sql = "EXEC PROC_RoleList ";
-                sql += "@Flag = 'ListRoles'";
-                sql += ",@Roles = " + dao.FilterString(user);
+                var sql = "EXEC PROC_PERMISSION ";
+                sql += "@Flag = 'List'";
                 var dt = dao.ExecuteDataTable(sql);
 
                 if (null != dt)
@@ -46,8 +51,9 @@ namespace MVCERP.Repository.Repository.Permission
                     {
                         var commonrole = new PermissionCommon()
                         {
-                            RoleId = Convert.ToInt32(item["RowId"]),
-                            RoleName = item["RoleName"].ToString(),
+                            ParentMenu = item["ParentMenu"].ToString(),
+                            Menu = item["Menu"].ToString(),
+                            MenuId = Convert.ToInt32(item["MenuId"]),
                         };
                         sn++;
                         list.Add(commonrole);
@@ -59,6 +65,48 @@ namespace MVCERP.Repository.Repository.Permission
             {
                 throw e;
             }
+        }
+        public List<PermissionCommon> GetMenuByUser(string User)
+        {
+            var list = new List<PermissionCommon>();
+            try
+            {
+                var sql = "EXEC PROC_PERMISSION ";
+                sql += "@Flag = 'UserMenu'";
+                sql += ",@User = " + User;
+                var dt = dao.ExecuteDataTable(sql);
+
+                if (null != dt)
+                {
+                    int sn = 1;
+                    foreach (System.Data.DataRow item in dt.Rows)
+                    {
+                        var commonrole = new PermissionCommon()
+                        {
+                            ParentMenu = item["ParentMenu"].ToString(),
+                            Menu = item["Menu"].ToString(),
+                            URL = item["URL"].ToString(),
+                        };
+                        sn++;
+                        list.Add(commonrole);
+                    }
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public DbResponse GetMenuPermission(PermissionCommon common,string user)
+        {
+            var sql = "EXEC PROC_PERMISSION ";
+            sql += "@Flag = 'AddPermissionRole'";
+            sql += ",@FK_MenuId =" + common.MenuId;
+            sql += ",@RoleName =" + dao.FilterString(common.RoleName);
+            sql += ",@UserName =" + dao.FilterString(user);
+            return dao.ParseDbResponse(sql);
         }
     }
 }

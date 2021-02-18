@@ -12,9 +12,11 @@ namespace MVCERP.Business.Business.Permission
         DbResponse Manage(PermissionCommon common);
 
         List<PermissionCommon> GetById(string ID);
-        DbResponse Delete(int ID);
-
-        List<PermissionCommon> RolesList(string status, string user);
+        DbResponse Delete(int ID); 
+        DbResponse GetMenuPermission(PermissionCommon common, string user);
+        List<PermissionCommon> MenuList();
+        List<PermissionCommon> GetMenuByUser(string User);
+        
 
     }
 }
