@@ -106,7 +106,6 @@ namespace MVCERP.Web.Controllers
                 ViewBag.statuscount = model.StatusCount;
             }
 
-            ViewData["Status"] = StaticData.SetDDLValue(ddl.SetDropdown("StatusList", StaticData.GetUser()), "", "Select Status");
             return View();
         }
 

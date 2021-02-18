@@ -14,5 +14,9 @@ namespace MVCERP.Business.Business.Member
         DbResponse AddUsers(MemberCommon setup);
         List<MemberCommon> GetById(string ID);
         DbResponse DeleteUser(int ID);
+
+        object GetUserRole(string User, string UserId);
+
+        DbResponse AssignUserRole(MemberCommon model);
     }
 }

@@ -14,5 +14,7 @@ namespace MVCERP.Business.Business.Permission
         List<PermissionCommon> GetById(string ID);
         DbResponse Delete(int ID);
 
+        List<PermissionCommon> RolesList(string status, string user);
+
     }
 }

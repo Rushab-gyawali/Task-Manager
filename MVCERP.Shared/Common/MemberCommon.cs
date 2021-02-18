@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
+using System.Web.Mvc;
 
 namespace MVCERP.Shared.Common
 {
@@ -14,6 +16,11 @@ namespace MVCERP.Shared.Common
         public string PhoneNo { get; set; }
         public string Password { get; set; }
         public bool AdminRight { get; set; }
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
+        public IEnumerable<SelectListItem> RoleList { get; set; }
+        public DataTable UserData { get; set; }
+
 
     }
     public class ChangePassword
@@ -34,6 +41,9 @@ namespace MVCERP.Shared.Common
         public string ConfirmPassword { get; set; }
 
     }
+
+
+   
 
 
 }

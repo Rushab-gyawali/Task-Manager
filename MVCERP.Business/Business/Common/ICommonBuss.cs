@@ -15,5 +15,8 @@ namespace MVCERP.Business.Business.Common
 
         object GetDropdownForJQuery(string flag, string param,string User);
         Dictionary<string, string> SetDropdownUser(string ddlName, string Param = "");
+
+
+        Dictionary<string, string> SetDropdownRoles(string ddlName, string Param = "");
     }
 }
