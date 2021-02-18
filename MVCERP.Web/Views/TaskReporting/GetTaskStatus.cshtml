@@ -9,17 +9,12 @@
 @{
     var statusList = Model.Select(x => x.Status).Distinct().ToList();
 
-<<<<<<< HEAD
-    var notAssignedList = Model.Where(x => x.Status == "NULL").ToList().Take(10);
-    var inProgressList = Model.Where(x => x.Status == "active").ToList().Take(10);
-    var completedList = Model.Where(x => x.Status == "Completed").ToList().Take(10);
-    var TestingList = Model.Where(x => x.Status == "Testing").ToList().Take(10);
-=======
+
     var notAssignedList = Model.Where(x => x.Status == "Not Assigned").ToList();
     var inProgressList = Model.Where(x => x.Status == "Assigned InProgress").ToList();
     var completedList = Model.Where(x => x.Status == "Completed").ToList();
     var TestingList = Model.Where(x => x.Status == "Testing").ToList();
->>>>>>> d3ff3af5091d257b06876227cd2975ea7733c9a5
+
 }
 <style>
     .table tbody tr td {

@@ -130,13 +130,13 @@ namespace MVCERP.Web.Controllers
             return View();
         }
 
-<<<<<<< HEAD
+
         public Object ChangeTask(string id, string task)
         {
             var returnResult= _business.ChangeTask(id, task);
             return returnResult;
         }
-=======
+
         [HttpGet]
         public JsonResult StatusList(string status)
         {
@@ -145,7 +145,6 @@ namespace MVCERP.Web.Controllers
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
 
->>>>>>> d3ff3af5091d257b06876227cd2975ea7733c9a5
     }
 
 }

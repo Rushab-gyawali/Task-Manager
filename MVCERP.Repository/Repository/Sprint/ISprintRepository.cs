@@ -9,7 +9,7 @@ namespace MVCERP.Repository.Repository.Sprint
    public interface ISprintRepository
     {
         List<SprintCommon> GetSprints();
-        List<BacklogCommon> GetBacklogs();
+        List<BackLogCommon> GetBacklogs();
         DbResponse GetSprintAndBacklog(SprintCommon sprint);
         SprintCommon GetById(string SprintId);
     }

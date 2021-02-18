@@ -9,7 +9,7 @@ namespace MVCERP.Business.Business.SprintBusiness
    public interface ISprintBusiness
     {
         List<SprintCommon> GetSprints();
-        List<BacklogCommon> GetBacklogs();
+        List<BackLogCommon> GetBacklogs();
         DbResponse SprintAndBacklog(SprintCommon sprint);
         SprintCommon GetById(string SprintId);
     }

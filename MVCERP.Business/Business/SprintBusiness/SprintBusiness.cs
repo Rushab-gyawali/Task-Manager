@@ -15,7 +15,7 @@ namespace MVCERP.Business.Business.SprintBusiness
             _repo = repo;
         }
 
-        public List<BacklogCommon> GetBacklogs()
+        public List<BackLogCommon> GetBacklogs()
         {
             return _repo.GetBacklogs();
         }

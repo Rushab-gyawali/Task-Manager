@@ -14,9 +14,9 @@ namespace MVCERP.Repository.Repository.Sprint
             dao = new RepositoryDao();
         }
 
-        public List<BacklogCommon> GetBacklogs()
+        public List<BackLogCommon> GetBacklogs()
         {
-            var list = new List<BacklogCommon>();
+            var list = new List<BackLogCommon>();
             try
             {
                 var sql = "EXEC PROC_TBLTASK ";
@@ -28,7 +28,7 @@ namespace MVCERP.Repository.Repository.Sprint
                     int sn = 1;
                     foreach (System.Data.DataRow item in dt.Rows)
                     {
-                        var common = new BacklogCommon()
+                        var common = new BackLogCommon()
                         {
                             RowId = Convert.ToInt32(item["RowId"]),
                             BackLogId = item["BackLogId"].ToString(),

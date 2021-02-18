@@ -49,11 +49,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Common\BacklogCommon.cs" />
-=======
     <Compile Include="Common\BackLogCommon.cs" />
->>>>>>> d3ff3af5091d257b06876227cd2975ea7733c9a5
     <Compile Include="Common\EmailSMSCommon.cs" />
     <Compile Include="Common\ErrorLogsCommon.cs" />
     <Compile Include="Common\GridDetails.cs" />
@@ -65,11 +61,8 @@
     <Compile Include="Common\PwbCommon.cs" />
     <Compile Include="Common\ReportComponent.cs" />
     <Compile Include="Common\RoleCommon.cs" />
-<<<<<<< HEAD
     <Compile Include="Common\SprintCommon.cs" />
-=======
     <Compile Include="Common\RolesCommon.cs" />
->>>>>>> d3ff3af5091d257b06876227cd2975ea7733c9a5
     <Compile Include="Common\StaticDataCommon.cs" />
     <Compile Include="Common\TaskReportingCommon.cs" />
     <Compile Include="Library\ExcelDownload.cs" />

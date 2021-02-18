@@ -75,7 +75,7 @@ namespace MVCERP.Web.Controllers
             
             return RedirectToAction("Index", "Sprint");
         }
-        public List<BacklogCommon> ListBacklog()
+        public List<BackLogCommon> ListBacklog()
         {
             return _business.GetBacklogs();
         }

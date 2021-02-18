@@ -176,11 +176,8 @@
     <Compile Include="Controllers\MISReport\MISGenerateReportController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\SprintController.cs" />
-=======
     <Compile Include="Controllers\RolesController.cs" />
->>>>>>> d3ff3af5091d257b06876227cd2975ea7733c9a5
     <Compile Include="Controllers\TaskManagerController.cs" />
     <Compile Include="Controllers\TaskReportController.cs" />
     <Compile Include="Controllers\TaskReportingController.cs" />
@@ -204,20 +201,14 @@
     <Compile Include="Library\Reports.cs" />
     <Compile Include="Library\StaticData.cs" />
     <Compile Include="Library\UserMonitor.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\BacklogModel.cs" />
-=======
     <Compile Include="Models\BackLogTaskModel.cs" />
->>>>>>> d3ff3af5091d257b06876227cd2975ea7733c9a5
     <Compile Include="Models\MemberModel.cs" />
     <Compile Include="Models\PermissionModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\SprintAndBacklogModel.cs" />
     <Compile Include="Models\SprintModel.cs" />
-=======
     <Compile Include="Models\RolesModel.cs" />
->>>>>>> d3ff3af5091d257b06876227cd2975ea7733c9a5
     <Compile Include="Models\TaskReportingModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\ViewModel\SprintAndBacklogViewModel.cs" />
@@ -3342,10 +3333,8 @@
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\New.cshtml" />
     <Content Include="Views\TaskReporting\UserDetail.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Sprint\Index.cshtml" />
     <Content Include="Views\Sprint\AddEditSprint.cshtml" />
-=======
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\TestPage.cshtml" />
@@ -3360,7 +3349,6 @@
     <Content Include="Views\Roles\Manage.cshtml" />
     <Content Include="Views\BackLog\AddBackLogTask.cshtml" />
     <Content Include="Views\Permission\Index.cshtml" />
->>>>>>> d3ff3af5091d257b06876227cd2975ea7733c9a5
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

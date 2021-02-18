@@ -52,7 +52,7 @@ namespace MVCERP.Web.Controllers
                 model.TaskReportedDate = data[0].TaskReportedDate.ToString();
                 model.DiscussionDate = data[0].DiscussionDate.ToString();
                 model.ClientId = data[0].ClientId;
-                model.StoryPoint = data[0].StoryPoint;
+                model.StoryPoint = Convert.ToInt32(data[0].StoryPoint);
 
 
                 return View(model);
@@ -76,7 +76,7 @@ namespace MVCERP.Web.Controllers
                 common.DiscussionDate = task.DiscussionDate;
                 common.Owner = user;
                 common.ClientId = task.ClientId;
-                common.StoryPoint = task.StoryPoint;
+                common.StoryPoint = Convert.ToInt32(task.StoryPoint);
                 common.CreatedBy = user;
           
                 var response = bussiness.AddBackLogTask(common);
