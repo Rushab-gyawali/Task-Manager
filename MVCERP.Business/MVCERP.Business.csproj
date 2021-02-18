@@ -64,6 +64,8 @@
     <Compile Include="Business\Roles\RolesBusiness.cs" />
     <Compile Include="Business\Role\IRoleBusiness.cs" />
     <Compile Include="Business\Role\RoleBusiness.cs" />
+    <Compile Include="Business\SprintBusiness\ISprintBusiness.cs" />
+    <Compile Include="Business\SprintBusiness\SprintBusiness.cs" />
     <Compile Include="Business\StaticData\IStaticDataBusiness.cs" />
     <Compile Include="Business\StaticData\StaticDataBusiness.cs" />
     <Compile Include="Business\TaskManager\ITaskManagerBusiness.cs" />

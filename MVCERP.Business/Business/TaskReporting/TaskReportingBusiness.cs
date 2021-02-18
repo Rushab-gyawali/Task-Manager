@@ -16,6 +16,11 @@ namespace MVCERP.Business.Business.TaskReporting
             repo = _repo;
         }
 
+        public DbResponse ChangeTask(string id, string task)
+        {
+            return repo.ChangeTask(id, task);
+        }
+
         public List<TaskReportingCommon> GetAllTask()
         {
             return repo.GetAllTask();

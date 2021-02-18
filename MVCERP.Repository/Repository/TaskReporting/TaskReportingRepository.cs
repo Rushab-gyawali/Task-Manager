@@ -15,13 +15,22 @@ namespace MVCERP.Repository.Repository.TaskReporting
             dao = new RepositoryDao();
         }
 
+        public DbResponse ChangeTask(string id, string task)
+        {
+            var sql = "EXEC PROC_TBLTASK ";
+            sql += "@Flag = 'C'";
+            sql += ",@TaskId = " + dao.FilterString(id);
+            sql += ",@Status = " + dao.FilterString(task);
+            return dao.ParseDbResponse(sql);
+        }
+
         public List<TaskReportingCommon> GetAllTask()
         {
             var list = new List<TaskReportingCommon>();
             try
             {
-                var sql = "EXEC PROC_TASKMANAGER ";
-                sql += "@Flag = 'List'";
+                var sql = "EXEC PROC_TBLTASK ";
+                sql += "@Flag = 'A'";
                 var dt = dao.ExecuteDataTable(sql);
 
                 if (null != dt)
@@ -61,7 +70,7 @@ namespace MVCERP.Repository.Repository.TaskReporting
             var list = new List<TaskReportingCommon>();
             try
             {
-                var sql = "EXEC proc_tblTaskManagers ";
+                var sql = "EXEC PROC_TBLTASK ";
                 sql += "@FLAG = 'S'";
                 var dt = dao.ExecuteDataTable(sql);
 

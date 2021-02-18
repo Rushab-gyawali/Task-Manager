@@ -115,7 +115,7 @@ namespace MVCERP.Web.Controllers
             for(int i=0; i<data.Count; i++) {
                 data[i].Action = StaticData.GetActions("TaskManager", data[i].RowId, data[i].TaskId,"Task");
             }
-            return Json(new { data = data },JsonRequestBehavior.AllowGet);
+            return Json( data,JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetTaskStatus()
@@ -127,6 +127,13 @@ namespace MVCERP.Web.Controllers
         public ActionResult MeroTaskMainLayout()
         {
             return View();
+        }
+
+
+        public Object ChangeTask(string id, string task)
+        {
+            var returnResult= _business.ChangeTask(id, task);
+            return returnResult;
         }
 
         [HttpGet]

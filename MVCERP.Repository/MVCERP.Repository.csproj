@@ -71,6 +71,8 @@
     <Compile Include="Repository\Roles\RolesRepository.cs" />
     <Compile Include="Repository\Role\IRoleRepository.cs" />
     <Compile Include="Repository\Role\RoleRepository.cs" />
+    <Compile Include="Repository\Sprint\ISprintRepository.cs" />
+    <Compile Include="Repository\Sprint\SprintRepository.cs" />
     <Compile Include="Repository\StaticData\IStaticDataRepository.cs" />
     <Compile Include="Repository\StaticData\StaticDataRepository.cs" />
     <Compile Include="Repository\TaskManager\ITaskManagerRepository.cs" />
@@ -86,7 +88,6 @@
       <Name>MVCERP.Shared</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

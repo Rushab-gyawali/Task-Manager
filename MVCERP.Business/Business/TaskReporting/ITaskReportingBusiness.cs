@@ -14,5 +14,7 @@ namespace MVCERP.Business.Business.TaskReporting
         List<TaskReportingCommon> StatusList(string status,string user);
 
 
+        DbResponse ChangeTask(string id, string task);
+
     }
 }
