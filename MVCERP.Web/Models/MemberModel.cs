@@ -39,6 +39,8 @@ namespace MVCERP.Web.Models
         public bool AdminRight { get; set; }
         public string CreatedBy { get; set; }
 
+   
+
     }
     public class ChangePassword
     {

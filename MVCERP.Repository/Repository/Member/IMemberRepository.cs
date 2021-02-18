@@ -8,13 +8,19 @@ namespace MVCERP.Repository.Repository.Member
 {
         public interface IMemberRepository
         {
-        List<MemberCommon> ListUsers();
-        List<MemberCommon> ListUsersProfile(MemberCommon common);
-        DbResponse AddUser(MemberCommon setup);
-        List<MemberCommon> GetById(string ID);
-        DbResponse DeleteUser(int ID);
-        DbResponse ChangePassword(ChangePasswordCommon common);
-    }
+              List<MemberCommon> ListUsers();
+              List<MemberCommon> ListUsersProfile(MemberCommon common);
+              DbResponse AddUser(MemberCommon setup);
+              List<MemberCommon> GetById(string ID);
+              DbResponse DeleteUser(int ID);
+              DbResponse ChangePassword(ChangePasswordCommon common);
+
+              DbResponse AssignUserRole(MemberCommon model);
+
+              object GetUserRole(string User, string UserId);
+   
+    
+        }
 
     
 }

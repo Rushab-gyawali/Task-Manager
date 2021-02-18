@@ -26,10 +26,9 @@ namespace MVCERP.Repository.Repository.Role
         public List<MVCERP.Shared.Common.RoleCommon> GetList(string User, string Search, int Pagesize)
         {
             var sql = "EXEC proc_Role ";
-            sql += "@FLAG = " + dao.FilterString("A");
-            sql += ",@User = " + dao.FilterString(User);
-            sql += ",@Search = " + dao.FilterString(Search);
-            sql += ",@Pagesize = " + dao.FilterString(Pagesize.ToString());
+            sql += "@FLAG = " + dao.FilterString("List");
+           
+
 
             var dt = dao.ExecuteDataTable(sql);
             var list = new List<RoleCommon>();

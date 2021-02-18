@@ -1,5 +1,6 @@
 ﻿using MVCERP.Business.Business.Member;
 using MVCERP.Web.Library;
+using MVCERP.Business.Business.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,19 @@ namespace MVCERP.Web.Controllers
     {
        
         IMemberBusiness bussiness;
-        public MemberController(IMemberBusiness _buss)
+        ICommonBuss ddl;
+        public MemberController(IMemberBusiness _buss, ICommonBuss _ddl)
         {
             StaticData.CheckSession();
             bussiness = _buss;
+            ddl = _ddl;
         }
         public ActionResult Index()
         {
             StaticData.CheckSession();
+            var user = StaticData.GetUser();
+            ViewBag.user = user;
+            ViewData["Roles"] = StaticData.SetDDLValue(ddl.SetDropdownRoles("ListRoles", StaticData.GetUser()), "", "Select Role");
             return View();
         }
         public JsonResult ListUsers()
@@ -154,6 +160,61 @@ namespace MVCERP.Web.Controllers
             model.PhoneNo = data[0].PhoneNo;
 
             return View(model);
+        }
+
+
+        public ActionResult AssignRole()
+        {
+            string id = Request.QueryString["id"];
+            var Id = id;
+            var data = bussiness.GetUserRole(StaticData.GetUser(), Id);
+            ViewBag.id = Id;
+            
+            if (Id == null)
+            {
+                return HttpNotFound();
+            }
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult AssignRoles(MemberCommon model)
+        {
+            StaticData.CheckSession(); 
+            string id = Request.QueryString["id"];
+            var Id = id;
+            var user = StaticData.GetUser();
+
+            if (ModelState.IsValid)
+            {
+                StaticData.CheckSession();
+                var response = bussiness.AssignUserRole(model);
+                StaticData.SetMessageInSession(response);
+                if (response.ErrorCode == 1)
+                {
+                    ModelState.AddModelError("", response.Message);
+                    return RedirectToAction("Index", "Member");
+                }
+                return RedirectToAction("Index", "Member");
+            }
+            else
+            {
+                var errors = string.Join("; ", ModelState.Values
+                .SelectMany(x => x.Errors)
+                .Select(x => x.ErrorMessage));
+
+                ModelState.AddModelError("", errors);
+            }
+
+            return RedirectToAction("Index", "Member");
+
+
+
+        }
+
+        public ActionResult Role()
+        {
+            return View();
         }
     }
 }

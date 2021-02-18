@@ -232,16 +232,16 @@ namespace MVCERP.Repository.Repository
       public MVCERP.Shared.Common.DbResponse ParseDbResponse(System.Data.DataTable dt)
         {
             var res = new MVCERP.Shared.Common.DbResponse();
-            //if (dt.Rows.Count > 0)
-            //{
-            //    res.ErrorCode = Convert.ToInt32(dt.Rows[0][0].ToString());
-            //    res.Message = dt.Rows[0][1].ToString();
-            //    res.Id = dt.Rows[0][2].ToString();
-            //    if (dt.Columns.Count > 3)
-            //    {
-            //        res.Extra = dt.Rows[0][3].ToString();
-            //    }
-            //}
+            if (dt.Rows.Count > 0)
+            {
+                res.ErrorCode = Convert.ToInt32(dt.Rows[0][0].ToString());
+                res.Message = dt.Rows[0][1].ToString();
+              //  res.Id = dt.Rows[0][2].ToString();
+                if (dt.Columns.Count > 3)
+                {
+                    res.Extra = dt.Rows[0][3].ToString();
+                }
+            }
             return res;
         }
   
@@ -261,7 +261,7 @@ namespace MVCERP.Repository.Repository
             {
                 //for (int j = 0; j < dt.Columns.Count; j++)
                 //{
-                dictionary.Add(dt.Rows[i][0].ToString(), dt.Rows[i][0].ToString());
+                dictionary.Add(dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString());
                 //}
             }
             return dictionary;

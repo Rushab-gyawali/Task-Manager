@@ -21,6 +21,11 @@ namespace MVCERP.Business.Business.Member
             return repo.AddUser(setup);
         }
 
+        public DbResponse AssignUserRole(MemberCommon model)
+        {
+            return repo.AssignUserRole(model);
+        }
+
         public DbResponse ChangePassword(ChangePasswordCommon common)
         {
             return repo.ChangePassword(common);
@@ -34,6 +39,11 @@ namespace MVCERP.Business.Business.Member
         public List<MemberCommon> GetById(string ID)
         {
             return repo.GetById(ID);
+        }
+
+        public object GetUserRole(string User, string UserId)
+        {
+            return repo.GetUserRole(User, UserId);
         }
 
         public List<MemberCommon> ListUsers()
