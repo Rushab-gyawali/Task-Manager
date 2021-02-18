@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\BackLog\BackLogBusiness.cs" />
+    <Compile Include="Business\BackLog\IBackLogBusiness.cs" />
     <Compile Include="Business\Common\CommonBuss.cs" />
     <Compile Include="Business\Common\ICommonBuss.cs" />
     <Compile Include="Business\EmailSMS\EmailSMSBusiness.cs" />
@@ -50,12 +52,16 @@
     <Compile Include="Business\Logs\LogsBusiness.cs" />
     <Compile Include="Business\Member\IMemberBusiness.cs" />
     <Compile Include="Business\Member\MemberBusiness.cs" />
+    <Compile Include="Business\Permission\IPermissionBusiness.cs" />
+    <Compile Include="Business\Permission\PermissionBusiness.cs" />
     <Compile Include="Business\Reports\DynamicReportBusiness.cs" />
     <Compile Include="Business\Reports\IDynamicReportBusiness.cs" />
     <Compile Include="Business\Reports\IMISReportComponentBusiness.cs" />
     <Compile Include="Business\Reports\IReportBusiness.cs" />
     <Compile Include="Business\Reports\MISReportComponentBusiness.cs" />
     <Compile Include="Business\Reports\ReportBusiness.cs" />
+    <Compile Include="Business\Roles\IRolesBusiness.cs" />
+    <Compile Include="Business\Roles\RolesBusiness.cs" />
     <Compile Include="Business\Role\IRoleBusiness.cs" />
     <Compile Include="Business\Role\RoleBusiness.cs" />
     <Compile Include="Business\SprintBusiness\ISprintBusiness.cs" />
@@ -66,6 +72,8 @@
     <Compile Include="Business\TaskManager\TaskManagerBusiness.cs" />
     <Compile Include="Business\TaskReporting\ITaskReportingBusiness.cs" />
     <Compile Include="Business\TaskReporting\TaskReportingBusiness.cs" />
+    <Compile Include="Business\TaskReport\ITaskReportBusiness.cs" />
+    <Compile Include="Business\TaskReport\TaskReportBusiness.cs" />
     <Compile Include="Business\User\IUserBusiness.cs" />
     <Compile Include="Business\User\UserBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

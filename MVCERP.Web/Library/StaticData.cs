@@ -384,6 +384,8 @@ namespace MVCERP.Web.Library
                 {
 
                     link += "<a href='/" + Control + "/" +AddEdit +"?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
+
+                    link += "<a href='/" + Control + "/DeleteTask" + "?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a></div>";
                 }
 
                 if (Control.ToLower() == "sprint")
@@ -397,6 +399,13 @@ namespace MVCERP.Web.Library
                     link += "<div style='display:flex;justify-content:space-around;'><a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
 
                     link += "<a href='/" + Control + "/DeleteUser" +"?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a></div>";
+                }
+                else if (Control.ToLower() == "backlog")
+                {
+
+                    link += "<div style='display:flex;justify-content:space-around;'><a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
+                    link += "<a href='/" + Control + "/DeleteTask" + "?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a></div>";
+
                 }
 
        
@@ -1200,19 +1209,19 @@ namespace MVCERP.Web.Library
                 return (T)formatter.Deserialize(stream);
             }
         }
-        public static void GetClosedXmlExcelSheet(ReportComponent reportComponent)
+        public static void GetClosedXmlExcelSheet(TaskReportingCommon reportComponent)
         {
             //reportComponent.ReportTitle = "aa";
             string documentPath = ConfigurationManager.AppSettings["documentFilePath"];
             var wb = new XLWorkbook();
             // Add a DataTable as a worksheet
-            string title = reportComponent.ReportTitle + " From " + reportComponent.FromDate + " To " +
-                            reportComponent.ToDate;
+            string title = reportComponent.ReportTitle + " From " + reportComponent.TaskStartDate + " To " +
+                            reportComponent.TaskEndDate;
             var ws = wb.Worksheets.Add(reportComponent.ReportData, reportComponent.ReportTitle);
             ws.Row(1).InsertRowsAbove(1);
             ws.Cell("A1").Value = title;
             ws.Range("A1:K1").Row(1).Merge();
-            var fileNameWithPath = documentPath + "\\" + StaticData.GetUser() + "_" + reportComponent.ReportName + ".xlsx";
+            var fileNameWithPath = documentPath + "\\" + StaticData.GetUser() + "_" + reportComponent.TaskName + ".xlsx";
             if (System.IO.File.Exists(fileNameWithPath))
             {
                 try
@@ -1224,7 +1233,7 @@ namespace MVCERP.Web.Library
                     //Do something
                 }
             }
-            string fileUrl = StaticData.GetUrlRoot() + "/Handler/FileHandler.ashx?file=" + StaticData.GetUser() + "_" + reportComponent.ReportName + ".xlsx";
+            string fileUrl = StaticData.GetUrlRoot() + "/Handler/FileHandler.ashx?file=" + StaticData.GetUser() + "_" + reportComponent.TaskName + ".xlsx";
             reportComponent.ExcelLink = fileUrl;
             wb.SaveAs(fileNameWithPath);
         }

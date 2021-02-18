@@ -1,0 +1,97 @@
+﻿@model MVCERP.Web.Models.BackLogTaskModel
+
+
+@{
+    ViewBag.Title = "BackLogTask";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
+    string id = Request.QueryString["id"];
+}
+
+<h2>BackLogTask</h2>
+
+
+<div class="User-form" style="padding-top:30px;">
+    <div class="container container-fluid">
+        <div class="text-danger">
+            @ViewBag.ErrorMessage
+        </div>
+        @using (Html.BeginForm("NewTask", "BackLog", FormMethod.Post, new { @id = "Singupform" }))
+        {
+
+            <h2 class=" form-title"> Register User</h2>
+            <div style="display:grid;grid-template-columns:auto auto;grid-column-gap:50px">
+
+
+                @Html.HiddenFor(x => x.BackLogId, new { @class = "form-control" })
+
+
+                <div class="form-group">
+                    <label for="TaskName">Task Name</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.TaskName)
+                    </div>
+                    @Html.TextBoxFor(x => x.TaskName, new { @placeholder = "Task Name", @class = "form-control", @id = "TaskName" })
+                </div>
+
+                <div class="form-group">
+                    <label for="TaskDescription">Task Description</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.TaskDescription)
+                    </div>
+                    @Html.TextAreaFor(x => x.TaskDescription, new { @placeholder = "Task Description", @class = "form-control", @id = "TaskDescription" })
+                </div>
+
+                <div class="form-group">
+                    <label for="TaskReportedDate">TaskReported Date</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.TaskReportedDate)
+                    </div>
+                    @Html.TextBoxFor(x => x.TaskReportedDate, new { @placeholder = "Task Reported Date", @class = "form-control", @id = "TaskReportedDate" })
+                </div>
+
+                <div class="form-group">
+                    <label for="DiscussionDate">Discussion Date</label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.DiscussionDate)
+                    </div>
+                    @Html.TextBoxFor(x => x.DiscussionDate, new { @placeholder = "Discussion Date", @class = "form-control", @id = "DiscussionDate" })
+                </div>
+                
+
+                <div class="form-group">
+                    <label for="ClientId">Client Id </label>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(x => x.ClientId)
+                    </div>
+                    @Html.TextBoxFor(x => x.ClientId, new { @placeholder = "ClientId", @class = "form-control", @id = "ClientId" })
+                   
+                </div>
+
+                <div class="form-group">
+                    <label for="StoryPoint">Story Point</label>
+                    @Html.TextBoxFor(x => x.StoryPoint, new { @class = "form-control", @id = "StoryPoint" })
+                </div>
+
+                <div class="form-group">
+                    @{
+                if (id == null)
+                {
+                    <div class="text-danger">
+                        @ViewData["msg"]
+                    </div>
+                    <button type="submit" class="btn btn-danger" id="btnAdd">Add</button>
+                }
+                else
+                {
+                    <div class="text-danger">
+                        @ViewData["msg"]
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btnUpdate">Update</button>
+                }
+            }
+                </div>
+            </div>
+         
+        }
+    </div>
+</div>

@@ -11,6 +11,7 @@ namespace MVCERP.Repository.Repository.TaskManager
         DbResponse TaskManager(TaskReportingCommon common);
 
         List<TaskReportingCommon> GetById(string TaskId);
+        DbResponse DeleteTask(TaskReportingCommon common);
 
     }
 }

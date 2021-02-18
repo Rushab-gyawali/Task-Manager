@@ -16,16 +16,18 @@ namespace MVCERP.Web.Controllers
         IMemberBusiness bussiness;
         public MemberController(IMemberBusiness _buss)
         {
+            StaticData.CheckSession();
             bussiness = _buss;
-
         }
         public ActionResult Index()
         {
+            StaticData.CheckSession();
             return View();
         }
         public JsonResult ListUsers()
         {
-              var data = bussiness.ListUsers();
+            StaticData.CheckSession();
+            var data = bussiness.ListUsers();
                 for (int i = 0; i < data.Count; i++)
                 {
                     data[i].Action = StaticData.GetActions("Member",  data[i].ID, data[i].ID.ToString(), "New");
@@ -36,6 +38,7 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult New()
         {
+            StaticData.CheckSession();
             string id = Request.QueryString["id"];
             var ID = StaticData.Base64Decode_URL(id);
             var model = new MemberModel();
@@ -47,6 +50,7 @@ namespace MVCERP.Web.Controllers
             }
             else
             {
+                StaticData.CheckSession();
                 var data = bussiness.GetById(ID);
                 model.ID = data[0].ID.ToString();
                 model.FullName = data[0].FullName;
@@ -65,10 +69,13 @@ namespace MVCERP.Web.Controllers
         [HttpPost]
         public ActionResult New(MemberModel model)
         {
+            StaticData.CheckSession();
+
             var user = StaticData.GetUser();
 
             if (ModelState.IsValid)
             {
+                StaticData.CheckSession();
                 MemberCommon common = new MemberCommon();
 
                 common.ID = Convert.ToInt32(model.ID);
@@ -102,6 +109,7 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult DeleteUser()
         {
+            StaticData.CheckSession();
             string id = Request.QueryString["id"];
             var Id = StaticData.Base64Decode_URL(id);
             var ID = Convert.ToInt32(Id);
@@ -130,6 +138,22 @@ namespace MVCERP.Web.Controllers
                 ModelState.AddModelError("", errors);
             }
             return RedirectToAction("Index", "Member");
+        }
+
+        public ActionResult Profile()
+        {
+            StaticData.CheckSession();
+            var user = StaticData.GetUser();
+            MemberModel model = new MemberModel();
+            MemberCommon common = new MemberCommon();
+            common.UserName = user;
+            var data = bussiness.ListUsersProfile(common);
+            model.ID = data[0].ID.ToString(); 
+            model.FullName = data[0].FullName;
+            model.Email = data[0].Email;
+            model.PhoneNo = data[0].PhoneNo;
+
+            return View(model);
         }
     }
 }

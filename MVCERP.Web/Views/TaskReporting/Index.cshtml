@@ -2,18 +2,24 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
+    
 }
 
 <h2>List of All Task</h2>
 
+<<<<<<< HEAD
 <script src="~/Scripts/jquery-1.8.2.min.js"></script>
 
 @section scripts{
+=======
+>>>>>>> d3ff3af5091d257b06876227cd2975ea7733c9a5
     <script src="~/UI/MeroTaskDashboard/vendor/datatables/js/jquery.dataTables.min.js"></script>
 }
 
 <script type="text/javascript">
+    debugger;
     $(document).ready(function () {
+        debugger;
         $('#AllTaskList').DataTable({
             "responsive": true,
             "processing": false,
@@ -49,6 +55,7 @@
                 { 'data': 'Status', "orderable": true },
                 { 'data': 'CreatedBy', "orderable": false },
                 { 'data': 'CreatedDate', "orderable": false },
+                { 'data': 'AssignTo', "orderable": false },
                 { 'data': 'Action', "orderable": false },
 
             ],
@@ -71,6 +78,11 @@
                     <table id="AllTaskList" class="table table-hover" cellspacing="0" width="100%">
                         <thead>
                             <tr>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> d3ff3af5091d257b06876227cd2975ea7733c9a5
                                 <th>TaskName</th>
                                 <th>TaskStartDate</th>
                                 <th>TaskEndDate</th>
@@ -79,6 +91,7 @@
                                 <th>Status</th>
                                 <th>CreatedBy</th>
                                 <th>CreatedDate</th>
+                                <th>AssignTo</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

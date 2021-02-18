@@ -41,7 +41,7 @@ namespace MVCERP.Business.Business.User
         {
             return repo.Changeuserpassword(username,pwd,id);
         }
-        public UserCommon UserLogin(LoginCommon login)
+        public MemberCommon UserLogin(LoginCommon login)
         {
             return repo.UserLogin(login);
         }

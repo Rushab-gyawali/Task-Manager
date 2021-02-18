@@ -44,5 +44,10 @@ namespace MVCERP.Business.Business.Common
         {
             return repo.GetDropdownForJQuery(flag,param,User);
         }
+
+        public Dictionary<string, string> SetDropdownUser(string ddlName, string Param = "")
+        {
+            return repo.SetDropdownUser(ddlName,Param);
+        }
     }
 }

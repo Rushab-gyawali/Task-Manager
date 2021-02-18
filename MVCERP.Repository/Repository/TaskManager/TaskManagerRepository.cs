@@ -80,5 +80,13 @@ namespace MVCERP.Repository.Repository.TaskManager
                 return dao.ParseDbResponse(sql);
             }
         }
+
+        public DbResponse DeleteTask(TaskReportingCommon common)
+        {
+            var sql = "exec PROC_TASKMANAGER ";
+            sql += "@Flag = 'DeleteTask'";
+            sql += ",@TaskId = " + dao.FilterString(common.TaskId.ToString());
+            return dao.ParseDbResponse(sql);
+        }
     }
 }

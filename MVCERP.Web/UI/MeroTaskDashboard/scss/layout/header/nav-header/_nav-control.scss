@@ -147,8 +147,8 @@
 .hamburger {
     // background-color: $white;
     display: inline-block;
-    left: 0px;
     position: relative;
+    left: 19px !important;
     top: 3px;
     -webkit-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
@@ -224,6 +224,7 @@
         .nav-control {
             display: none;
         }
+
         .nav-header {
             width: 9.375rem;
         }

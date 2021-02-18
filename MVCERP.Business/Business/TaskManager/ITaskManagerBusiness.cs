@@ -10,5 +10,6 @@ namespace MVCERP.Business.Business.TaskManager
     {
         DbResponse TaskManager(TaskReportingCommon common);
         List<TaskReportingCommon> GetById(string TaskId);
+        DbResponse DeleteTask(TaskReportingCommon common);
     }
 }

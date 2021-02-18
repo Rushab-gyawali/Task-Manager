@@ -1,0 +1,171 @@
+﻿@model MVCERP.Web.Models.TaskReportingModel
+@{
+    ViewBag.Title = "Assigned";
+}
+@{
+    ViewBag.Title = "UserDetail";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
+}
+
+@*<script src="~/Scripts/jquery-1.8.2.min.js"></script>*@
+<!----------------------Report-------------------->
+
+<div class="form-horizontal pt-5">
+
+    @using (Html.BeginForm("Assigned", "TaskReport", FormMethod.Post, new { @id = "taskform" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h3 class="text-black">Status Report </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-5 control-label"> From Date <small class="text-danger">*</small></label>
+                    <div class="col-sm-12">
+                        @Html.TextBoxFor(x => x.TaskStartDate, new { @placeholder = "TaskStartDate [mm/dd/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskStartDate", @autocomplete = "off" })
+                        <small class="TaskStartDate"></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-5 control-label"> To Date <small class="text-danger">*</small></label>
+                    <div class="col-sm-12">
+                        @Html.TextBoxFor(x => x.TaskEndDate, new { @placeholder = "TaskEndDate [mm/dd/yyyy or mm-dd-yyyy format]", @class = "form-control", @id = "TaskEndDate", @autocomplete = "off" })
+                        <small class="TaskEndDate"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group text-right">
+                    <button type="submit" id="btnReport" class="btn btn-success">Generate Report</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script>
+    $("#btnReport").click(function () {
+        //taskenddate formate
+        var taskenddate = $("#TaskEndDate").val();
+        var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
+        if (taskenddate.match(dateformat)) {
+            debugger;
+            //Test which seperator is used '/' or '-'
+            var opera1 = taskenddate.split('/');
+            var opera2 = taskenddate.split('-');
+            lopera1 = opera1.length;
+            lopera2 = opera2.length;
+            // Extract the string into month, date and year
+            if (lopera1 > 1) {
+                var pdate = taskenddate.split('/');
+            }
+            else if (lopera2 > 1) {
+                var pdate = taskenddate.split('-');
+            }
+            var dd = parseInt(pdate[0]);
+            var mm = parseInt(pdate[1]);
+            var yy = parseInt(pdate[2]);
+            // Create list of days of a month [assume there is no leap year by default]
+            var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (mm == 1 || mm > 2) {
+                if (dd > ListofDays[mm - 1]) {
+                    $("#TaskEndDate").css("border-color", "red");
+                    $(".TaskEndDate").html("Invalid Date");
+                    return false;
+                }
+            }
+            if (mm == 2) {
+                var lyear = false;
+                if ((!(yy % 4) && yy % 100) || !(yy % 400)) {
+                    lyear = true;
+                }
+                if ((lyear == false) && (dd >= 29)) {
+                    $("#TaskEndDate").css("border-color", "red");
+                    $(".TaskEndDate").html("Invalid Date");
+                    return false;
+                }
+                if ((lyear == true) && (dd > 29)) {
+                    $("#TaskEndDate").css("border-color", "red");
+                    $(".TaskEndDate").html("Invalid Date");
+                    return false;
+                }
+            }
+            $("#TaskEndDate").css("border-color", "green");
+            $(".TaskEndDate").html("");
+                return true;
+        }
+        else {
+            $("#TaskEndDate").css("border-color", "red");
+            $(".TaskEndDate").html("Please Enter Validate Date");
+            return false;
+        }
+    });
+
+    $("#btnReport").click(function () {
+        //taskenddate formate
+        var taskstartdate = $("#TaskStartDate").val();
+        var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
+        if (taskstartdate.match(dateformat)) {
+            debugger;
+            //Test which seperator is used '/' or '-'
+            var opera1 = taskstartdate.split('/');
+            var opera2 = taskstartdate.split('-');
+            lopera1 = opera1.length;
+            lopera2 = opera2.length;
+            // Extract the string into month, date and year
+            if (lopera1 > 1) {
+                var pdate = taskstartdate.split('/');
+            }
+            else if (lopera2 > 1) {
+                var pdate = taskstartdate.split('-');
+            }
+            var dd = parseInt(pdate[0]);
+            var mm = parseInt(pdate[1]);
+            var yy = parseInt(pdate[2]);
+            // Create list of days of a month [assume there is no leap year by default]
+            var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (mm == 1 || mm > 2) {
+                if (dd > ListofDays[mm - 1]) {
+                    $("#TaskStartDate").css("border-color", "red");
+                    $(".TaskStartDate").html("Invalid Date");
+                    return false;
+                }
+            }
+            if (mm == 2) {
+                var lyear = false;
+                if ((!(yy % 4) && yy % 100) || !(yy % 400)) {
+                    lyear = true;
+                }
+                if ((lyear == false) && (dd >= 29)) {
+                    $("#TaskStartDate").css("border-color", "red");
+                    $(".TaskStartDate").html("Invalid Date");
+                    return false;
+                }
+                if ((lyear == true) && (dd > 29)) {
+                    $("#TaskStartDate").css("border-color", "red");
+                    $(".TaskStartDate").html("Invalid Date");
+                    return false;
+                }
+            }
+            $("#TaskStartDate").css("border-color", "green");
+            $(".TaskStartDate").html("");
+                return true;
+        }
+        else {
+            $("#TaskStartDate").css("border-color", "red");
+            $(".TaskStartDate").html("Please Enter Validate Date");
+            return false;
+        }
+    });
+</script>

@@ -18,5 +18,6 @@ namespace MVCERP.Repository.Repository.Common
        List<object> LoadAutocomplete(string type, string param,string user);
 
        object GetDropdownForJQuery(string flag, string param, string User);
+        Dictionary<string, string> SetDropdownUser(string ddlName, string Param = "");
     }
 }

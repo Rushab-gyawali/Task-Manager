@@ -1,0 +1,45 @@
+﻿@model MVCERP.Web.Models.MemberModel
+
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
+    var user = MVCERP.Web.Library.StaticData.GetUser();
+}
+
+<div class="User-form" >
+    <div class="container container-fluid">
+        <div>
+            <a class="btn btn-primary btn-sm" href="/Home/ChangePassword" role="button">Change Password</a>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                @using (Html.BeginForm("New", "Member", FormMethod.Post, new { @id = "Singupform" }))
+                {
+                    <h2 class=" form-title">@ViewBag.User</h2>
+
+                    <div class="form-group">
+                        <label for="FullName">Full Name</label>
+                        @Html.TextBoxFor(x => x.FullName, new { @placeholder = "Enter FullName", @class = "form-control", @id = "FullName", @disabled = "on" })
+                    </div>
+                    <div class="form-group">
+                        <label for="UserName">UserName</label>
+                        @Html.TextBoxFor(x => x.UserName, new { @placeholder = @user, @class = "form-control", @id = "UserName", @disabled = "on" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        @Html.TextBoxFor(x => x.Email, new { @placeholder = "Enter Email", @class = "form-control", @id = "Email", @disabled = "on" })
+                    </div>
+                    <div class="form-group">
+                        <label for="PhoneNo">Phone No</label>
+                        @Html.TextBoxFor(x => x.PhoneNo, new { @placeholder = "Enter PhoneNo", @class = "form-control", @id = "PhoneNo", @disabled = "on" })
+                    </div>
+                }
+            </div>
+            <div class="col-md-7">
+
+            </div>
+        </div>
+        
+    </div>
+</div>

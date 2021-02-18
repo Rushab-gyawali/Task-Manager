@@ -12,9 +12,10 @@ namespace MVCERP.Web.Filters
         {
             HttpContext ctx = HttpContext.Current;
 
+            var a = ctx.Session["UserName"].ToString();
 
             // If the browser session or authentication session has expired...
-            if (ctx.Session["UserName"] == null || !MVCERP.Web.Library.UserMonitor.GetInstance().IsUserExists(ctx.Session["UserName"].ToString()))
+            if (ctx.Session["UserName"] == null || !MVCERP.Web.Library.UserMonitor.GetInstance().IsUserExists(ctx.Session["UserName"].ToString(),ctx.Session.SessionID.ToString()))
             {
                 filterContext.Result = new RedirectToRouteResult(
                         new RouteValueDictionary {
