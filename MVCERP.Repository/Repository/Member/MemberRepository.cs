@@ -51,7 +51,7 @@ namespace MVCERP.Repository.Repository.Member
                 var sql = "EXEC proc_Role @FLAG ='AssignUserRole'";
                 sql += ",@ID = " + model.ID;    
                 sql += ",@User = " + dao.FilterString(model.UserName);
-                sql += ",@RoleId = " + model.RoleName;
+                sql += ",@RoleName = " + dao.FilterString(model.RoleName);
                 var ds= dao.ExecuteDataset(sql);
                 var result = dao.ParseDbResponse(ds.Tables[0]);
 

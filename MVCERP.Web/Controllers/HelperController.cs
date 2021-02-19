@@ -14,10 +14,12 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult Index()
         {
+            StaticData.CheckSession();
             return View();
         }
         public ActionResult ConvertIntoNepDate(string dt)
         {
+            StaticData.CheckSession();
             var NepDt = StaticData.ConvertEng_NepDate(StaticData.FrontToDBDate(dt), 1);
             return Json(NepDt, JsonRequestBehavior.AllowGet);
         }

@@ -19,33 +19,39 @@ namespace MVCERP.Web.Controllers
         ICommonBuss ddl;
         public TaskReportController(ITaskReportBusiness _buss, ICommonBuss _ddl)
         {
+            StaticData.CheckSession();
             buss = _buss;
             ddl = _ddl;
         }
 
         public ActionResult Index()
         {
+            StaticData.CheckSession();
             return View();
         }
 
         public ActionResult Assigned()
         {
+            StaticData.CheckSession();
             return View();
         }
 
         public ActionResult Completed()
         {
+            StaticData.CheckSession();
             return View();
         }
 
         public ActionResult Testing()
         {
+            StaticData.CheckSession();
             return View();
         }
 
         [HttpPost]
         public ActionResult Completed(TaskReportingModel model)
         {
+            StaticData.CheckSession();
             if (ModelState.IsValid)
             {
                 var ReportName = "MISUserRegisterReport";
@@ -62,6 +68,7 @@ namespace MVCERP.Web.Controllers
         [HttpPost]
         public ActionResult Assigned(TaskReportingModel model)
         {
+            StaticData.CheckSession();
             if (ModelState.IsValid)
             {
                 var ReportName = "MISUserRegisterReport";
@@ -78,6 +85,7 @@ namespace MVCERP.Web.Controllers
         [HttpPost]
         public ActionResult Testing(TaskReportingModel model)
         {
+            StaticData.CheckSession();
             if (ModelState.IsValid)
             {
                 var ReportName = "MISUserRegisterReport";

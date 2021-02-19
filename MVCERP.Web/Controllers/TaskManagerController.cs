@@ -17,18 +17,21 @@ namespace MVCERP.Web.Controllers
 
         public TaskManagerController(ITaskManagerBusiness _buss, ICommonBuss _ddl)
         {
+            StaticData.CheckSession();
             buss = _buss;
             ddl = _ddl;
         }
 
         public ActionResult Index()
         {
+            StaticData.CheckSession();
             return View();
         }
 
 
         public ActionResult Task()
         {
+            StaticData.CheckSession();
             string id = Request.QueryString["id"];
             var TaskId = StaticData.Base64Decode_URL(id);
             var model = new TaskReportingModel();
@@ -62,7 +65,8 @@ namespace MVCERP.Web.Controllers
         [HttpPost]
         public ActionResult Task(TaskReportingModel task)
         {
-                if (ModelState.IsValid)
+            StaticData.CheckSession();
+            if (ModelState.IsValid)
             {
                 var user = StaticData.GetUser();
                 var common = new TaskReportingCommon();
@@ -100,6 +104,7 @@ namespace MVCERP.Web.Controllers
         }
         public ActionResult DeleteTask()
         {
+            StaticData.CheckSession();
             string Taskid = Request.QueryString["id"];
             var TaskID = StaticData.Base64Decode_URL(Taskid);
             if (ModelState.IsValid)

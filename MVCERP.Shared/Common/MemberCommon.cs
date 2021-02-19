@@ -20,6 +20,7 @@ namespace MVCERP.Shared.Common
         public string RoleName { get; set; }
         public IEnumerable<SelectListItem> RoleList { get; set; }
         public DataTable UserData { get; set; }
+        public string ForcePwdChange { get; set; }
 
 
     }

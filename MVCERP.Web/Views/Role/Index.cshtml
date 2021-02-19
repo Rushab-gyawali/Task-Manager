@@ -1,18 +1,81 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model MVCERP.Shared.Common.RoleCommon
+@{ ViewBag.Title = "Roles";
     Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
-
-    var resp = MVCERP.Web.Library.StaticData.GetSessionMessage();
-    if (null != resp)
-    {
-        @section scripts{
-            <script type="text/javascript">
-                ManageMessage(@resp.ErrorCode, "@resp.Message");
-            </script>
-        }
-    }
 }
 
+<h2>Role List</h2>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+@section scripts{
+
+    @*<script src="~/UI/MeroTaskDashboard/vendor/jquery/jquery.min.js"></script>*@
+
+    <script src="~/UI/MeroTaskDashboard/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#AllRoleList').DataTable({
+            "responsive": true,
+            "processing": false,
+            "serverSide": false,
+            "searchDelay": 1500,
+            "ajax": {
+                "type": 'z',
+                "dataType": 'json',
+                "url": "/Role/ListUser",
+                "contentType": 'application/json; charset=utf-8',
+                'data': function (data) {
+                    return data = JSON.stringify(data);
+                    console.log(data);
+                }
+            },
+            lengthMenu:
+                [
+                    [25, 50, 100],
+                    ['25', '50', '100']
+                ],
+            "language": {
+                "search": "",
+                "searchPlaceholder": "Search..."
+            },
+            columns: [
+                { 'data': 'Sno', "orderable": true, "searchable": true },
+                { 'data': 'RoleName', "orderable": true },
+                { 'data': 'Action', "orderable": false },
+
+            ],
+            "columnDefs":
+                [
+                    { "className": "dt-center", "targets": "4" },
+                    //  { "targets": 1, "className": "text-right" }
+                ]
+        });
+    });
+
+</script>
+
+
+<a href="/Role/Manage" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Add Role</a>
 <div class="container listing-container">
-    @Html.Raw(ViewData["grid"].ToString())
+    <div class="panel panel-default">
+        <div class="panel-heading list-heading">
+            <div class="panel-body list-body">
+                <div class="table-responsive">
+
+                    <table id="AllRoleList" class="table table-hover" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+
+                                <th>S.No</th>
+                                <th>RoleName</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

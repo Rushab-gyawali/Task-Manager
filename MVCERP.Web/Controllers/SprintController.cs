@@ -20,15 +20,18 @@ namespace MVCERP.Web.Controllers
          ISprintBusiness _business;
         public SprintController(ISprintBusiness business)
         {
+            StaticData.CheckSession();
             _business = business;
         }
         public ActionResult Index()
         {
+            StaticData.CheckSession();
             return View();
         }
 
         public JsonResult SprintGrid()
         {
+            StaticData.CheckSession();
             var data = _business.GetSprints();
             for (int i = 0; i < data.Count; i++)
             {
@@ -40,6 +43,7 @@ namespace MVCERP.Web.Controllers
        
         public ActionResult AddEditSprint()
         {
+            StaticData.CheckSession();
             var listbacklogs = ListBacklog();
             ViewBag.backlogs = listbacklogs;
             var data = new SprintCommon();
@@ -62,6 +66,7 @@ namespace MVCERP.Web.Controllers
         [HttpPost]
         public ActionResult InsertSprint(SprintAndBacklogViewModel vm)
         {
+            StaticData.CheckSession();
             var data = JsonConvert.DeserializeObject<SprintAndBacklogViewModel>(Request.Form["response"]);
             SprintCommon common = new SprintCommon
             {
@@ -77,6 +82,7 @@ namespace MVCERP.Web.Controllers
         }
         public List<BackLogCommon> ListBacklog()
         {
+            StaticData.CheckSession();
             return _business.GetBacklogs();
         }
          

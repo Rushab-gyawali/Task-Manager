@@ -9,7 +9,7 @@ namespace MVCERP.Repository.Repository.Role
    public  interface IRoleRepository
     {
         DbResponse Manage(RoleCommon setup);
-        List<RoleCommon> GetList(string User, string Search, int Pagesize);
+        List<RoleCommon> GetList();
 
         List<RoleDetails> GetAssignedList(string User, string id);
         DbResponse AssignRole(string user, string id, string ViewId,string addId,string DeleteId);

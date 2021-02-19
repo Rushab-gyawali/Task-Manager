@@ -380,7 +380,6 @@ namespace MVCERP.Web.Library
             var link = "";
          
                 var enc = Base64Encode_URL(ExtraId.ToString());
-                //var dec = Base64Decode_URL(ExtraId.ToString());
                 if (Control.ToLower() == "taskmanager")
                 {
 
@@ -410,6 +409,10 @@ namespace MVCERP.Web.Library
                     link += "<div style='display:flex;justify-content:space-around;'><a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
                     link += "<a href='/" + Control + "/DeleteTask" + "?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a></div>";
 
+                }
+                else if (Control.ToLower() == "role")
+                {
+                    link += "<div '><a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
                 }
 
 

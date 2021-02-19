@@ -25,26 +25,41 @@ namespace MVCERP.Web.Controllers
         //
         // GET: /Role/
 
-        public ActionResult Index(string Search="", int Pagesize=10)
+        //public ActionResult Index(string Search="", int Pagesize=10)
+        //{
+        //    StaticData.CheckSession();
+        //    var list = buss.GetList(StaticData.GetUser(), Search, Pagesize);
+        //    foreach (var item in list)
+        //    {
+        //        item.Action = StaticData.GetActions("Role", item.Id, RoleId, AddEditId);
+        //    }
+
+        //    IDictionary<string, string> param = new Dictionary<string, string>();
+        //    param.Add("RoleName", "Role Name");
+        //    param.Add("IsActive", "Is Active");
+        //    param.Add("User", "Created By");
+        //    param.Add("CreatedDate", "Created Date");
+        //    param.Add("Action", "Action");
+
+        //    ProjectGrid.column = param;
+        //  var grid = ProjectGrid.MakeGrid(list, "Role", Search, Pagesize, true);
+        //  ViewData["grid"] = grid;
+        //    return View();
+        //}
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public JsonResult ListUser()
         {
             StaticData.CheckSession();
-            var list = buss.GetList(StaticData.GetUser(), Search, Pagesize);
-            foreach (var item in list)
+            var data = buss.GetList();
+            for (int i = 0; i < data.Count; i++)
             {
-                item.Action = StaticData.GetActions("Role", item.Id, RoleId, AddEditId);
+                data[i].Action = StaticData.GetActions("Role", data[i].Id, data[i].Id.ToString(), "Manage");
             }
-
-            IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("RoleName", "Role Name");
-            param.Add("IsActive", "Is Active");
-            param.Add("User", "Created By");
-            param.Add("CreatedDate", "Created Date");
-            param.Add("Action", "Action");
-
-            ProjectGrid.column = param;
-          var grid = ProjectGrid.MakeGrid(list, "Role", Search, Pagesize, true);
-          ViewData["grid"] = grid;
-            return View();
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
 
         //

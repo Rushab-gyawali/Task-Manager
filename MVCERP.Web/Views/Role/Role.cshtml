@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Assign Role";
-    Layout = "~/Views/Shared/MasterLayout.cshtml";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
 }
 <script >
 
@@ -39,7 +39,7 @@
                     @Html.Hidden("RoleId", ViewData["id"])
 
                     if (!Html.ViewData.ModelState.IsValid)
-                    {<div class="form-group ">
+                    {<div class="form-group ">                  
                         <div class="col-md-11 alert alert-danger alert-dismissible " role="alert">
                             @Html.ValidationSummary()
                         </div>

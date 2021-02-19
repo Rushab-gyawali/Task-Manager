@@ -1,7 +1,7 @@
 ﻿@model MVCERP.Shared.Common.MemberCommon
 @{ ViewBag.Title = "Tasks";
     Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
-    }
+}
 
 <h2>List of All Users</h2>
 <script src="~/Scripts/jquery-1.8.2.min.js"></script>
@@ -10,6 +10,8 @@
     @*<script src="~/UI/MeroTaskDashboard/vendor/jquery/jquery.min.js"></script>*@
 
     <script src="~/UI/MeroTaskDashboard/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 
     <script>
         function GetDetailById(id) {
@@ -28,6 +30,7 @@
         }
 
         function GetDetailByID() {
+            debugger;
             var empObj = {
                 UserName: $('#UserName').val(),
                 RoleName: $('#RoleName').val(),
@@ -40,15 +43,20 @@
                 type: "POST",
                 contentType: "application/json",
                 success: function (result) {
-                    $("#exampleModalCenter").hide(); 
+                    debugger;
+                    $("#exampleModalCenter").hide();
+                    $('div').removeClass('modal-backdrop');
+                    Swal.fire('Assiged Role');
                     $("#AllTaskList").show();
                 },
                 error: function (errormessage) {
                     alert(errormessage.responseText);
                     $("#exampleModalCenter").show();
+                    Swal.fire('Assiged Role Failed');
                 }
             });
         }
+
     </script>
 
 }
@@ -128,32 +136,31 @@
 
 
 <!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.HiddenFor(x => x.ID, new { @class = "form-control", @id = "UserId" })
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @Html.HiddenFor(x => x.ID, new { @class = "form-control", @id = "UserId" })
+                @Html.Hidden("Username")
 
-                    @Html.Hidden("Username")
-
-                    @Html.TextBoxFor(c => c.UserName, "", new { @class = "form-control", @disabled = "disabled" })
-                    <label for="RoleId">Roles</label>
-                    @Html.DropDownListFor(x => x.RoleName, ViewData["Roles"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-secondary btn-sm" onclick="return GetDetailByID()">Save changes</button>
-                </div>
+                @Html.TextBoxFor(c => c.UserName, "", new { @class = "form-control", @disabled = "disabled" })
+                <label for="RoleId">Roles</label>
+                @Html.DropDownListFor(x => x.RoleName, ViewData["Roles"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-secondary btn-sm" onclick="return GetDetailByID()">Save changes</button>
             </div>
         </div>
     </div>
+</div>
 
 

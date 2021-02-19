@@ -79,7 +79,7 @@ namespace MVCERP.Web.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult Index(LoginModel model)
         {
-           // StaticData.CheckSession();
+          
             string ip = Request.ServerVariables["REMOTE_ADDR"]
                     , browser = Request.Browser.Browser + " Version :" + Request.Browser.Version;
         
@@ -94,7 +94,7 @@ namespace MVCERP.Web.Controllers
             if (resp.Code == "0")
             {
 
-               // Session["ForcePwdChange"] = resp.ForcePwdChange;
+                Session["ForcePwdChange"] = resp.ForcePwdChange;
                 Session["UserName"] = model.UserName;              
                 Session["sysDate"] = StaticData.DBToFrontDate(System.DateTime.Now.ToShortDateString());
                 return RedirectToAction("UserDetail", "TaskReporting");
@@ -690,6 +690,7 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult ChangePassword()
         {
+            StaticData.CheckSession();
             ChangePasswordModel changemodel = new ChangePasswordModel();
             var user = StaticData.GetUser();
             MemberCommon membercommon = new MemberCommon();
@@ -705,7 +706,7 @@ namespace MVCERP.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(ChangePasswordModel pwdmodel)
         {
-
+            StaticData.CheckSession();
             if (string.IsNullOrWhiteSpace(pwdmodel.OldPassword))
             {
                 StaticData.SetMessageInSession(1, "Old Password Field is required");

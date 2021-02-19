@@ -12,13 +12,14 @@ namespace MVCERP.Web.Controllers
 {
     public class BackLogController : Controller
     {
-
+        
         IBackLogBusiness bussiness;
 
 
         public BackLogController(IBackLogBusiness _buss)
-        { 
-          bussiness = _buss;
+        {
+            StaticData.CheckSession();
+            bussiness = _buss;
             }
 
         public ActionResult Index()

@@ -165,6 +165,7 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult AssignRole()
         {
+            StaticData.CheckSession();
             string id = Request.QueryString["id"];
             var Id = id;
             var data = bussiness.GetUserRole(StaticData.GetUser(), Id);
@@ -214,6 +215,7 @@ namespace MVCERP.Web.Controllers
 
         public ActionResult Role()
         {
+            StaticData.CheckSession();
             return View();
         }
     }
