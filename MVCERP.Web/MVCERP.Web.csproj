@@ -177,7 +177,6 @@
     <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SprintController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TaskManagerController.cs" />
     <Compile Include="Controllers\TaskReportController.cs" />
     <Compile Include="Controllers\TaskReportingController.cs" />
@@ -215,6 +214,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\User\IUserService.cs" />
     <Compile Include="Services\User\UserService.cs" />
+    <Compile Include="ViewModel\UserRoleVewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\warning.png" />

@@ -10,6 +10,7 @@ namespace MVCERP.Shared.Common
        public string RoleName { get; set; }
        public int Id { get; set; }
        public bool IsActive { get; set; }
+        public string Sno { get; set; }
     }
    public class RoleDetails {
        public string Sno { get; set; }

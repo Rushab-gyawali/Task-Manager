@@ -17,9 +17,9 @@ namespace MVCERP.Business.Business.Role
             return repo.Manage(setup);
         }
 
-        public List<RoleCommon> GetList(string User, string Search, int Pagesize)
+        public List<RoleCommon> GetList()
         {
-            return repo.GetList(User,Search,Pagesize);
+            return repo.GetList();
         }
 
 

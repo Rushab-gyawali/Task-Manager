@@ -23,36 +23,38 @@ namespace MVCERP.Repository.Repository.Role
             return dao.ParseDbResponse(sql);
         }
 
-        public List<MVCERP.Shared.Common.RoleCommon> GetList(string User, string Search, int Pagesize)
+        public List<MVCERP.Shared.Common.RoleCommon> GetList()
         {
-            var sql = "EXEC proc_Role ";
-            sql += "@FLAG = " + dao.FilterString("A");
-            sql += ",@User = " + dao.FilterString(User);
-            sql += ",@Search = " + dao.FilterString(Search);
-            sql += ",@Pagesize = " + dao.FilterString(Pagesize.ToString());
-
-            var dt = dao.ExecuteDataTable(sql);
             var list = new List<RoleCommon>();
-            if (null != dt)
+            try
             {
-                int sn = 1;
-                foreach (System.Data.DataRow item in dt.Rows)
+                var sql = "EXEC proc_Roles ";
+                sql += "@FLAG = " + dao.FilterString("List");
+                var dt = dao.ExecuteDataTable(sql);
+                
+                if (null != dt)
                 {
-                    var common = new RoleCommon()
+                    int sn = 1;
+                    foreach (System.Data.DataRow item in dt.Rows)
                     {
-                        
-                        Id = Convert.ToInt32(item["RoleId"]),
-                        RoleName = item["RoleName"].ToString(),
-                        IsActive = Convert.ToBoolean(item["IsActive"]),
-                        User = item["CreatedBy"].ToString(),
-                        CreatedDate = item["CreatedDate"].ToString()
-                    };
-                    sn++;
-                    list.Add(common);
+                        var common = new RoleCommon()
+                        {
+                            Sno = sn.ToString(),
+                            Id = Convert.ToInt32(item["RoleId"]),
+                            RoleName = item["RoleName"].ToString(),
+                        };
+                        sn++;
+                        list.Add(common);
+                    }
                 }
+                return list;
             }
 
-            return list;
+            catch (Exception e)
+            {
+                throw e;
+            }
+         
         }
 
 

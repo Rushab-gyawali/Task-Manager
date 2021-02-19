@@ -7,7 +7,9 @@
     var user = MVCERP.Web.Library.StaticData.GetUser();
 }
 
-<div class="User-form" >
+
+
+<div class="User-form">
     <div class="container container-fluid">
         <div>
             <a class="btn btn-primary btn-sm" href="/Home/ChangePassword" role="button">Change Password</a>
@@ -34,12 +36,17 @@
                         <label for="PhoneNo">Phone No</label>
                         @Html.TextBoxFor(x => x.PhoneNo, new { @placeholder = "Enter PhoneNo", @class = "form-control", @id = "PhoneNo", @disabled = "on" })
                     </div>
+
+                    
                 }
             </div>
             <div class="col-md-7">
-
+                
             </div>
         </div>
-        
+
     </div>
 </div>
+
+
+

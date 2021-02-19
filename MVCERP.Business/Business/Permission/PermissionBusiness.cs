@@ -30,6 +30,11 @@ namespace MVCERP.Business.Business.Permission
             return repo.ListPermission();
         }
 
+        public List<PermissionCommon> RolesList(string status, string user)
+        {
+            return repo.RolesList(status, user);
+        }
+
         DbResponse IPermissionBusiness.Manage(PermissionCommon common)
         {
             return repo.Manage(common);

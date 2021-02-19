@@ -12,7 +12,6 @@
 
     <div class="form-group">
         <label for="RoleId">Roles</label>
-        @Html.DropDownListFor(x => x.RoleId, ViewData["RoleName"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
-        <small class="AssignTo"></small>
+        @Html.DropDownListFor(x => x.RoleName, ViewData["Roles"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
     </div>
 }

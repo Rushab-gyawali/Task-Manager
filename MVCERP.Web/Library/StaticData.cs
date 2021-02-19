@@ -398,17 +398,23 @@ namespace MVCERP.Web.Library
 
                     link += "<div style='display:flex;justify-content:space-around;'><a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
 
-                    link += "<a href='/" + Control + "/DeleteUser" +"?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a></div>";
+                    link += "<a href='/" + Control + "/DeleteUser" +"?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a>";
+
+                    link += "<a href='#' class='btn-action' title='Role' onclick='GetDetailById(" + ExtraId + ")'><i class='btn-action mdi mdi-settings'></i></a></div>";
+
+                 // link += "<i data-toggle='modal' data-target='#exampleModalCenter' class='mdi mdi-dots-vertical' onclick='GetDetailById(" + enc + ")></i></div>";
                 }
                 else if (Control.ToLower() == "backlog")
                 {
-
                     link += "<div style='display:flex;justify-content:space-around;'><a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
                     link += "<a href='/" + Control + "/DeleteTask" + "?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a></div>";
 
                 }
+                else if (Control.ToLower() == "role")
+                {
+                    link += "<div '><a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
+                }
 
-       
 
             return link;
         }
