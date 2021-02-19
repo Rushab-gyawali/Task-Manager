@@ -95,11 +95,12 @@ namespace MVCERP.Repository.Repository.Sprint
         {
             var sql = "exec PROC_TBLTASK ";
             sql += "@Flag = " + dao.FilterString((sprint.SprintId == null ? "Insert" : "Update"));
-            sql += ",@SprintName = " + dao.FilterString(sprint.SprintName.ToString());
+            sql += ",@SprintName = " + dao.FilterString(sprint.SprintName);
             sql += ",@StartedDate = " + dao.FilterString(sprint.StartedDate);
             sql += ",@EndDate = " + dao.FilterString(sprint.EndDate);
-            sql += ",@BacklogList = " + dao.FilterString(sprint.BacklogList);         
-             return dao.ParseDbResponse(sql);
+            sql += ",@BacklogList = " + dao.FilterString(sprint.BacklogList);
+            sql += ",@SprintId =" + dao.FilterString(sprint.SprintId);
+            return dao.ParseDbResponse(sql);
             
         }
 

@@ -67,14 +67,15 @@ namespace MVCERP.Web.Controllers
             {
                 BacklogList = StaticData.FilterString(data.BacklogList),
                 SprintName = StaticData.FilterString(data.SprintName),
-                StartedDate = StaticData.FrontToDBDate(data.StartedDate),
-                EndDate = StaticData.FrontToDBDate(data.EndDate),
+                StartedDate =data.StartedDate,
+                EndDate = data.EndDate,
                 SprintId = data.SprintId
             };
-            _business.SprintAndBacklog(common);
-            
-            return RedirectToAction("Index", "Sprint");
+           var dbresponse= _business.SprintAndBacklog(common);
+
+            return Json(dbresponse);
         }
+
         public List<BackLogCommon> ListBacklog()
         {
             return _business.GetBacklogs();

@@ -10,12 +10,13 @@
     var statusList = Model.Select(x => x.Status).Distinct().ToList();
 
 
-    var notAssignedList = Model.Where(x => x.Status == "Not Assigned").ToList();
-    var inProgressList = Model.Where(x => x.Status == "Assigned InProgress").ToList();
+    var notAssignedList = Model.Where(x => x.Status == "NotAssigned").ToList();
+    var inProgressList = Model.Where(x => x.Status == "InProgress").ToList();
     var completedList = Model.Where(x => x.Status == "Completed").ToList();
     var TestingList = Model.Where(x => x.Status == "Testing").ToList();
 
 }
+
 <style>
     .table tbody tr td {
         vertical-align: initial !important;
@@ -50,7 +51,7 @@
                                             <p class="card-text"><h5>Task Start Date:@StaticData.DBToFrontDate(notAssigned.TaskStartDate)</h5><h5>Task End Date:@StaticData.DBToFrontDate(notAssigned.TaskEndDate)</h5></p>
                                         </div>
                                         <div class="input-group">
-                                            <select class="TaskClass" style=" width: 150px;">
+                                            <select class="TaskClass" style=" width: 150px" id= "TaskClass_@notAssigned.TaskId" onchange="SelectChange('TaskClass_@notAssigned.TaskId')">
                                                 <option selected>Choose...</option>
                                                 <option value="InProgress">InProgress</option>
                                                 <option value="Testing">Testing</option>
@@ -83,7 +84,7 @@
                                         <p class="card-text"><h5>Task Start Date:@StaticData.DBToFrontDate(inProgress.TaskStartDate)</h5><h5>Task End Date:@StaticData.DBToFrontDate(inProgress.TaskEndDate)</h5></p>
                                     </div>
                                     <div class="input-group">
-                                        <select class="TaskClass" style=" width: 150px;">
+                                        <select class="TaskClass" style=" width: 150px;" id= "TaskClass_@inProgress.TaskId" onchange="SelectChange('TaskClass_@inProgress.TaskId')">
                                             <option selected>Choose...</option>
                                             <option value="Testing">Testing</option>
                                             <option value="Completed">Completed</option>
@@ -114,7 +115,7 @@
                                         <p class="card-text"><h5>Task Start Date:@StaticData.DBToFrontDate(testing.TaskStartDate)</h5><h5>Task End Date:@StaticData.DBToFrontDate(testing.TaskEndDate)</h5></p>
                                     </div>
                                     <div class="input-group">
-                                        <select class="TaskClass" style=" width: 150px;">
+                                        <select class="TaskClass" style=" width: 150px;"id= "TaskClass_@testing.TaskId" onchange="SelectChange('TaskClass_@testing.TaskId')">
                                             <option selected>Choose...</option>
                                             <option value="Completed">Completed</option>
                                         </select>
@@ -161,17 +162,23 @@
 </table>
 <script src="~/Scripts/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
-    $(".changeTask").on("click", function () {
+    var task = "";
 
-        var task=$(".TaskClass option:selected").val();
+    function SelectChange(id) {
+      
+        task = $("#" + id + "").val();
+     
+    }
+    $(".changeTask").on("click", function (e) {
+        e.preventDefault();
         var id = $(this).attr("id");
-
+        
         $.ajax({
             type: "POST",
             datatype: "JSON",
             url: '/TaskReporting/ChangeTask',
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({id:id,task:task}),
+            data: JSON.stringify({ id: id, task: task }),
             success: function (data) {
                 location.reload();
             },
@@ -181,4 +188,5 @@
 
         });
     });
+  
 </script>

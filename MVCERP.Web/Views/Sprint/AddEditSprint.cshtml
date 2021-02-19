@@ -84,11 +84,14 @@
             type: "POST",
             url: "/Sprint/InsertSprint",
             success: function (response) {
-
+                debugger;
+                if (response.ErrorCode == "0") {
+                    window.open("/Sprint/Index");
+                }
             },
             failure: function (response) {
                 console.log(response)
-                alert('error');
+               
             }
         });
 

@@ -130,11 +130,11 @@ namespace MVCERP.Web.Controllers
             return View();
         }
 
-
-        public Object ChangeTask(string id, string task)
+        [HttpPost]
+        public JsonResult ChangeTask(string id, string task)
         {
             var returnResult= _business.ChangeTask(id, task);
-            return returnResult;
+            return Json(returnResult);
         }
 
         [HttpGet]
