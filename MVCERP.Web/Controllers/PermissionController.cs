@@ -3,6 +3,7 @@ using MVCERP.Business.Business.Permission;
 using MVCERP.Shared.Common;
 using MVCERP.Web.Library;
 using MVCERP.Web.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,12 +41,20 @@ namespace MVCERP.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(PermissionCommon common)
+        public ActionResult Index(PermissionCommon model)
         {
             var user = StaticData.GetUser();
-            ViewData["Roles"] = StaticData.SetDDLValue(ddl.SetDropdownRoles("ListRoles", StaticData.GetUser()), "", "Select Role");
-            var data = buss.GetMenuPermission(common,user);
+            var Data = buss.GetMenuPermission(model, user);
             return RedirectToAction("Index","Permission");
+        }
+
+        public ActionResult ManagePermission(string data)
+        {
+            var user = StaticData.GetUser();
+
+             var request = JsonConvert.DeserializeObject<PermissionCommon>(data);
+            var Data = buss.GetMenuPermission(request, user);
+            return RedirectToAction("Index", "Permission");
         }
 
         [HttpGet]

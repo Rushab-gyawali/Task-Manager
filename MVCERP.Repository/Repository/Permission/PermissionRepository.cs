@@ -103,9 +103,9 @@ namespace MVCERP.Repository.Repository.Permission
         {
             var sql = "EXEC PROC_PERMISSION ";
             sql += "@Flag = 'AddPermissionRole'";
-            sql += ",@FK_MenuId =" + common.MenuId;
-            sql += ",@RoleName =" + dao.FilterString(common.RoleName);
-            sql += ",@UserName =" + dao.FilterString(user);
+            sql += ",@FK_MenuId =" + dao.FilterString(common.RolePermission);
+            sql += ",@RoleId =" + dao.FilterString(common.RoleName);
+            sql += ",@User =" + dao.FilterString(user);
             return dao.ParseDbResponse(sql);
         }
     }
