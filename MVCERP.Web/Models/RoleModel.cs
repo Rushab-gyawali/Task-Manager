@@ -20,6 +20,10 @@ namespace MVCERP.Web.Models
         [Display(Name = "Is Active")]
         public bool IsActive { get; set; }
 
+        public int MenuId { get; set; }
+        public int RoleId { get; set; }
+
+
         public IEnumerable<SelectListItem> RoleList { get; set; }
     }
 }

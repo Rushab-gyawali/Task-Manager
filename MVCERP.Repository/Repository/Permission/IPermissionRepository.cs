@@ -13,6 +13,8 @@ namespace MVCERP.Repository.Repository.Permission
 
         List<PermissionCommon> GetById(string ID);
         DbResponse Delete(int ID);
-        List<PermissionCommon> RolesList(string status, string user);
+        List<PermissionCommon> MenuList();
+        List<PermissionCommon> GetMenuByUser(string User);
+        DbResponse GetMenuPermission(PermissionCommon common, string user);
     }
 }

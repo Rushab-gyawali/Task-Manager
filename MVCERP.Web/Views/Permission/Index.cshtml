@@ -1,17 +1,86 @@
-﻿@model MVCERP.Web.Models.PermissionModel
+﻿@model List<MVCERP.Shared.Common.PermissionCommon>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
 }
 
+
 <h2>Permissions</h2>
 
-@using (Html.BeginForm("Index", "Permission", FormMethod.Post, new { @id = "Permission-form", @name = "Permission-form" }))
-{
-
+<div class="col-xl-6">
     <div class="form-group">
         <label for="RoleId">Roles</label>
-        @Html.DropDownListFor(x => x.RoleName, ViewData["Roles"] as IEnumerable<SelectListItem>, new { @class = "form-control", @required = "required" })
+        @Html.DropDownListFor(x => x[0].RoleName, ViewData["Roles"] as IEnumerable<SelectListItem>, new { @class = "form-control", @id = "RoleName" })
     </div>
-}
+    @{
+
+        var parentMenu = Model.Select(x => x.ParentMenu).Distinct().ToList();
+    }
+
+    <div class="card">
+        <div class="card-header d-block">
+            <h4 class="card-title">Permission</h4>
+        </div>
+        <div class="card-body">
+            <!-- Default accordion -->
+
+            @foreach (var items in parentMenu)
+            {
+                <div id="accordion-one_@items" class="accordion accordion-primary">
+                    <div class="accordion__header rounded-lg collapsed" data-toggle="collapse" data-target="#default_collapseOne_@items" aria-expanded="false">
+                        <span class="accordion__header--text">@items</span>
+                    </div>
+                </div>
+                var menulist = Model.Where(x => x.ParentMenu == items).Select(x => new { x.Menu, x.MenuId });
+                foreach (var data in menulist)
+                {
+                    <div class="accordion__item">
+                        <div id="default_collapseOne_@items" class="accordion__body collapse" data-parent="#accordion-one_@items" aria-expanded="false" style="">
+                            <div class="accordion__body--text">
+                                <input type="checkbox" name="menu" id="Menu_@data.Menu" class="form-check-input menuid" value="@data.MenuId" />
+                                @*@Html.CheckBoxFor(x => x[0].MenuCheck, new { @class = "form-check-input", @value = @data.MenuId })*@
+                                <label class="form-check-label" for="Menu_@data.Menu">@data.Menu</label>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            }
+
+
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-sm" onclick="return GetPermissionRole();">Add Permision</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script>
+
+    function GetPermissionRole() {
+        debugger;
+        var id = "";
+        $("#RoleName").val();
+        var per = {
+            MenuId: id,
+            RoleName: $("#RoleName").val(),
+        }
+        $.ajax({
+            url: "/Permission/Index",
+            data: JSON.stringify(per),
+            type: "POST",
+            contentType: "application/json",
+            success: function (result) {
+                //window.location("/Permission/Index");
+                true;
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+</script>

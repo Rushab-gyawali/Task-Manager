@@ -40,12 +40,6 @@ namespace MVCERP.Web.Controllers
 
             var user = StaticData.GetUser();
             ViewBag.user = user;
-            //var data = _business.GetUserDetails(user);
-            //var common = new UserModel
-            //{
-            //    UserId = data["UserId"].ToString(),
-
-            //};
             if(ViewBag.user == StaticData.GetUser())
             {
                 string Status = "Completed";
