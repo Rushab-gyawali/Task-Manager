@@ -110,6 +110,7 @@ namespace MVCERP.Web.Controllers
                 ModelState.AddModelError("", errors);
             }
             ViewData["msg"] = "The password and Confirm password doesnot match.";
+            ViewData["msg"] = "something went wrong please try again";
             return View(model);
         }
 
@@ -183,7 +184,7 @@ namespace MVCERP.Web.Controllers
         {
             StaticData.CheckSession(); 
             string id = Request.QueryString["id"];
-            var Id = id;
+            var Id = model.ID;
             var user = StaticData.GetUser();
 
             if (ModelState.IsValid)

@@ -29,8 +29,8 @@ namespace MVCERP.Repository.Repository.TaskReporting
             var list = new List<TaskReportingCommon>();
             try
             {
-                var sql = "EXEC PROC_TBLTASK ";
-                sql += "@Flag = 'A'";
+                var sql = "EXEC PROC_TASKMANAGER ";
+                sql += "@Flag = 'List'";
                 var dt = dao.ExecuteDataTable(sql);
 
                 if (null != dt)

@@ -176,9 +176,7 @@
     <Compile Include="Controllers\MISReport\MISGenerateReportController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-
     <Compile Include="Controllers\SprintController.cs" />
-
     <Compile Include="Controllers\TaskManagerController.cs" />
     <Compile Include="Controllers\TaskReportController.cs" />
     <Compile Include="Controllers\TaskReportingController.cs" />
@@ -207,11 +205,8 @@
     <Compile Include="Models\MemberModel.cs" />
     <Compile Include="Models\PermissionModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
-
     <Compile Include="Models\SprintAndBacklogModel.cs" />
     <Compile Include="Models\SprintModel.cs" />
-    <Compile Include="Models\RolesModel.cs" />
-
     <Compile Include="Models\TaskReportingModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\ViewModel\SprintAndBacklogViewModel.cs" />

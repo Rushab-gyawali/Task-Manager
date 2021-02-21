@@ -400,7 +400,7 @@ namespace MVCERP.Web.Library
 
                     link += "<a href='/" + Control + "/DeleteUser" +"?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a>";
 
-                    link += "<a href='#' class='btn-action' title='Role' onclick='GetDetailById(" + ExtraId + ")'><i class='btn-action mdi mdi-settings'></i></a></div>";
+                    link += "<a class='btn-action' title='Role' onclick='GetDetailById(" + ExtraId + ")'><i class='btn-action mdi mdi-settings'></i></a></div>";
 
                  // link += "<i data-toggle='modal' data-target='#exampleModalCenter' class='mdi mdi-dots-vertical' onclick='GetDetailById(" + enc + ")></i></div>";
                 }
