@@ -1,0 +1,119 @@
+﻿@model MVCERP.Shared.Common.SprintCommon
+@using MVCERP.Web.Library
+@{
+    ViewBag.Title = "AddEditSprint";
+    Layout = "~/Views/Shared/MeroTaskMainLayout.cshtml";
+
+}
+
+<div class="form-row">
+    <input type="hidden" id="SprintId" name="@Model.SprintId">
+    <div class="form-group col-md-4">
+        <label for="SprintName">SprintName</label>
+        <input type="text" class="form-control" id="SprintName" placeholder="SprintName" value="@Model.SprintName">
+    </div>
+    <div class="form-group col-md-4">
+        <label for="TaskStartDate">TaskStartDate</label>
+        <input type="datetime" class="form-control" id="StartedDate" placeholder="TaskStartDate" value="@StaticData.DBToFrontDate((Model.StartedDate))">
+    </div>
+    <div class="form-group col-md-4">
+        <label for="TaskEndDate">TaskEndDate</label>
+        <input type="datetime" class="form-control" id="EndDate" placeholder="TaskEndDate" value="@StaticData.DBToFrontDate(Model.EndDate)">
+    </div>
+    @foreach (var items in ViewBag.backlogs)
+    {
+        <div class="row form-check col-sm-12" style="margin-left:5px">
+            <input class="form-check-input chktest" type="checkbox" value="@items.TaskName" id="@items.BackLogId" name="@items.TaskName">
+            <label class="form-check-label" for="defaultCheck1">@items.TaskName</label>
+        </div>
+    }
+    <input type="hidden" id="BacklogList" name="BacklogList" />
+    <div class="form-check" style="margin-left:auto;">
+        <button class="btn btn-primary" id="btnSubmit">Submit</button>
+        @*<input type="submit" name="submit" />*@
+    </div>
+</div>
+@*}*@
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+
+
+<script type="text/javascript">
+    var arraylist = [];
+    $(document).ready(function () {
+      
+       
+       var model = JSON.parse('@Html.Raw(Model.taskobjlist)');
+        arraylist = model;
+        if (arraylist.length > 0) {
+            for (i = 0; i < arraylist.length; i++) {
+               
+                var nameType = arraylist[i]["TaskName"];
+                $('input[name = "' + nameType + '"]').prop('checked', true);
+
+                var elements = document.getElementsByName(nameType);
+                var id = elements[0].getAttribute('id');
+
+                var checkObject = {
+                    Id: id,
+                    TaskName: nameType
+                }         
+         
+                TaskObject.push(checkObject);
+
+                $("#SprintId").val(arraylist[i]["SprintId"]);
+            }          
+        }
+    });
+
+    var TaskObject = [];
+
+    $('#btnSubmit').click(function () {
+        $("#BacklogList").val(JSON.stringify(TaskObject));
+        var Data = {
+            SprintName: $("#SprintName").val(), //Reading text box values using Jquery
+            StartedDate: $("#StartedDate").val(),
+            EndDate: $("#EndDate").val(),
+            TaskObjectList: JSON.stringify(TaskObject),
+            BacklogList: $("#BacklogList").val(),
+            SprintId: $("#SprintId").val() == "" ? null : $("#SprintId").val()
+        }
+
+        console.log(Data);
+        $.ajax({
+            data: { response: JSON.stringify(Data)},
+            type: "POST",
+            url: "/Sprint/InsertSprint",
+            success: function (response) {
+                debugger;
+                if (response.ErrorCode == "0") {
+                    window.open("/Sprint/Index");
+                }
+            },
+            failure: function (response) {
+                console.log(response)
+               
+            }
+        });
+
+    });
+    $(".chktest").on("click", function () {
+        if ($(this).prop("checked") == true) {
+            var checkObject = new Object();
+            checkObject.Id = $(this).attr('id');
+            checkObject.TaskName = $(this).val();
+            TaskObject.push(checkObject);
+            
+        }
+        else {
+            var thisid = $(this).attr('id');
+            var duplicate = TaskObject;
+            $.each(duplicate, function (i, el) {
+                if (this.Id == thisid) {
+                    TaskObject.splice(i, 1);
+                }
+            });
+        }
+    });
+
+
+</script>

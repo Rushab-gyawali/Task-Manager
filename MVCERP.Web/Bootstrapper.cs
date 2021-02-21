@@ -13,6 +13,10 @@ using MVCERP.Business.Business.TaskManager;
 using MVCERP.Repository.Repository.TaskManager;
 using MVCERP.Business.Business.Member;
 using MVCERP.Repository.Repository.Member;
+
+using MVCERP.Business.Business.SprintBusiness;
+using MVCERP.Repository.Repository.Sprint;
+
 using MVCERP.Business.Business.TaskReport;
 using MVCERP.Business.Business.BackLog;
 using MVCERP.Repository.Repository.BackLog;
@@ -20,6 +24,7 @@ using MVCERP.Business.Business.Roles;
 using MVCERP.Repository.Repository.Roles;
 using MVCERP.Business.Business.Permission;
 using MVCERP.Repository.Repository.Permission;
+
 
 namespace MVCERP.Web
 {
@@ -53,6 +58,10 @@ namespace MVCERP.Web
             container.RegisterType<ITaskManagerRepository, TaskManagerRepository>();
             container.RegisterType<IMemberRepository, MemberRepository>();
             container.RegisterType<IMemberBusiness, MemberBusiness>();
+
+            container.RegisterType<ISprintBusiness, SprintBusiness>();
+            container.RegisterType<ISprintRepository, SprintRepository>();
+
             container.RegisterType<ITaskReportBusiness, TaskReportBusiness>();
             container.RegisterType<IBackLogBusiness, BackLogBusiness>();
             container.RegisterType<IBackLogRepository, BackLogRepository>();
@@ -60,6 +69,7 @@ namespace MVCERP.Web
             container.RegisterType<IRolesRepository, RolesRepository > ();
             container.RegisterType<IPermissionBusiness, PermissionBusiness>();
             container.RegisterType<IPermissionRepository, PermissionRepository>();
+
 
 
             return container;

@@ -378,8 +378,7 @@ namespace MVCERP.Web.Library
         public static string GetActions(string Control, Int64 Id, string ExtraId = "", string AddEdit = "")
         {
             var link = "";
-            if (HasRight(Control, AddEdit))
-            {
+         
                 var enc = Base64Encode_URL(ExtraId.ToString());
                 if (Control.ToLower() == "taskmanager")
                 {
@@ -388,22 +387,34 @@ namespace MVCERP.Web.Library
 
                     link += "<a href='/" + Control + "/DeleteTask" + "?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a></div>";
                 }
+
+                if (Control.ToLower() == "sprint")
+                {
+
+                    link += "<a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='AddSprint'><i class='mdi mdi-pencil'></i></a>";
+                }
                 else if (Control.ToLower() == "member")
                 {
 
                     link += "<div style='display:flex;justify-content:space-around;'><a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
 
-                    link += "<a href='/" + Control + "/DeleteUser" +"?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a></div>";
+                    link += "<a href='/" + Control + "/DeleteUser" +"?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a>";
+
+                    link += "<a href='#' class='btn-action' title='Role' onclick='GetDetailById(" + ExtraId + ")'><i class='btn-action mdi mdi-settings'></i></a></div>";
+
+                 // link += "<i data-toggle='modal' data-target='#exampleModalCenter' class='mdi mdi-dots-vertical' onclick='GetDetailById(" + enc + ")></i></div>";
                 }
                 else if (Control.ToLower() == "backlog")
                 {
-
                     link += "<div style='display:flex;justify-content:space-around;'><a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
                     link += "<a href='/" + Control + "/DeleteTask" + "?id=" + enc + "' class='btn-action' title='Delete'><i class='mdi mdi-delete'></i></a></div>";
 
                 }
+                else if (Control.ToLower() == "role")
+                {
+                    link += "<div '><a href='/" + Control + "/" + AddEdit + "?id=" + enc + "' class='btn-action' title='Edit'><i class='mdi mdi-pencil'></i></a>";
+                }
 
-            }
 
             return link;
         }

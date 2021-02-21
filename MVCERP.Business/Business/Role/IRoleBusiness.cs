@@ -9,7 +9,7 @@ namespace MVCERP.Business.Business.Role
    public interface IRoleBusiness
     {
        DbResponse Manage(RoleCommon setup);
-        List<RoleCommon> GetList(string User,string Search, int Pagesize);
+        List<RoleCommon> GetList();
 
         List<RoleDetails> GetAssignedList(string User, string id);
 

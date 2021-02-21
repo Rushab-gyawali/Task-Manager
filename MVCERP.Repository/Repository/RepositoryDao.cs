@@ -236,7 +236,7 @@ namespace MVCERP.Repository.Repository
             //{
             //    res.ErrorCode = Convert.ToInt32(dt.Rows[0][0].ToString());
             //    res.Message = dt.Rows[0][1].ToString();
-            //    res.Id = dt.Rows[0][2].ToString();
+            //  //  res.Id = dt.Rows[0][2].ToString();
             //    if (dt.Columns.Count > 3)
             //    {
             //        res.Extra = dt.Rows[0][3].ToString();

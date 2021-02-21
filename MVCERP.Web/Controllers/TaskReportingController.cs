@@ -24,17 +24,20 @@ namespace MVCERP.Web.Controllers
      
         public TaskReportingController(ITaskReportingBusiness business, ICommonBuss _ddl)
         {
+            StaticData.CheckSession();
             _business = business;
             ddl = _ddl;
         }
         [CheckSessionOut]
         public ActionResult Index()
         {
+            StaticData.CheckSession();
             return View();
         }
         public ActionResult UserDetail()
         {
             StaticData.CheckSession();
+
             var user = StaticData.GetUser();
             ViewBag.user = user;
             if(ViewBag.user == StaticData.GetUser())
@@ -98,28 +101,40 @@ namespace MVCERP.Web.Controllers
         }
 
         public JsonResult GetAllTask()
-        { 
-           var data = _business.GetAllTask();
+        {
+            StaticData.CheckSession();
+            var data = _business.GetAllTask();
             for(int i=0; i<data.Count; i++) {
                 data[i].Action = StaticData.GetActions("TaskManager", data[i].RowId, data[i].TaskId,"Task");
             }
-            return Json(new { data = data },JsonRequestBehavior.AllowGet);
+            return Json( data,JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetTaskStatus()
         {
+            StaticData.CheckSession();
             var data = _business.GetAllTask();
             return View(data);
         }
 
         public ActionResult MeroTaskMainLayout()
         {
+            StaticData.CheckSession();
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult ChangeTask(string id, string task)
+        {
+            StaticData.CheckSession();
+            var returnResult= _business.ChangeTask(id, task);
+            return Json(returnResult);
         }
 
         [HttpGet]
         public JsonResult StatusList(string status)
         {
+            StaticData.CheckSession();
             var user = StaticData.GetUser();
             var data = _business.StatusList(status, user);
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);

@@ -12,10 +12,10 @@ namespace MVCERP.Repository.Repository.User
 
        List<UserCommon> GetUserList(string User, string UserId);
 
-       object GetUserRole(string User, string UserId);
+        object GetUserRole(string User, string UserId);
 
-       DbResponse AssignUserRole(string User, string Username, string RoleList);
-       DbResponse Changeuserpassword(string User,string pwd, string id);
+        DbResponse AssignUserRole(string User, string Username, string RoleList);
+        DbResponse Changeuserpassword(string User,string pwd, string id);
 
        MemberCommon UserLogin(LoginCommon login);
 

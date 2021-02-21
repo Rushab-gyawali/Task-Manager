@@ -42,6 +42,68 @@ namespace MVCERP.Repository.Repository.Member
            
         }
 
+        public DbResponse AssignUserRole(MemberCommon model)
+        {
+
+            var list = new List<MemberCommon>();
+            try
+            {
+                var sql = "EXEC proc_Role @FLAG ='AssignUserRole'";
+                sql += ",@ID = " + model.ID;    
+                sql += ",@User = " + dao.FilterString(model.UserName);
+                sql += ",@RoleName = " + dao.FilterString(model.RoleName);
+                var ds= dao.ExecuteDataset(sql);
+                var result = dao.ParseDbResponse(ds.Tables[0]);
+
+                return result;
+                //var res = dao.ExecuteDataset(sql);
+
+                //if (res.Tables.Count == 1)
+                //{
+                //    model.UserData = res.Tables[0];
+                //    model.UserData = res.Tables[1];
+
+                //}
+                //else if (res.Tables.Count > 1)
+                //{
+                //    model.UserData = res.Tables[0];
+                //    model.UserData = res.Tables[1];
+                //}
+
+                //else
+                //{
+                //    model.UserData = res.Tables[0];
+                //}
+
+                //var db = new DbResponse();
+
+                //return db;
+
+                //var dt = dao.ExecuteDataTable(sql);
+                //if (null != dt)
+                //{
+
+                //    foreach (System.Data.DataRow item in dt.Rows)
+                //    {
+                //        var commonmember = new MemberCommon()
+                //        {
+                //            ID = Convert.ToInt32(item["ID"]),
+                //            UserName = item["UserName"].ToString(),
+                //        };
+
+                //        list.Add(commonmember);
+                //    }
+                //}
+                //return list;
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+
+            
+        }
+
         public DbResponse ChangePassword(ChangePasswordCommon common)
         {
             var sql = "EXEC proc_tblUsers ";
@@ -98,6 +160,23 @@ namespace MVCERP.Repository.Repository.Member
             {
                 throw e;
             }
+        }
+
+        public object GetUserRole(string User, string UserId)
+        {
+            var sql = "EXEC proc_Role @FLAG ='GetUserRole'";
+            sql += ",@User = " + dao.FilterString(User);
+            sql += ",@id = " + dao.FilterString(UserId);
+            var data = new object();
+            var dt = dao.ExecuteDataTable(sql);
+            if (null != dt)
+            {
+                foreach (DataRow item in dt.Rows)
+                {
+                    data = (new { UserName = item["username"].ToString(), RoleId = item["roleid"].ToString(), ID = item["id"].ToString() });
+                }
+            }
+            return data;
         }
 
         public List<MemberCommon> ListUsers()

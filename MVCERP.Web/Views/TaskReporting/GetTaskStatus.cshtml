@@ -9,115 +9,184 @@
 @{
     var statusList = Model.Select(x => x.Status).Distinct().ToList();
 
-    var notAssignedList = Model.Where(x => x.Status == "Not Assigned").ToList();
-    var inProgressList = Model.Where(x => x.Status == "Assigned InProgress").ToList();
+
+    var notAssignedList = Model.Where(x => x.Status == "NotAssigned").ToList();
+    var inProgressList = Model.Where(x => x.Status == "InProgress").ToList();
     var completedList = Model.Where(x => x.Status == "Completed").ToList();
     var TestingList = Model.Where(x => x.Status == "Testing").ToList();
+
 }
+
+<style>
+    .table tbody tr td {
+        vertical-align: initial !important;
+        border-color: #f0f1f5;
+    }
+</style>
 <table class="table">
     <thead>
         <tr>
             <th scope="col">NotAssigned</th>
-            <th scope="col">AssignedInProgress</th>
-            <th scope="col">Completed</th>
+            <th scope="col">InProgress</th>
             <th scope="col">Testing</th>
+            <th scope="col">Completed</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
-                <table>
 
-                    @foreach (var notAssigned in notAssignedList)
-                    {
+                @foreach (var notAssigned in notAssignedList)
+                {
+                    <table>
                         <tr>
                             <td>
-                                <div class="card border-danger mb-3" style="max-width: 25rem;">
-                                    <div class="card-header"><strong>Task Name:@notAssigned.TaskName</strong></div>
+                               
+                                    <div class="card mb-2">
+                                        <div class="card-header">
+                                            <h5 class="card-title">TaskName:@notAssigned.TaskName</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Desc:@notAssigned.TaskDescription</p>
+                                            <p class="card-text"><h5>Task Start Date:@StaticData.DBToFrontDate(notAssigned.TaskStartDate)</h5><h5>Task End Date:@StaticData.DBToFrontDate(notAssigned.TaskEndDate)</h5></p>
+                                        </div>
+                                        <div class="input-group">
+                                            <select class="TaskClass" style=" width: 150px" id= "TaskClass_@notAssigned.TaskId" onchange="SelectChange('TaskClass_@notAssigned.TaskId')">
+                                                <option selected>Choose...</option>
+                                                <option value="InProgress">InProgress</option>
+                                                <option value="Testing">Testing</option>
+                                                <option value="Completed">Completed</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary changeTask" type="button" id="@notAssigned.TaskId">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                               
+                            </td>
+                        </tr>
+                    </table>
+                }
+
+            </td>
+            <td>
+                @foreach (var inProgress in inProgressList)
+                {
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="card mb-2">
+                                    <div class="card-header">
+                                        <h5 class="card-title">TaskName:@inProgress.TaskName</h5>
+                                    </div>
                                     <div class="card-body">
-                                        <p class="card-text">Desp:@notAssigned.TaskName</p>
-                                        <p class="card-text"><h5>Task Start Date:@StaticData.DBToFrontDate(notAssigned.TaskStartDate)</h5><h5>Task End Date:@StaticData.DBToFrontDate(notAssigned.TaskEndDate)</h5></p>
+                                        <p class="card-text">Desc:@inProgress.TaskDescription</p>
+                                        <p class="card-text"><h5>Task Start Date:@StaticData.DBToFrontDate(inProgress.TaskStartDate)</h5><h5>Task End Date:@StaticData.DBToFrontDate(inProgress.TaskEndDate)</h5></p>
                                     </div>
                                     <div class="input-group">
-                                        <select class="">
+                                        <select class="TaskClass" style=" width: 150px;" id= "TaskClass_@inProgress.TaskId" onchange="SelectChange('TaskClass_@inProgress.TaskId')">
                                             <option selected>Choose...</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            <option value="Testing">Testing</option>
+                                            <option value="Completed">Completed</option>
                                         </select>
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">Button</button>
+                                            <button class="btn btn-primary changeTask" type="button" id="@inProgress.TaskId">Submit</button>
                                         </div>
                                     </div>
                                 </div>
-
                             </td>
                         </tr>
-                    }
+                    </table>
+                }
 
-                </table>
             </td>
-
             <td>
-                <table>
-
-                    @foreach (var inProgress in inProgressList)
-                    {
+                @foreach (var testing in TestingList)
+                {
+                    <table>
                         <tr>
                             <td>
-                                <div class="card border-info  mb-3" style="max-width: 25rem;">
-                                    <div class="card-header"><strong>Task Name:@inProgress.TaskName</strong></div>
-                                    <div class="card-body ">
-                                        <p class="card-text">Task Name:@inProgress.TaskName</p>
-                                        <p class="card-text"><h5>Task Start Date:@StaticData.DBToFrontDate(inProgress.TaskStartDate)</h5><h5>Task End Date:@StaticData.DBToFrontDate(inProgress.TaskEndDate)</h5></p>
+                                <div class="card mb-2">
+                                    <div class="card-header">
+                                        <h5 class="card-title">TaskName:@testing.TaskName</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Desc:@testing.TaskDescription</p>
+                                        <p class="card-text"><h5>Task Start Date:@StaticData.DBToFrontDate(testing.TaskStartDate)</h5><h5>Task End Date:@StaticData.DBToFrontDate(testing.TaskEndDate)</h5></p>
+                                    </div>
+                                    <div class="input-group">
+                                        <select class="TaskClass" style=" width: 150px;"id= "TaskClass_@testing.TaskId" onchange="SelectChange('TaskClass_@testing.TaskId')">
+                                            <option selected>Choose...</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary changeTask" type="button" id="@testing.TaskId">Submit</button>
+                                        </div>
                                     </div>
                                 </div>
+                                
                             </td>
                         </tr>
-                    }
+                    </table>
 
-                </table>
+                }
+
             </td>
             <td>
-                <table>
 
-                    @foreach (var completed in completedList)
-                    {
+                @foreach (var completed in completedList)
+                {
+                    <table>
+
                         <tr>
                             <td>
-                                <div class="card border-success mb-3" style="max-width: 25rem;">
-                                    <div class="card-header"><strong>Task Name:@completed.TaskName</strong></div>
+
+                                <div class="card mb-2">
+                                    <div class="card-header">
+                                        <h5 class="card-title">TaskName:@completed.TaskName</h5>
+                                    </div>
                                     <div class="card-body">
-                                        <p class="card-text">Task Name:@completed.TaskName</p>
+                                        <p class="card-text">Desc:@completed.TaskDescription</p>
                                         <p class="card-text"><h5>Task Start Date:@StaticData.DBToFrontDate(completed.TaskStartDate)</h5><h5>Task End Date:@StaticData.DBToFrontDate(completed.TaskEndDate)</h5></p>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                    }
+                    </table>
+                }
 
-                </table>
             </td>
-            <td>
-                <table>
 
-                    @foreach (var testing in TestingList)
-                    {
-                        <tr>
-                            <td>
-                                <div class="card border-warning mb-3" style="max-width: 25rem;">
-                                    <div class="card-header"><strong>Task Name:@testing.TaskName</strong></div>
-                                    <div class="card-body ">
-                                        <p class="card-text">Task Name:@testing.TaskName</p>
-                                        <p class="card-text"><h5>Task Started Date:@StaticData.DBToFrontDate(testing.TaskStartDate)</h5><h5>Task Ended Date:@StaticData.DBToFrontDate(testing.TaskEndDate)</h5></p>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-
-                </table>
-            </td>
+        </tr>
     </tbody>
 </table>
-<script src="~/UI/Bootstrapv.4/bootstrap-select.min.js"></script>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+    var task = "";
+
+    function SelectChange(id) {
+      
+        task = $("#" + id + "").val();
+     
+    }
+    $(".changeTask").on("click", function (e) {
+        e.preventDefault();
+        var id = $(this).attr("id");
+        
+        $.ajax({
+            type: "POST",
+            datatype: "JSON",
+            url: '/TaskReporting/ChangeTask',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ id: id, task: task }),
+            success: function (data) {
+                location.reload();
+            },
+            error: function () {
+              
+            }
+
+        });
+    });
+  
+</script>

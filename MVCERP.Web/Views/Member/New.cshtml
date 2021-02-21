@@ -15,7 +15,7 @@
 <!-- Sign up form -->
 <div class="User-form" style="padding-top:30px;">
     <div class="container container-fluid">
-        
+
         @using (Html.BeginForm("New", "Member", FormMethod.Post, new { @id = "Singupform" }))
         {
             <h2 class=" form-title"> Register User</h2>
@@ -81,6 +81,9 @@
                     </label>
                 </div>
 
+               
+
+
                 <div class="form-group">
                     @{
                         if (id == null)
@@ -107,8 +110,6 @@
     </div>
 </div>
 
-
-
 <script>
     function myFunction() {
         var x = document.getElementById("Password");
@@ -123,7 +124,8 @@
         } else {
             otherfield.type = "password";
         }
-          
-        }
+        
+    }
     
 </script>
+

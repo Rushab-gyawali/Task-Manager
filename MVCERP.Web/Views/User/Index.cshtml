@@ -63,11 +63,11 @@
 
 <script>
     function GetDetailById(id) {
-
+        debugger;
         $("#Username").val();
         $("#dispName").val();
         $("#RoleList").val();
-        $.get("/User/AssignRole?id=" + id, function (data, status) {
+        $.get("/Member/AssignRole?id=" + id, function (data, status) {
             $("#Username").val(data.userName);
             $("#dispName").val(data.userName);
             $("#RoleList").val(data.roleId);
@@ -106,7 +106,7 @@
                             Assign Role
                         </h4>
                     </div>
-                    @using (Html.BeginForm("AssignRole", "User", new { ReturnUrl = "Index" }, FormMethod.Post, new { @id = "AssignRole" }))
+                    @using (Html.BeginForm("AssignRole", "Index", new { ReturnUrl = "Index" }, FormMethod.Post, new { @id = "AssignRole" }))
                     {
                         @Html.AntiForgeryToken()
                         <div class="modal-body">
@@ -176,11 +176,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 
 
 

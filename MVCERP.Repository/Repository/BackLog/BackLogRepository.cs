@@ -28,7 +28,7 @@ namespace MVCERP.Repository.Repository.BackLog
             sql += ",@DiscussionDate = " + dao.FilterString(setup.DiscussionDate);
             sql += ",@Owner = " + dao.FilterString(setup.Owner);
             sql += ",@ClientId = " + setup.ClientId;
-            sql += ",@StoryPoint = " + dao.FilterString(setup.StoryPoint);
+            sql += ",@StoryPoint = " + setup.StoryPoint;
             sql += ",@CreatedBy = " + dao.FilterString(setup.CreatedBy);
             
             if (setup.BackLogId == null)
@@ -74,7 +74,7 @@ namespace MVCERP.Repository.Repository.BackLog
                             DiscussionDate = item["DiscussionDate"].ToString(),
                             Owner = item["Owner"].ToString(),
                             ClientId = Convert.ToInt32(item["ClientId"]),
-                            StoryPoint = item["StoryPoint"].ToString(),
+                            StoryPoint = Convert.ToInt32(item["StoryPoint"]),
                             CreatedBy = item["CreatedBy"].ToString(),
                             CreatedDate = item["CreatedDate"].ToString(),
 
@@ -116,7 +116,7 @@ namespace MVCERP.Repository.Repository.BackLog
                             DiscussionDate = item["DiscussionDate"].ToString(),
                             Owner = item["Owner"].ToString(),
                             ClientId = Convert.ToInt32(item["ClientId"]),
-                            StoryPoint = item["StoryPoint"].ToString(),
+                            StoryPoint = Convert.ToInt32(item["StoryPoint"]),
                             CreatedBy = item["CreatedBy"].ToString(),
                             CreatedDate = item["CreatedDate"].ToString(),
                         };

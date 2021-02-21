@@ -15,7 +15,7 @@ namespace MVCERP.Web.Models
         public string DiscussionDate { get; set; }
         public string Owner { get; set; }
         public int ClientId { get; set; }
-        public string StoryPoint { get; set; }
+        public int StoryPoint { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
 

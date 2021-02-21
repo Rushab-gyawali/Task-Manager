@@ -255,8 +255,7 @@
 			}
 			};
 
-			var chartBar1 = new ApexCharts(document.querySelector("#chartBar"), options);
-			chartBar1.render();
+			
 	}
 	
 	var counterBar = function(){
@@ -276,7 +275,7 @@
 			load:function(){
 				activityBar();		
 				donutChart();	
-				chartBar();
+				//chartBar();
 				counterBar();
 			},
 			
