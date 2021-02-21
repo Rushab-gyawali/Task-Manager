@@ -17,7 +17,7 @@ namespace MVCERP.Repository.Repository.Role
             var sql = "exec proc_Role ";
             sql += "@FLAG = " + dao.FilterString((setup.Id > 0 ? "U" : "I"));
             sql += ",@User = " + dao.FilterString(setup.User);
-            sql += ",@Id = " + dao.FilterString(setup.Id.ToString());
+            sql += ",@Id = " + setup.Id;
             sql += ",@RoleName = " + dao.FilterString(setup.RoleName);
             sql += ",@IsActive = " + setup.IsActive;
             return dao.ParseDbResponse(sql);

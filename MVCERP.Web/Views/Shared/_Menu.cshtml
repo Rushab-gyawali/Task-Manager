@@ -1,0 +1,31 @@
+﻿@model List<MVCERP.Shared.Common.PermissionCommon>
+
+
+@{
+
+    var parentMenu = Model.Select(x => x.ParentMenu).Distinct().ToList();
+}
+
+
+<!-- Default accordion -->
+<li>
+        @foreach (var items in parentMenu)
+        {
+            <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-networking"></i>
+                <span class="nav-text">@items</span>
+            </a>
+
+            var menulist = Model.Where(x => x.ParentMenu == items).Select(x => new { x.Menu, x.URL });
+            foreach (var data in menulist)
+            {
+                <ul aria-expanded="false">
+                    <li><a href="@data.URL">@data.Menu</a></li>
+                </ul>
+
+            }
+
+        }
+</li>
+
+

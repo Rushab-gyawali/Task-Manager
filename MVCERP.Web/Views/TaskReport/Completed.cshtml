@@ -73,8 +73,8 @@
             else if (lopera2 > 1) {
                 var pdate = taskenddate.split('-');
             }
-            var dd = parseInt(pdate[0]);
-            var mm = parseInt(pdate[1]);
+            var mm = parseInt(pdate[0]);
+            var dd = parseInt(pdate[1]);
             var yy = parseInt(pdate[2]);
             // Create list of days of a month [assume there is no leap year by default]
             var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -92,12 +92,12 @@
                 }
                 if ((lyear == false) && (dd >= 29)) {
                     $("#TaskEndDate").css("border-color", "red");
-                    $(".TaskEndDate").html("Invalid Date");
+                    $(".TaskEndDate").html("Feburary has 28 days only");
                     return false;
                 }
                 if ((lyear == true) && (dd > 29)) {
                     $("#TaskEndDate").css("border-color", "red");
-                    $(".TaskEndDate").html("Invalid Date");
+                    $(".TaskEndDate").html("Feburary has 28 days only");
                     return false;
                 }
             }
@@ -130,8 +130,8 @@
             else if (lopera2 > 1) {
                 var pdate = taskstartdate.split('-');
             }
-            var dd = parseInt(pdate[0]);
-            var mm = parseInt(pdate[1]);
+            var mm = parseInt(pdate[0]);
+            var dd = parseInt(pdate[1]);
             var yy = parseInt(pdate[2]);
             // Create list of days of a month [assume there is no leap year by default]
             var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -149,12 +149,12 @@
                 }
                 if ((lyear == false) && (dd >= 29)) {
                     $("#TaskStartDate").css("border-color", "red");
-                    $(".TaskStartDate").html("Invalid Date");
+                    $(".TaskStartDate").html("Feburary has 28 days only");
                     return false;
                 }
                 if ((lyear == true) && (dd > 29)) {
                     $("#TaskStartDate").css("border-color", "red");
-                    $(".TaskStartDate").html("Invalid Date");
+                    $(".TaskStartDate").html("Feburary has 28 days only");
                     return false;
                 }
             }
